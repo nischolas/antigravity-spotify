@@ -5,11 +5,11 @@ interface DataTableProps {
     data: SpotifyHistoryItem[];
 }
 
-type SortField = 'ts' | 'master_metadata_track_name' | 'master_metadata_album_artist_name' | 'ms_played';
+type SortField = 'master_metadata_track_name' | 'master_metadata_album_artist_name' | 'ms_played';
 type SortDirection = 'asc' | 'desc';
 
 export const DataTable: React.FC<DataTableProps> = ({ data }) => {
-    const [sortField, setSortField] = useState<SortField>('ts');
+    const [sortField, setSortField] = useState<SortField>('ms_played');
     const [sortDirection, setSortDirection] = useState<SortDirection>('desc');
 
     const handleSort = (field: SortField) => {
@@ -17,7 +17,7 @@ export const DataTable: React.FC<DataTableProps> = ({ data }) => {
             setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
         } else {
             setSortField(field);
-            setSortDirection('desc'); // Default to desc for new field (often better for dates/numbers)
+            setSortDirection('desc');
         }
     };
 
@@ -26,9 +26,9 @@ export const DataTable: React.FC<DataTableProps> = ({ data }) => {
             let aValue: any = a[sortField];
             let bValue: any = b[sortField];
 
-            // Handle nulls
-            if (aValue === null) return 1;
-            if (bValue === null) return -1;
+            // Handle undefined/nulls
+            if (aValue === undefined || aValue === null) return 1;
+            if (bValue === undefined || bValue === null) return -1;
 
             if (aValue < bValue) return sortDirection === 'asc' ? -1 : 1;
             if (aValue > bValue) return sortDirection === 'asc' ? 1 : -1;
@@ -43,10 +43,6 @@ export const DataTable: React.FC<DataTableProps> = ({ data }) => {
         return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
     };
 
-    const formatDate = (ts: string) => {
-        return new Date(ts).toLocaleString();
-    };
-
     return (
         <div className="table-container">
             <div className="table-stats">
@@ -55,9 +51,6 @@ export const DataTable: React.FC<DataTableProps> = ({ data }) => {
             <table>
                 <thead>
                     <tr>
-                        <th onClick={() => handleSort('ts')} className={sortField === 'ts' ? `sorted-${sortDirection}` : ''}>
-                            Timestamp
-                        </th>
                         <th onClick={() => handleSort('master_metadata_track_name')} className={sortField === 'master_metadata_track_name' ? `sorted-${sortDirection}` : ''}>
                             Track Name
                         </th>
@@ -72,7 +65,6 @@ export const DataTable: React.FC<DataTableProps> = ({ data }) => {
                 <tbody>
                     {sortedData.map((item, index) => (
                         <tr key={index}>
-                            <td>{formatDate(item.ts)}</td>
                             <td>{item.master_metadata_track_name || <em>Unknown Track</em>}</td>
                             <td>{item.master_metadata_album_artist_name || <em>Unknown Artist</em>}</td>
                             <td>{formatMs(item.ms_played)}</td>
