@@ -14,8 +14,8 @@ function App() {
   return (
     <div className="app-container">
       <header className="app-header">
-        <h1>Spotify History Visualizer</h1>
-        <p className="subtitle">Explore your extended streaming history</p>
+        <h1>Spotify Streaming History</h1>
+        <p className="subtitle">List your most listened songs <b><i>ever</i></b>. Everything stays in your browser, no data is sent to a server.</p>
       </header>
 
       <main>
