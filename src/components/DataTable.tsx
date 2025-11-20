@@ -57,9 +57,13 @@ export const DataTable: React.FC<DataTableProps> = ({ data }) => {
                         <th onClick={() => handleSort('master_metadata_album_artist_name')} className={sortField === 'master_metadata_album_artist_name' ? `sorted-${sortDirection}` : ''}>
                             Artist
                         </th>
+                        <th>
+
+                        </th>
                         <th onClick={() => handleSort('ms_played')} className={sortField === 'ms_played' ? `sorted-${sortDirection}` : ''}>
                             Time Played
                         </th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -67,6 +71,7 @@ export const DataTable: React.FC<DataTableProps> = ({ data }) => {
                         <tr key={index}>
                             <td>{item.master_metadata_track_name || <em>Unknown Track</em>}</td>
                             <td>{item.master_metadata_album_artist_name || <em>Unknown Artist</em>}</td>
+                            <td><a href={`https://open.spotify.com/intl-de/track/${item.spotify_track_uri?.replace('spotify:track:', '')}`} target="_blank">Link</a></td>
                             <td>{formatMs(item.ms_played)}</td>
                         </tr>
                     ))}
