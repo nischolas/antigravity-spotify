@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import JSZip from 'jszip';
 import type { SpotifyHistoryItem } from '../types';
 
 interface FileUploadProps {
@@ -18,46 +19,78 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onDataLoaded }) => {
 
         const allData: SpotifyHistoryItem[] = [];
         const readers: Promise<void>[] = [];
+        let ignoredCount = 0;
+
+        // Helper to process JSON content
+        const processJsonContent = (content: string, filename: string) => {
+            try {
+                const json = JSON.parse(content);
+                if (Array.isArray(json)) {
+                    allData.push(...json);
+                }
+            } catch (err) {
+                console.error(`Error parsing file ${filename}:`, err);
+            }
+        };
 
         // Read all files
-        let ignoredCount = 0;
         for (let i = 0; i < files.length; i++) {
             const file = files[i];
 
-            if (!file.name.startsWith('Streaming_History_Audio_')) {
-                ignoredCount++;
-                continue;
-            }
-
-            const readerPromise = new Promise<void>((resolve, reject) => {
-                const reader = new FileReader();
-                reader.onload = (e) => {
+            if (file.name.endsWith('.zip')) {
+                const zipPromise = new Promise<void>(async (resolve, reject) => {
                     try {
-                        const text = e.target?.result as string;
-                        const json = JSON.parse(text);
-                        if (Array.isArray(json)) {
-                            allData.push(...json);
-                        }
+                        const zip = await JSZip.loadAsync(file);
+                        const zipFilePromises: Promise<void>[] = [];
+
+                        zip.forEach((relativePath, zipEntry) => {
+                            if (zipEntry.dir) return;
+                            // Extract filename from path (handle folders inside zip)
+                            const filename = relativePath.split('/').pop() || relativePath;
+
+                            if (filename.startsWith('Streaming_History_Audio_') && filename.endsWith('.json')) {
+                                const p = zipEntry.async('string').then((content) => {
+                                    processJsonContent(content, filename);
+                                });
+                                zipFilePromises.push(p);
+                            } else {
+                                ignoredCount++;
+                            }
+                        });
+
+                        await Promise.all(zipFilePromises);
                         resolve();
                     } catch (err) {
-                        console.error(`Error parsing file ${file.name}:`, err);
-                        // We continue even if one file fails, but you could reject here
-                        resolve();
+                        console.error(`Error reading zip file ${file.name}:`, err);
+                        reject(err);
                     }
-                };
-                reader.onerror = () => reject(new Error(`Failed to read file ${file.name}`));
-                reader.readAsText(file);
-            });
-            readers.push(readerPromise);
+                });
+                readers.push(zipPromise);
+            } else if (file.name.startsWith('Streaming_History_Audio_') && file.name.endsWith('.json')) {
+                const readerPromise = new Promise<void>((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        const text = e.target?.result as string;
+                        processJsonContent(text, file.name);
+                        resolve();
+                    };
+                    reader.onerror = () => reject(new Error(`Failed to read file ${file.name}`));
+                    reader.readAsText(file);
+                });
+                readers.push(readerPromise);
+            } else {
+                ignoredCount++;
+            }
         }
 
-        if (readers.length === 0 && ignoredCount > 0) {
-            setError(`No valid files found. Files must start with "Streaming_History_Audio_". Ignored ${ignoredCount} file(s).`);
-            setIsLoading(false);
-            return;
-        }
         try {
             await Promise.all(readers);
+
+            if (allData.length === 0) {
+                setError(`No valid data found. Uploaded files must be JSON files starting with "Streaming_History_Audio_" or ZIP archives containing them. Ignored ${ignoredCount} file(s)/entry(s).`);
+                setIsLoading(false);
+                return;
+            }
 
             // Aggregation Logic
             const aggregatedMap = new Map<string, SpotifyHistoryItem>();
@@ -70,9 +103,6 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onDataLoaded }) => {
                     const existing = aggregatedMap.get(uri)!;
                     existing.ms_played += item.ms_played;
                 } else {
-                    // Create a new object to avoid mutating the original if needed, 
-                    // though here we are creating a fresh aggregated list anyway.
-                    // We keep the metadata from the first occurrence.
                     aggregatedMap.set(uri, {
                         ...item,
                         ms_played: item.ms_played
@@ -82,7 +112,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onDataLoaded }) => {
 
             const aggregatedResult = Array.from(aggregatedMap.values());
 
-            if (aggregatedResult.length === 0 && allData.length > 0) {
+            if (aggregatedResult.length === 0) {
                 setError('No valid track data found to aggregate (missing spotify_track_uri).');
             } else {
                 onDataLoaded(aggregatedResult);
@@ -99,19 +129,19 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onDataLoaded }) => {
     return (
         <div className="file-upload-container">
             <label htmlFor="file-upload" className="file-upload-label">
-                {isLoading ? 'Processing...' : 'Upload Spotify History JSON(s)'}
+                {isLoading ? 'Processing...' : 'Upload Spotify History (JSON or ZIP)'}
             </label>
             <input
                 id="file-upload"
                 type="file"
-                accept=".json"
+                accept=".json,.zip"
                 multiple
                 onChange={handleFileChange}
                 className="file-upload-input"
             />
             {error && <div className="error-message">{error}</div>}
             <p className="hint" style={{ marginTop: '0.5rem', fontSize: '0.9rem' }}>
-                Select multiple files to merge. Only files starting with <code>Streaming_History_Audio_</code> are accepted.
+                Select multiple JSON files or ZIP archives. Only JSON files starting with <code>Streaming_History_Audio_</code> are accepted.
             </p>
         </div>
     );
