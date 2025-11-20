@@ -21,7 +21,6 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onDataLoaded }) => {
         const readers: Promise<void>[] = [];
         let ignoredCount = 0;
 
-        // Helper to process JSON content
         const processJsonContent = (content: string, filename: string) => {
             try {
                 const json = JSON.parse(content);
@@ -33,7 +32,6 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onDataLoaded }) => {
             }
         };
 
-        // Read all files
         for (let i = 0; i < files.length; i++) {
             const file = files[i];
 
@@ -45,7 +43,6 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onDataLoaded }) => {
 
                         zip.forEach((relativePath, zipEntry) => {
                             if (zipEntry.dir) return;
-                            // Extract filename from path (handle folders inside zip)
                             const filename = relativePath.split('/').pop() || relativePath;
 
                             if (filename.startsWith('Streaming_History_Audio_') && filename.endsWith('.json')) {
@@ -92,7 +89,6 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onDataLoaded }) => {
                 return;
             }
 
-            // Aggregation Logic
             const aggregatedMap = new Map<string, SpotifyHistoryItem>();
 
             for (const item of allData) {

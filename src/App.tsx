@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { FileUpload } from './components/FileUpload';
 import { DataTable } from './components/DataTable';
 import type { SpotifyHistoryItem } from './types';
-import './App.css'; // We'll leave this but rely mostly on index.css
+import './App.css';
 
 function App() {
   const [historyData, setHistoryData] = useState<SpotifyHistoryItem[]>([]);

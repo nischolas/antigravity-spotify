@@ -31,7 +31,6 @@ export const DataTable: React.FC<DataTableProps> = ({ data }) => {
             let aValue: any = a[sortField];
             let bValue: any = b[sortField];
 
-            // Handle undefined/nulls
             if (aValue === undefined || aValue === null) return 1;
             if (bValue === undefined || bValue === null) return -1;
 
