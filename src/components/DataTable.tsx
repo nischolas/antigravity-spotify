@@ -97,7 +97,33 @@ export const DataTable: React.FC<DataTableProps> = ({ data }) => {
                         <tr key={index}>
                             <td>{item.master_metadata_track_name || <em>Unknown Track</em>}</td>
                             <td>{item.master_metadata_album_artist_name || <em>Unknown Artist</em>}</td>
-                            <td><a href={`https://open.spotify.com/intl-de/track/${item.spotify_track_uri?.replace('spotify:track:', '')}`} target="_blank">Link</a></td>
+                            <td>
+                                {item.spotify_track_uri && (
+                                    <a
+                                        href={`https://open.spotify.com/intl-de/track/${item.spotify_track_uri.replace('spotify:track:', '')}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        style={{ color: 'inherit', textDecoration: 'none' }}
+                                        title="Open in Spotify"
+                                    >
+                                        <svg
+                                            width="16"
+                                            height="16"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            style={{ verticalAlign: 'middle' }}
+                                        >
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                            <polyline points="15 3 21 3 21 9"></polyline>
+                                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                                        </svg>
+                                    </a>
+                                )}
+                            </td>
                             <td>{formatMs(item.ms_played)}</td>
                         </tr>
                     ))}
