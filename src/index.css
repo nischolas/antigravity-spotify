@@ -22,7 +22,7 @@ body {
 .app-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .app-header {
@@ -53,6 +53,7 @@ h1 {
   align-items: center;
   justify-content: center;
   min-height: 400px;
+  padding: 1rem 2rem;
   border: 2px dashed var(--border-color);
   border-radius: 1rem;
   background-color: var(--surface-color);
@@ -71,11 +72,13 @@ h1 {
   background-color: var(--primary-color);
   color: #000;
   padding: 1rem 2rem;
+  margin: 1rem 2rem;
   border-radius: 2rem;
   font-weight: 600;
   cursor: pointer;
   transition: transform 0.2s ease, background-color 0.2s ease;
   font-size: 1.1rem;
+  display: inline-block;
 }
 
 .file-upload-label:hover {
@@ -114,7 +117,8 @@ table {
   text-align: left;
 }
 
-th, td {
+th,
+td {
   padding: 1rem 1.5rem;
 }
 
