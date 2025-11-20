@@ -22,7 +22,6 @@ function App() {
         {historyData.length === 0 ? (
           <div className="upload-section">
             <FileUpload onDataLoaded={handleDataLoaded} />
-            <p className="hint">Upload your <code>Streaming_History_Audio_*.json</code> file</p>
           </div>
         ) : (
           <div className="data-section">
