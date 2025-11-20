@@ -1,6 +1,6 @@
-# Spotify History Visualizer
+# Spotify Top Tracks
 
-A privacy-first web application that lets you analyze your Spotify Extended Streaming History with ease. Upload your data, filter by playtime, and discover your true listening time processed locally in your browser.
+A privacy-first web application that lets you upload your Spotify Extended Streaming History data, filter by playtime, and discover your true listening time processed locally in your browser.
 
 
 ## How to Use

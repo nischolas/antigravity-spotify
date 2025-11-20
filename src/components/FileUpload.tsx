@@ -137,7 +137,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onDataLoaded }) => {
             />
             {error && <div className="error-message">{error}</div>}
             <p className="hint">
-                Select multiple JSON files or ZIP archives. Only JSON files starting with <code>Streaming_History_Audio_</code> are accepted.
+                Select a ZIP archive ( <code>my_spotify_data.zip</code> ) or JSON file(s) (<code>Streaming_History_Audio_XXX.json</code>).
             </p>
             <hr />
             <div className="tutorial-section">
