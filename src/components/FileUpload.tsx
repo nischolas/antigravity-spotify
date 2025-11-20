@@ -20,8 +20,15 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onDataLoaded }) => {
         const readers: Promise<void>[] = [];
 
         // Read all files
+        let ignoredCount = 0;
         for (let i = 0; i < files.length; i++) {
             const file = files[i];
+
+            if (!file.name.startsWith('Streaming_History_Audio_')) {
+                ignoredCount++;
+                continue;
+            }
+
             const readerPromise = new Promise<void>((resolve, reject) => {
                 const reader = new FileReader();
                 reader.onload = (e) => {
@@ -44,6 +51,11 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onDataLoaded }) => {
             readers.push(readerPromise);
         }
 
+        if (readers.length === 0 && ignoredCount > 0) {
+            setError(`No valid files found. Files must start with "Streaming_History_Audio_". Ignored ${ignoredCount} file(s).`);
+            setIsLoading(false);
+            return;
+        }
         try {
             await Promise.all(readers);
 
@@ -99,7 +111,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onDataLoaded }) => {
             />
             {error && <div className="error-message">{error}</div>}
             <p className="hint" style={{ marginTop: '0.5rem', fontSize: '0.9rem' }}>
-                Select multiple files to merge and aggregate play counts.
+                Select multiple files to merge. Only files starting with <code>Streaming_History_Audio_</code> are accepted.
             </p>
         </div>
     );
