@@ -51,26 +51,19 @@ export const DataTable: React.FC<DataTableProps> = ({ data }) => {
 
     return (
         <div className="table-container">
-            <div className="table-stats" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div className="table-stats">
                 <div>
                     <span>Total Records: {data.length}</span>
-                    {hiddenCount > 0 && <span style={{ marginLeft: '1rem', color: '#b3b3b3' }}>(Hidden items: {hiddenCount})</span>}
+                    {hiddenCount > 0 && <span className="hidden-count">(Hidden by filter: {hiddenCount})</span>}
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <label htmlFor="min-playtime" style={{ fontSize: '0.9rem', color: '#b3b3b3' }}>Min Playtime (min):</label>
+                <div className="filter-controls">
+                    <label htmlFor="min-playtime">Filter by min playtime (minutes):</label>
                     <input
                         id="min-playtime"
                         type="number"
                         value={minPlaytimeMinutes}
                         onChange={(e) => setMinPlaytimeMinutes(Number(e.target.value))}
-                        style={{
-                            background: '#2a2a2a',
-                            border: '1px solid #333',
-                            color: '#fff',
-                            padding: '0.25rem 0.5rem',
-                            borderRadius: '4px',
-                            width: '60px'
-                        }}
+                        className="filter-input"
                     />
                 </div>
             </div>
@@ -103,7 +96,7 @@ export const DataTable: React.FC<DataTableProps> = ({ data }) => {
                                         href={`https://open.spotify.com/intl-de/track/${item.spotify_track_uri.replace('spotify:track:', '')}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        style={{ color: 'inherit', textDecoration: 'none' }}
+                                        className="spotify-link"
                                         title="Open in Spotify"
                                     >
                                         <svg
@@ -115,7 +108,6 @@ export const DataTable: React.FC<DataTableProps> = ({ data }) => {
                                             strokeWidth="2"
                                             strokeLinecap="round"
                                             strokeLinejoin="round"
-                                            style={{ verticalAlign: 'middle' }}
                                         >
                                             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                                             <polyline points="15 3 21 3 21 9"></polyline>

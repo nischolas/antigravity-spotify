@@ -109,6 +109,9 @@ h1 {
   border-bottom: 1px solid var(--border-color);
   color: var(--text-secondary);
   font-size: 0.9rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 table {
@@ -187,4 +190,62 @@ td em {
 .reset-btn:hover {
   border-color: var(--text-primary);
   color: var(--text-primary);
+}
+
+/* Tutorial Section */
+.tutorial-section {
+  margin-bottom: 2rem;
+  text-align: left;
+  max-width: 600px;
+}
+
+.tutorial-section h3 {
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.tutorial-section ol {
+  color: #b3b3b3;
+  line-height: 1.8;
+  padding-left: 1.5rem;
+}
+
+.tutorial-section a {
+  color: var(--primary-color);
+}
+
+/* Filter Controls */
+.filter-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.filter-controls label {
+  font-size: 0.9rem;
+  color: #b3b3b3;
+}
+
+.filter-input {
+  background: #2a2a2a;
+  border: 1px solid #333;
+  color: #fff;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  width: 60px;
+}
+
+.hidden-count {
+  margin-left: 1rem;
+  color: #b3b3b3;
+}
+
+/* Spotify Link */
+.spotify-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.spotify-link svg {
+  vertical-align: middle;
 }

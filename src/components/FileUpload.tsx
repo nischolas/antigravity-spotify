@@ -124,8 +124,6 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onDataLoaded }) => {
 
     return (
         <div className="file-upload-container">
-
-
             <label htmlFor="file-upload" className="file-upload-label">
                 {isLoading ? 'Processing...' : 'Upload Spotify History (JSON or ZIP)'}
             </label>
@@ -138,20 +136,19 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onDataLoaded }) => {
                 className="file-upload-input"
             />
             {error && <div className="error-message">{error}</div>}
-            <p className="hint" style={{ marginTop: '0.5rem', fontSize: '0.9rem' }}>
+            <p className="hint">
                 Select multiple JSON files or ZIP archives. Only JSON files starting with <code>Streaming_History_Audio_</code> are accepted.
             </p>
             <hr />
-            <div style={{ marginBottom: '2rem', textAlign: 'left', maxWidth: '600px' }}>
-                <h3 style={{ marginBottom: '1rem', color: '#fff' }}>How to Get Your Spotify Data</h3>
-                <ol style={{ color: '#b3b3b3', lineHeight: '1.8', paddingLeft: '1.5rem' }}>
-                    <li>Go to <a href="https://www.spotify.com/account/privacy/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary-color)' }}>Spotify Privacy Settings</a></li>
+            <div className="tutorial-section">
+                <h3>How to Get Your Spotify Data</h3>
+                <ol>
+                    <li>Go to <a href="https://www.spotify.com/account/privacy/" target="_blank" rel="noopener noreferrer">Spotify Privacy Settings</a></li>
                     <li>Request your <strong>Extended Streaming History</strong></li>
                     <li>Wait for Spotify to email you (can take up to 30 days, but it's usually much faster)</li>
                     <li>Download the ZIP file from the email</li>
                 </ol>
             </div>
-
         </div>
     );
 };
