@@ -11,6 +11,7 @@ type SortDirection = 'asc' | 'desc';
 export const DataTable: React.FC<DataTableProps> = ({ data }) => {
     const [sortField, setSortField] = useState<SortField>('ms_played');
     const [sortDirection, setSortDirection] = useState<SortDirection>('desc');
+    const [minPlaytimeMinutes, setMinPlaytimeMinutes] = useState<number>(10);
 
     const handleSort = (field: SortField) => {
         if (sortField === field) {
@@ -21,8 +22,12 @@ export const DataTable: React.FC<DataTableProps> = ({ data }) => {
         }
     };
 
+    const filteredData = useMemo(() => {
+        return data.filter(item => item.ms_played >= minPlaytimeMinutes * 60 * 1000);
+    }, [data, minPlaytimeMinutes]);
+
     const sortedData = useMemo(() => {
-        return [...data].sort((a, b) => {
+        return [...filteredData].sort((a, b) => {
             let aValue: any = a[sortField];
             let bValue: any = b[sortField];
 
@@ -34,7 +39,7 @@ export const DataTable: React.FC<DataTableProps> = ({ data }) => {
             if (aValue > bValue) return sortDirection === 'asc' ? 1 : -1;
             return 0;
         });
-    }, [data, sortField, sortDirection]);
+    }, [filteredData, sortField, sortDirection]);
 
     const formatMs = (ms: number) => {
         const seconds = Math.floor(ms / 1000);
@@ -43,10 +48,32 @@ export const DataTable: React.FC<DataTableProps> = ({ data }) => {
         return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
     };
 
+    const hiddenCount = data.length - filteredData.length;
+
     return (
         <div className="table-container">
-            <div className="table-stats">
-                Total Records: {data.length}
+            <div className="table-stats" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div>
+                    <span>Total Records: {data.length}</span>
+                    {hiddenCount > 0 && <span style={{ marginLeft: '1rem', color: '#b3b3b3' }}>(Hidden items: {hiddenCount})</span>}
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <label htmlFor="min-playtime" style={{ fontSize: '0.9rem', color: '#b3b3b3' }}>Min Playtime (min):</label>
+                    <input
+                        id="min-playtime"
+                        type="number"
+                        value={minPlaytimeMinutes}
+                        onChange={(e) => setMinPlaytimeMinutes(Number(e.target.value))}
+                        style={{
+                            background: '#2a2a2a',
+                            border: '1px solid #333',
+                            color: '#fff',
+                            padding: '0.25rem 0.5rem',
+                            borderRadius: '4px',
+                            width: '60px'
+                        }}
+                    />
+                </div>
             </div>
             <table>
                 <thead>
