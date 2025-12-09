@@ -47,6 +47,14 @@
     "unknownArtist": "Unknown Artist",
     "openInSpotify": "Open in Spotify"
   },
+  "dateRangeFilter": {
+    "title": "Date Range Filter",
+    "subtitle": "Drag the handles to filter by month and year",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "apply": "Apply Filter",
+    "reset": "Reset"
+  },
   "footer": {
     "language": "Language"
   }

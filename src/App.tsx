@@ -2,6 +2,7 @@ import { FileUpload } from './components/FileUpload';
 import { TopTracks } from './components/TopTracks';
 import { TopArtists } from './components/TopArtists';
 import { SkippedTracks } from './components/SkippedTracks';
+import { DateRangeFilter } from './components/DateRangeFilter';
 import { Footer } from './components/Footer';
 import { useSpotifyStore } from './store/useSpotifyStore';
 import { useTranslation } from 'react-i18next';
@@ -29,6 +30,7 @@ function App() {
                 {t('app.uploadDifferent')}
               </button>
             </div>
+            <DateRangeFilter />
             <div className="sections">
               <TopTracks />
               <TopArtists />

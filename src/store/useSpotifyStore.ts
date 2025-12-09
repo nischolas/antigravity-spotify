@@ -8,6 +8,10 @@ interface SpotifyStore {
   // Aggregated data - tracks grouped by URI with summed playtime
   aggregatedData: SpotifyHistoryItem[];
   
+  // Date range filter
+  startDate: string | null;
+  endDate: string | null;
+  
   // Loading state
   isLoading: boolean;
   
@@ -17,6 +21,7 @@ interface SpotifyStore {
   // Actions
   setRawData: (data: SpotifyHistoryItem[]) => void;
   setAggregatedData: (data: SpotifyHistoryItem[]) => void;
+  setDateRange: (startDate: string | null, endDate: string | null) => void;
   setLoading: (loading: boolean) => void;
   setError: (error: string | null) => void;
   reset: () => void;
@@ -28,6 +33,8 @@ interface SpotifyStore {
 const initialState = {
   rawData: [],
   aggregatedData: [],
+  startDate: null,
+  endDate: null,
   isLoading: false,
   error: null,
 };
@@ -38,6 +45,43 @@ export const useSpotifyStore = create<SpotifyStore>((set) => ({
   setRawData: (data) => set({ rawData: data }),
   
   setAggregatedData: (data) => set({ aggregatedData: data }),
+  
+  setDateRange: (startDate, endDate) => set((state) => {
+    // Re-aggregate data with new date range
+    const filteredRaw = state.rawData.filter(item => {
+      const itemDate = new Date(item.ts);
+      const start = startDate ? new Date(startDate) : null;
+      const end = endDate ? new Date(endDate) : null;
+      
+      if (start && itemDate < start) return false;
+      if (end && itemDate > end) return false;
+      return true;
+    });
+    
+    // Aggregate filtered data
+    const aggregatedMap = new Map<string, SpotifyHistoryItem>();
+    
+    for (const item of filteredRaw) {
+      const uri = item.spotify_track_uri;
+      if (!uri) continue;
+      
+      if (aggregatedMap.has(uri)) {
+        const existing = aggregatedMap.get(uri)!;
+        existing.ms_played += item.ms_played;
+      } else {
+        aggregatedMap.set(uri, {
+          ...item,
+          ms_played: item.ms_played
+        });
+      }
+    }
+    
+    return {
+      startDate,
+      endDate,
+      aggregatedData: Array.from(aggregatedMap.values())
+    };
+  }),
   
   setLoading: (loading) => set({ isLoading: loading }),
   

@@ -47,6 +47,14 @@
     "unknownArtist": "Unbekannter Künstler",
     "openInSpotify": "In Spotify öffnen"
   },
+  "dateRangeFilter": {
+    "title": "Datumsbereich-Filter",
+    "subtitle": "Ziehen Sie die Griffe, um nach Monat und Jahr zu filtern",
+    "startDate": "Startdatum",
+    "endDate": "Enddatum",
+    "apply": "Filter anwenden",
+    "reset": "Zurücksetzen"
+  },
   "footer": {
     "language": "Sprache"
   }
