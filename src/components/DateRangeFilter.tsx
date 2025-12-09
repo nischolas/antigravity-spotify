@@ -88,12 +88,18 @@ export const DateRangeFilter: React.FC = () => {
         setIsDragging(handle);
     };
 
+    const handleTouchDown = (handle: 'start' | 'end') => (e: React.TouchEvent) => {
+        e.stopPropagation();
+        setIsDragging(handle);
+    };
+
     useEffect(() => {
-        const handleMouseMove = (e: MouseEvent) => {
+        const handleMove = (e: MouseEvent | TouchEvent) => {
             if (!isDragging || !sliderRef.current || months.length === 0) return;
 
             const rect = sliderRef.current.getBoundingClientRect();
-            const x = e.clientX - rect.left;
+            const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+            const x = clientX - rect.left;
             const percentage = Math.max(0, Math.min(1, x / rect.width));
             const newIndex = Math.round(percentage * (maxMonthIndex - minMonthIndex) + minMonthIndex);
 
@@ -104,18 +110,22 @@ export const DateRangeFilter: React.FC = () => {
             }
         };
 
-        const handleMouseUp = () => {
+        const handleEnd = () => {
             setIsDragging(null);
         };
 
         if (isDragging) {
-            document.addEventListener('mousemove', handleMouseMove);
-            document.addEventListener('mouseup', handleMouseUp);
+            document.addEventListener('mousemove', handleMove);
+            document.addEventListener('mouseup', handleEnd);
+            document.addEventListener('touchmove', handleMove);
+            document.addEventListener('touchend', handleEnd);
         }
 
         return () => {
-            document.removeEventListener('mousemove', handleMouseMove);
-            document.removeEventListener('mouseup', handleMouseUp);
+            document.removeEventListener('mousemove', handleMove);
+            document.removeEventListener('mouseup', handleEnd);
+            document.removeEventListener('touchmove', handleMove);
+            document.removeEventListener('touchend', handleEnd);
         };
     }, [isDragging, rangeEnd, rangeStart, maxMonthIndex, minMonthIndex, months.length]);
 
@@ -153,6 +163,7 @@ export const DateRangeFilter: React.FC = () => {
                         className="range-handle range-handle-start"
                         style={{ left: `${startPercentage}%` }}
                         onMouseDown={handleMouseDown('start')}
+                        onTouchStart={handleTouchDown('start')}
                     >
                         <div className="range-label">{formatMonthYear(months[rangeStart])}</div>
                     </div>
@@ -160,6 +171,7 @@ export const DateRangeFilter: React.FC = () => {
                         className="range-handle range-handle-end"
                         style={{ left: `${endPercentage}%` }}
                         onMouseDown={handleMouseDown('end')}
+                        onTouchStart={handleTouchDown('end')}
                     >
                         <div className="range-label">{formatMonthYear(months[rangeEnd])}</div>
                     </div>
