@@ -1,4 +1,5 @@
 export interface SpotifyHistoryItem {
+  ts: string; // ISO 8601 timestamp
   platform?: string;
   ms_played: number;
   conn_country?: string;

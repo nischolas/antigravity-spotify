@@ -1,14 +1,12 @@
 import React, { useState, useMemo } from 'react';
-import type { SpotifyHistoryItem } from '../types';
-
-interface DataTableProps {
-    data: SpotifyHistoryItem[];
-}
+import { useSpotifyStore } from '../store/useSpotifyStore';
 
 type SortField = 'master_metadata_track_name' | 'master_metadata_album_artist_name' | 'ms_played';
 type SortDirection = 'asc' | 'desc';
 
-export const DataTable: React.FC<DataTableProps> = ({ data }) => {
+export const DataTable: React.FC = () => {
+    const { aggregatedData } = useSpotifyStore();
+    console.log(aggregatedData);
     const [sortField, setSortField] = useState<SortField>('ms_played');
     const [sortDirection, setSortDirection] = useState<SortDirection>('desc');
     const [minPlaytimeMinutes, setMinPlaytimeMinutes] = useState<number>(10);
@@ -23,8 +21,8 @@ export const DataTable: React.FC<DataTableProps> = ({ data }) => {
     };
 
     const filteredData = useMemo(() => {
-        return data.filter(item => item.ms_played >= minPlaytimeMinutes * 60 * 1000);
-    }, [data, minPlaytimeMinutes]);
+        return aggregatedData.filter(item => item.ms_played >= minPlaytimeMinutes * 60 * 1000);
+    }, [aggregatedData, minPlaytimeMinutes]);
 
     const sortedData = useMemo(() => {
         return [...filteredData].sort((a, b) => {
@@ -47,13 +45,13 @@ export const DataTable: React.FC<DataTableProps> = ({ data }) => {
         return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
     };
 
-    const hiddenCount = data.length - filteredData.length;
+    const hiddenCount = aggregatedData.length - filteredData.length;
 
     return (
         <div className="table-container">
             <div className="table-stats">
                 <div>
-                    <span>Total Records: {data.length}</span>
+                    <span>Total Records: {aggregatedData.length}</span>
                     {hiddenCount > 0 && <span className="hidden-count">(Hidden by filter: {hiddenCount})</span>}
                 </div>
                 <div className="filter-controls">

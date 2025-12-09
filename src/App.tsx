@@ -1,14 +1,9 @@
-import { useState } from 'react';
 import { FileUpload } from './components/FileUpload';
 import { DataTable } from './components/DataTable';
-import type { SpotifyHistoryItem } from './types';
+import { useSpotifyStore } from './store/useSpotifyStore';
 
 function App() {
-  const [historyData, setHistoryData] = useState<SpotifyHistoryItem[]>([]);
-
-  const handleDataLoaded = (data: SpotifyHistoryItem[]) => {
-    setHistoryData(data);
-  };
+  const { aggregatedData, reset } = useSpotifyStore();
 
   return (
     <div className="app-container">
@@ -18,18 +13,18 @@ function App() {
       </header>
 
       <main>
-        {historyData.length === 0 ? (
+        {aggregatedData.length === 0 ? (
           <div className="upload-section">
-            <FileUpload onDataLoaded={handleDataLoaded} />
+            <FileUpload />
           </div>
         ) : (
           <div className="data-section">
             <div className="actions">
-              <button onClick={() => setHistoryData([])} className="reset-btn">
+              <button onClick={reset} className="reset-btn">
                 Upload Different File
               </button>
             </div>
-            <DataTable data={historyData} />
+            <DataTable />
           </div>
         )}
       </main>

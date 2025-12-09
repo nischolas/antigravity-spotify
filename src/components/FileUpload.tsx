@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import JSZip from 'jszip';
 import type { SpotifyHistoryItem } from '../types';
+import { useSpotifyStore } from '../store/useSpotifyStore';
 
-interface FileUploadProps {
-    onDataLoaded: (data: SpotifyHistoryItem[]) => void;
-}
-
-export const FileUpload: React.FC<FileUploadProps> = ({ onDataLoaded }) => {
+export const FileUpload: React.FC = () => {
+    const { loadData } = useSpotifyStore();
     const [error, setError] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -89,30 +87,8 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onDataLoaded }) => {
                 return;
             }
 
-            const aggregatedMap = new Map<string, SpotifyHistoryItem>();
-
-            for (const item of allData) {
-                const uri = item.spotify_track_uri;
-                if (!uri) continue;
-
-                if (aggregatedMap.has(uri)) {
-                    const existing = aggregatedMap.get(uri)!;
-                    existing.ms_played += item.ms_played;
-                } else {
-                    aggregatedMap.set(uri, {
-                        ...item,
-                        ms_played: item.ms_played
-                    });
-                }
-            }
-
-            const aggregatedResult = Array.from(aggregatedMap.values());
-
-            if (aggregatedResult.length === 0) {
-                setError('No valid track data found to aggregate (missing spotify_track_uri).');
-            } else {
-                onDataLoaded(aggregatedResult);
-            }
+            // Load data into the store (aggregation happens in the store)
+            loadData(allData);
 
         } catch (err) {
             setError('Error processing files. Please try again.');
