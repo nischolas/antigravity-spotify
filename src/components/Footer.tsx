@@ -10,6 +10,7 @@ export const Footer: React.FC = () => {
 
     return (
         <footer className="app-footer">
+            <hr />
             <div className="footer-content">
                 <div className="language-selector">
                     <span className="language-label">{t('footer.language')}:</span>

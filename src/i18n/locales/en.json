@@ -1,15 +1,13 @@
 {
   "app": {
-    "title": "Your streaming history visualized",
+    "title": "Your Streaming History Visualized",
     "subtitle": "Everything stays in your browser, no data is sent to a server.",
     "uploadDifferent": "Upload Different File"
   },
   "fileUpload": {
     "processing": "Processing...",
     "uploadButton": "Upload Spotify History (JSON or ZIP)",
-    "hint": "Select a ZIP archive ( {{zipExample}} ) or JSON file(s) ({{jsonExample}}).",
-    "zipExample": "my_spotify_data.zip",
-    "jsonExample": "Streaming_History_Audio_XXX.json",
+    "hint": "Select a ZIP archive ( my_spotify_data.zip ) or JSON file(s) ( Streaming_History_Audio_YYYY.json ).",
     "tutorialTitle": "How to Get Your Spotify Data",
     "tutorialStep1": "Go to",
     "tutorialStep1Link": "Spotify Privacy Settings",

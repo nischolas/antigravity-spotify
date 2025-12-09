@@ -114,10 +114,7 @@ export const FileUpload: React.FC = () => {
             />
             {error && <div className="error-message">{error}</div>}
             <p className="hint">
-                {t('fileUpload.hint', {
-                    zipExample: t('fileUpload.zipExample'),
-                    jsonExample: t('fileUpload.jsonExample')
-                })}
+                {t('fileUpload.hint')}
             </p>
             <hr />
             <div className="tutorial-section">

@@ -7,9 +7,7 @@
   "fileUpload": {
     "processing": "Verarbeite...",
     "uploadButton": "Spotify-Verlauf hochladen (JSON oder ZIP)",
-    "hint": "ZIP-Archiv ( {{zipExample}} ) oder JSON-Datei(en) ({{jsonExample}}).",
-    "zipExample": "my_spotify_data.zip",
-    "jsonExample": "Streaming_History_Audio_XXX.json",
+    "hint": "ZIP-Archiv ( my_spotify_data.zip ) oder JSON-Datei(en) (Streaming_History_Audio_YYYY.json).",
     "tutorialTitle": "So erhältst du deine Spotify-Daten",
     "tutorialStep1": "Gehe zu den",
     "tutorialStep1Link": "Spotify Datenschutzeinstellungen",
