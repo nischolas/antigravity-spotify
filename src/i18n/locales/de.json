@@ -1,0 +1,55 @@
+{
+  "app": {
+    "title": "Deine Streaming-Historie visualisiert",
+    "subtitle": "Alles bleibt in deinem Browser, keine Daten werden an einen Server gesendet.",
+    "uploadDifferent": "Andere Datei hochladen"
+  },
+  "fileUpload": {
+    "processing": "Verarbeite...",
+    "uploadButton": "Spotify-Verlauf hochladen (JSON oder ZIP)",
+    "hint": "Wähle ein ZIP-Archiv ( {{zipExample}} ) oder JSON-Datei(en) ({{jsonExample}}).",
+    "zipExample": "my_spotify_data.zip",
+    "jsonExample": "Streaming_History_Audio_XXX.json",
+    "tutorialTitle": "So erhältst du deine Spotify-Daten",
+    "tutorialStep1": "Gehe zu den",
+    "tutorialStep1Link": "Spotify Datenschutzeinstellungen",
+    "tutorialStep2": "Hol deine",
+    "tutorialStep2Bold": "Erweiterte Streaming-Historie",
+    "tutorialStep3": "Warte auf die E-Mail von Spotify (bis zu 30 Tage, ist aber normalerweise schneller)",
+    "tutorialStep4": "Lade die ZIP-Datei aus der E-Mail herunter",
+    "errorNoData": "Keine gültigen Daten gefunden. Hochgeladene Dateien müssen JSON-Dateien sein, die mit \"Streaming_History_Audio_\" beginnen, oder ZIP-Archive, die diese enthalten. {{count}} Datei(en)/Eintrag/Einträge ignoriert.",
+    "errorProcessing": "Fehler beim Verarbeiten der Dateien. Bitte versuche es erneut."
+  },
+  "topTracks": {
+    "title": "Top-Tracks",
+    "subtitle": "nach kumulierter Wiedergabezeit",
+    "headerTitle": "Titel",
+    "headerArtist": "Künstler",
+    "headerTimePlayed": "Wiedergabezeit",
+    "unknownTrack": "Unbekannter Titel",
+    "unknownArtist": "Unbekannter Künstler",
+    "openInSpotify": "In Spotify öffnen"
+  },
+  "topArtists": {
+    "title": "Top-Künstler",
+    "subtitle": "nach kumulierter Wiedergabezeit",
+    "headerArtist": "Künstler",
+    "headerTimePlayed": "Wiedergabezeit",
+    "unknown": "Unbekannt"
+  },
+  "skippedTracks": {
+    "title": "Meist übersprungene Titel",
+    "subtitle": "Übersprungen vor {{seconds}} Sekunden Wiedergabe",
+    "headerTrack": "Titel",
+    "headerArtist": "Künstler",
+    "headerSkipCount": "Übersprungen",
+    "headerTotalPlays": "Gesamt",
+    "headerSkipRate": "Übersprungrate",
+    "unknownTrack": "Unbekannter Titel",
+    "unknownArtist": "Unbekannter Künstler",
+    "openInSpotify": "In Spotify öffnen"
+  },
+  "footer": {
+    "language": "Sprache"
+  }
+}

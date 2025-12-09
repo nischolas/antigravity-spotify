@@ -1,0 +1,55 @@
+{
+  "app": {
+    "title": "Your streaming history visualized",
+    "subtitle": "Everything stays in your browser, no data is sent to a server.",
+    "uploadDifferent": "Upload Different File"
+  },
+  "fileUpload": {
+    "processing": "Processing...",
+    "uploadButton": "Upload Spotify History (JSON or ZIP)",
+    "hint": "Select a ZIP archive ( {{zipExample}} ) or JSON file(s) ({{jsonExample}}).",
+    "zipExample": "my_spotify_data.zip",
+    "jsonExample": "Streaming_History_Audio_XXX.json",
+    "tutorialTitle": "How to Get Your Spotify Data",
+    "tutorialStep1": "Go to",
+    "tutorialStep1Link": "Spotify Privacy Settings",
+    "tutorialStep2": "Request your",
+    "tutorialStep2Bold": "Extended Streaming History",
+    "tutorialStep3": "Wait for Spotify to email you (can take up to 30 days, but it's usually much faster)",
+    "tutorialStep4": "Download the ZIP file from the email",
+    "errorNoData": "No valid data found. Uploaded files must be JSON files starting with \"Streaming_History_Audio_\" or ZIP archives containing them. Ignored {{count}} file(s)/entry(s).",
+    "errorProcessing": "Error processing files. Please try again."
+  },
+  "topTracks": {
+    "title": "Top Tracks",
+    "subtitle": "by accumulated playtime",
+    "headerTitle": "Title",
+    "headerArtist": "Artist",
+    "headerTimePlayed": "Time Played",
+    "unknownTrack": "Unknown Track",
+    "unknownArtist": "Unknown Artist",
+    "openInSpotify": "Open in Spotify"
+  },
+  "topArtists": {
+    "title": "Top Artists",
+    "subtitle": "by accumulated playtime",
+    "headerArtist": "Artist",
+    "headerTimePlayed": "Time Played",
+    "unknown": "Unknown"
+  },
+  "skippedTracks": {
+    "title": "Most Skipped Tracks",
+    "subtitle": "Skipped before playing for {{seconds}} seconds",
+    "headerTrack": "Track",
+    "headerArtist": "Artist",
+    "headerSkipCount": "Skip Count",
+    "headerTotalPlays": "Total Plays",
+    "headerSkipRate": "Skip Rate",
+    "unknownTrack": "Unknown Track",
+    "unknownArtist": "Unknown Artist",
+    "openInSpotify": "Open in Spotify"
+  },
+  "footer": {
+    "language": "Language"
+  }
+}

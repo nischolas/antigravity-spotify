@@ -1,8 +1,10 @@
 import { useSpotifyStore } from '../store/useSpotifyStore';
 import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const SkippedTracks = () => {
     const { rawData } = useSpotifyStore();
+    const { t } = useTranslation();
 
     const CUTOFF = 10000;
 
@@ -25,8 +27,8 @@ export const SkippedTracks = () => {
                 existing.totalPlays++;
             } else {
                 grouped.set(key, {
-                    trackName: item.master_metadata_track_name || 'Unknown Track',
-                    artistName: item.master_metadata_album_artist_name || 'Unknown Artist',
+                    trackName: item.master_metadata_track_name || t('skippedTracks.unknownTrack'),
+                    artistName: item.master_metadata_album_artist_name || t('skippedTracks.unknownArtist'),
                     skipCount: 0,
                     totalPlays: 1,
                     uri: item.spotify_track_uri
@@ -45,10 +47,10 @@ export const SkippedTracks = () => {
 
         return Array.from(grouped.values())
             .filter(item => item.skipCount > 0)
-            .filter(item => item.trackName !== 'Unknown Track')
+            .filter(item => item.trackName !== t('skippedTracks.unknownTrack'))
             .sort((a, b) => b.skipCount - a.skipCount)
             .slice(0, 10);
-    }, [rawData]);
+    }, [rawData, t]);
 
     const getSpotifyUrl = (uri: string | null) => {
         if (!uri) return null;
@@ -59,17 +61,17 @@ export const SkippedTracks = () => {
     return (
         <div className="table-container">
             <div className="title">
-                <h3>Most Skipped Tracks</h3>
-                <p>Skipped before playing for {CUTOFF / 1000} seconds</p>
+                <h3>{t('skippedTracks.title')}</h3>
+                <p>{t('skippedTracks.subtitle', { seconds: CUTOFF / 1000 })}</p>
             </div>
             <table>
                 <thead>
                     <tr>
-                        <th>Track</th>
-                        <th>Artist</th>
-                        <th>Skip Count</th>
-                        <th>Total Plays</th>
-                        <th>Skip Rate</th>
+                        <th>{t('skippedTracks.headerTrack')}</th>
+                        <th>{t('skippedTracks.headerArtist')}</th>
+                        <th>{t('skippedTracks.headerSkipCount')}</th>
+                        <th>{t('skippedTracks.headerTotalPlays')}</th>
+                        <th>{t('skippedTracks.headerSkipRate')}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -81,7 +83,7 @@ export const SkippedTracks = () => {
                             <tr key={index}
                                 onClick={spotifyUrl ? () => window.open(spotifyUrl, '_blank') : undefined}
                                 style={{ cursor: spotifyUrl ? 'pointer' : 'default' }}
-                                title={spotifyUrl ? "Open in Spotify" : undefined}>
+                                title={spotifyUrl ? t('skippedTracks.openInSpotify') : undefined}>
                                 <td>{track.trackName}</td>
                                 <td>{track.artistName}</td>
                                 <td>{track.skipCount}</td>

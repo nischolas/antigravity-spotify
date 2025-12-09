@@ -1,9 +1,11 @@
 import React, { useMemo } from 'react';
 import { useSpotifyStore } from '../store/useSpotifyStore';
 import { formatMs } from '../utils/formatTime';
+import { useTranslation } from 'react-i18next';
 
 export const TopTracks: React.FC = () => {
     const { aggregatedData } = useSpotifyStore();
+    const { t } = useTranslation();
 
     const sortedData = useMemo(() => {
         return [...aggregatedData]
@@ -24,15 +26,15 @@ export const TopTracks: React.FC = () => {
     return (
         <div className="table-container">
             <div className="title">
-                <h3>Top Tracks</h3>
-                <p>by accumulated playtime</p>
+                <h3>{t('topTracks.title')}</h3>
+                <p>{t('topTracks.subtitle')}</p>
             </div>
             <table>
                 <thead>
                     <tr>
-                        <th>Title</th>
-                        <th>Artist</th>
-                        <th>Time Played</th>
+                        <th>{t('topTracks.headerTitle')}</th>
+                        <th>{t('topTracks.headerArtist')}</th>
+                        <th>{t('topTracks.headerTimePlayed')}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,10 +46,10 @@ export const TopTracks: React.FC = () => {
                                 key={index}
                                 onClick={() => window.open(url, '_blank')}
                                 style={{ cursor: 'pointer' }}
-                                title="Open in Spotify"
+                                title={t('topTracks.openInSpotify')}
                             >
-                                <td>{item.master_metadata_track_name || <em>Unknown Track</em>}</td>
-                                <td>{item.master_metadata_album_artist_name || <em>Unknown Artist</em>}</td>
+                                <td>{item.master_metadata_track_name || <em>{t('topTracks.unknownTrack')}</em>}</td>
+                                <td>{item.master_metadata_album_artist_name || <em>{t('topTracks.unknownArtist')}</em>}</td>
                                 <td>{formatMs(item.ms_played)}</td>
                             </tr>
                         );

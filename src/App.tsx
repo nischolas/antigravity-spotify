@@ -2,16 +2,19 @@ import { FileUpload } from './components/FileUpload';
 import { TopTracks } from './components/TopTracks';
 import { TopArtists } from './components/TopArtists';
 import { SkippedTracks } from './components/SkippedTracks';
+import { Footer } from './components/Footer';
 import { useSpotifyStore } from './store/useSpotifyStore';
+import { useTranslation } from 'react-i18next';
 
 function App() {
   const { aggregatedData, reset } = useSpotifyStore();
+  const { t } = useTranslation();
 
   return (
     <div className="app-container">
       <header className="app-header">
-        <h1>Your streaming history visualized</h1>
-        <p className="subtitle">Everything stays in your browser, no data is sent to a server.</p>
+        <h1>{t('app.title')}</h1>
+        <p className="subtitle">{t('app.subtitle')}</p>
       </header>
 
       <main>
@@ -23,7 +26,7 @@ function App() {
           <div className="data-section">
             <div className="actions">
               <button onClick={reset} className="reset-btn">
-                Upload Different File
+                {t('app.uploadDifferent')}
               </button>
             </div>
             <div className="sections">
@@ -34,8 +37,11 @@ function App() {
           </div>
         )}
       </main>
+
+      <Footer />
     </div>
   );
 }
 
 export default App;
+

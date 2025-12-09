@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import JSZip from 'jszip';
 import type { SpotifyHistoryItem } from '../types';
 import { useSpotifyStore } from '../store/useSpotifyStore';
+import { useTranslation } from 'react-i18next';
 
 export const FileUpload: React.FC = () => {
     const { loadData } = useSpotifyStore();
+    const { t } = useTranslation();
     const [error, setError] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -82,7 +84,7 @@ export const FileUpload: React.FC = () => {
             await Promise.all(readers);
 
             if (allData.length === 0) {
-                setError(`No valid data found. Uploaded files must be JSON files starting with "Streaming_History_Audio_" or ZIP archives containing them. Ignored ${ignoredCount} file(s)/entry(s).`);
+                setError(t('fileUpload.errorNoData', { count: ignoredCount }));
                 setIsLoading(false);
                 return;
             }
@@ -90,7 +92,7 @@ export const FileUpload: React.FC = () => {
             loadData(allData);
 
         } catch (err) {
-            setError('Error processing files. Please try again.');
+            setError(t('fileUpload.errorProcessing'));
             console.error(err);
         } finally {
             setIsLoading(false);
@@ -100,7 +102,7 @@ export const FileUpload: React.FC = () => {
     return (
         <div className="file-upload-container">
             <label htmlFor="file-upload" className="file-upload-label">
-                {isLoading ? 'Processing...' : 'Upload Spotify History (JSON or ZIP)'}
+                {isLoading ? t('fileUpload.processing') : t('fileUpload.uploadButton')}
             </label>
             <input
                 id="file-upload"
@@ -112,16 +114,19 @@ export const FileUpload: React.FC = () => {
             />
             {error && <div className="error-message">{error}</div>}
             <p className="hint">
-                Select a ZIP archive ( <code>my_spotify_data.zip</code> ) or JSON file(s) (<code>Streaming_History_Audio_XXX.json</code>).
+                {t('fileUpload.hint', {
+                    zipExample: t('fileUpload.zipExample'),
+                    jsonExample: t('fileUpload.jsonExample')
+                })}
             </p>
             <hr />
             <div className="tutorial-section">
-                <h3>How to Get Your Spotify Data</h3>
+                <h3>{t('fileUpload.tutorialTitle')}</h3>
                 <ol>
-                    <li>Go to <a href="https://www.spotify.com/account/privacy/" target="_blank" rel="noopener noreferrer">Spotify Privacy Settings</a></li>
-                    <li>Request your <strong>Extended Streaming History</strong></li>
-                    <li>Wait for Spotify to email you (can take up to 30 days, but it's usually much faster)</li>
-                    <li>Download the ZIP file from the email</li>
+                    <li>{t('fileUpload.tutorialStep1')} <a href="https://www.spotify.com/account/privacy/" target="_blank" rel="noopener noreferrer">{t('fileUpload.tutorialStep1Link')}</a></li>
+                    <li>{t('fileUpload.tutorialStep2')} <strong>{t('fileUpload.tutorialStep2Bold')}</strong></li>
+                    <li>{t('fileUpload.tutorialStep3')}</li>
+                    <li>{t('fileUpload.tutorialStep4')}</li>
                 </ol>
             </div>
         </div>

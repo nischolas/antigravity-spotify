@@ -1,15 +1,17 @@
 import { useSpotifyStore } from '../store/useSpotifyStore';
 import { useMemo } from 'react';
 import { formatMs } from '../utils/formatTime';
+import { useTranslation } from 'react-i18next';
 
 export const TopArtists = () => {
     const { aggregatedData } = useSpotifyStore();
+    const { t } = useTranslation();
 
     const topArtists = useMemo(() => {
         const grouped = new Map<string, number>();
 
         aggregatedData.forEach(item => {
-            const artist = item.master_metadata_album_artist_name || 'Unknown';
+            const artist = item.master_metadata_album_artist_name || t('topArtists.unknown');
             const current = grouped.get(artist) || 0;
             grouped.set(artist, current + item.ms_played);
         });
@@ -21,19 +23,19 @@ export const TopArtists = () => {
             }))
             .sort((a, b) => b.ms_played - a.ms_played)
             .slice(0, 10);
-    }, [aggregatedData]);
+    }, [aggregatedData, t]);
 
     return (
         <div className="table-container">
             <div className="title">
-                <h3>Top Artists</h3>
-                <p>by accumulated playtime</p>
+                <h3>{t('topArtists.title')}</h3>
+                <p>{t('topArtists.subtitle')}</p>
             </div>
             <table>
                 <thead>
                     <tr>
-                        <th>Artist</th>
-                        <th>Time Played</th>
+                        <th>{t('topArtists.headerArtist')}</th>
+                        <th>{t('topArtists.headerTimePlayed')}</th>
                     </tr>
                 </thead>
                 <tbody>
