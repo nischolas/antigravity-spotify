@@ -123,7 +123,7 @@ export const FileUpload: React.FC = () => {
             <div className="tutorial-section">
                 <h3>{t('fileUpload.tutorialTitle')}</h3>
                 <ol>
-                    <li>{t('fileUpload.tutorialStep1')} <a href="https://www.spotify.com/account/privacy/" target="_blank" rel="noopener noreferrer">{t('fileUpload.tutorialStep1Link')}</a></li>
+                    <li>{t('fileUpload.tutorialStep1')} <a href="https://www.spotify.com/account/privacy" target="_blank" rel="noopener noreferrer">{t('fileUpload.tutorialStep1Link')}</a></li>
                     <li>{t('fileUpload.tutorialStep2')} <strong>{t('fileUpload.tutorialStep2Bold')}</strong></li>
                     <li>{t('fileUpload.tutorialStep3')}</li>
                     <li>{t('fileUpload.tutorialStep4')}</li>
