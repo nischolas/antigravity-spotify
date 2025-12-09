@@ -49,7 +49,7 @@
   },
   "dateRangeFilter": {
     "title": "Datumsbereich-Filter",
-    "subtitle": "Ziehen Sie die Griffe, um nach Monat und Jahr zu filtern",
+    "subtitle": "Ziehe den Slider, um nach Monat und Jahr zu filtern",
     "startDate": "Startdatum",
     "endDate": "Enddatum",
     "apply": "Filter anwenden",
