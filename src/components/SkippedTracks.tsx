@@ -9,7 +9,6 @@ export const SkippedTracks = () => {
     const skippedTracks = useMemo(() => {
         const skipped = rawData.filter(item => item.ms_played < CUTOFF);
 
-        // Group by track to count skip occurrences
         const grouped = new Map<string, {
             trackName: string;
             artistName: string;
@@ -18,7 +17,6 @@ export const SkippedTracks = () => {
             uri: string | null;
         }>();
 
-        // Count total plays for each track
         rawData.forEach(item => {
             const key = item.spotify_track_uri || `${item.master_metadata_track_name}-${item.master_metadata_album_artist_name}`;
             const existing = grouped.get(key);
@@ -36,7 +34,6 @@ export const SkippedTracks = () => {
             }
         });
 
-        // Count skips for each track
         skipped.forEach(item => {
             const key = item.spotify_track_uri || `${item.master_metadata_track_name}-${item.master_metadata_album_artist_name}`;
             const existing = grouped.get(key);
@@ -46,10 +43,9 @@ export const SkippedTracks = () => {
             }
         });
 
-        // Convert to array and sort by skip count
         return Array.from(grouped.values())
-            .filter(item => item.skipCount > 0) // Only include tracks that were actually skipped
-            .filter(item => item.trackName !== 'Unknown Track') // Exclude unknown tracks
+            .filter(item => item.skipCount > 0)
+            .filter(item => item.trackName !== 'Unknown Track')
             .sort((a, b) => b.skipCount - a.skipCount)
             .slice(0, 10);
     }, [rawData]);

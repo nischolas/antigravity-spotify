@@ -87,7 +87,6 @@ export const FileUpload: React.FC = () => {
                 return;
             }
 
-            // Load data into the store (aggregation happens in the store)
             loadData(allData);
 
         } catch (err) {
