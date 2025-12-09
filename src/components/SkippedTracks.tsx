@@ -4,9 +4,10 @@ import { useMemo } from 'react';
 export const SkippedTracks = () => {
     const { rawData } = useSpotifyStore();
 
+    const CUTOFF = 10000;
+
     const skippedTracks = useMemo(() => {
-        // Filter tracks that were played for less than 10 seconds (10000ms)
-        const skipped = rawData.filter(item => item.ms_played < 10000);
+        const skipped = rawData.filter(item => item.ms_played < CUTOFF);
 
         // Group by track to count skip occurrences
         const grouped = new Map<string, {
@@ -63,7 +64,7 @@ export const SkippedTracks = () => {
         <div className="table-container">
             <div className="title">
                 <h3>Most Skipped Tracks</h3>
-                <p>skipped before playing for 10 seconds</p>
+                <p>Skipped before playing for {CUTOFF / 1000} seconds</p>
             </div>
             <table>
                 <thead>
