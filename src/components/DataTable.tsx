@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { useSpotifyStore } from '../store/useSpotifyStore';
+import { formatMs } from '../utils/formatTime';
 
 export const DataTable: React.FC = () => {
     const { aggregatedData } = useSpotifyStore();
@@ -19,17 +20,6 @@ export const DataTable: React.FC = () => {
             })
             .slice(0, 5);
     }, [aggregatedData]);
-
-    const formatMs = (ms: number) => {
-        const totalMinutes = Math.floor(ms / 1000 / 60);
-        const hours = Math.floor(totalMinutes / 60);
-        const minutes = totalMinutes % 60;
-
-        return `${hours.toString().padStart(2, '0')}h ${minutes
-            .toString()
-            .padStart(2, '0')}m`;
-    };
-
 
     return (
         <div className="table-container">
