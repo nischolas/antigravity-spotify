@@ -35,7 +35,7 @@ export const Footer: React.FC = () => {
                     <span>{t('footer.by')}</span> <a href="https://nicholas-mathi.eu" target="_blank" rel="noopener noreferrer">
                         Nicholas Mathieu
                     </a>
-                    &nbsp;|&nbsp;
+                    &nbsp;–&nbsp;
                     <a href="https://nicholas-mathi.eu/impressum" target="_blank" rel="noopener noreferrer">
                         {t('footer.legal')}
                     </a>
