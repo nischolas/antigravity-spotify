@@ -50,7 +50,7 @@ export const SkippedTracks = () => {
             .filter(item => item.skipCount > 0) // Only include tracks that were actually skipped
             .filter(item => item.trackName !== 'Unknown Track') // Exclude unknown tracks
             .sort((a, b) => b.skipCount - a.skipCount)
-            .slice(0, 5); // Top 5 most skipped
+            .slice(0, 10);
     }, [rawData]);
 
     const getSpotifyUrl = (uri: string | null) => {

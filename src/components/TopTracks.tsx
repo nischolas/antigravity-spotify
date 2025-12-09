@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { useSpotifyStore } from '../store/useSpotifyStore';
 import { formatMs } from '../utils/formatTime';
 
-export const DataTable: React.FC = () => {
+export const TopTracks: React.FC = () => {
     const { aggregatedData } = useSpotifyStore();
 
     const sortedData = useMemo(() => {
@@ -18,7 +18,7 @@ export const DataTable: React.FC = () => {
                 if (aValue > bValue) return -1;
                 return 0;
             })
-            .slice(0, 5);
+            .slice(0, 10);
     }, [aggregatedData]);
 
     return (

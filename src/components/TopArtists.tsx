@@ -20,7 +20,7 @@ export const TopArtists = () => {
                 ms_played: ms
             }))
             .sort((a, b) => b.ms_played - a.ms_played)
-            .slice(0, 5);
+            .slice(0, 10);
     }, [aggregatedData]);
 
     return (
