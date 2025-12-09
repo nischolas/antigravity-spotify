@@ -1,5 +1,6 @@
 import { FileUpload } from './components/FileUpload';
 import { DataTable } from './components/DataTable';
+import { TopArtists } from './components/TopArtists';
 import { useSpotifyStore } from './store/useSpotifyStore';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
               </button>
             </div>
             <DataTable />
+            <TopArtists />
           </div>
         )}
       </main>
