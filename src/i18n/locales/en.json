@@ -47,6 +47,19 @@
     "unknownArtist": "Unknown Artist",
     "openInSpotify": "Open in Spotify"
   },
+  "reasonStartTracks": {
+    "title": {"clickrow": "Your Favorites"},
+    "subtitle": {"clickrow": "These are the tracks you started manually most often"},
+    "labelReason": "Start Reason",
+    "labelMinDuration": "Min Duration (s)",
+    "headerTrack": "Track",
+    "headerArtist": "Artist",
+    "headerCount": "Count",
+    "unknownTrack": "Unknown Track",
+    "unknownArtist": "Unknown Artist",
+    "openInSpotify": "Open in Spotify",
+    "noData": "No tracks found matching the criteria"
+  },
   "dateRangeFilter": {
     "title": "Date Range Filter",
     "subtitle": "Drag the handles to filter by month and year",

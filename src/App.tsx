@@ -3,6 +3,7 @@ import { TopTracks } from './components/TopTracks';
 import { TopArtists } from './components/TopArtists';
 import { SkippedTracks } from './components/SkippedTracks';
 import { DateRangeFilter } from './components/DateRangeFilter';
+import { ReasonStartTracks } from './components/ReasonStartTracks';
 import { Footer } from './components/Footer';
 import { useSpotifyStore } from './store/useSpotifyStore';
 import { useTranslation } from 'react-i18next';
@@ -35,6 +36,11 @@ function App() {
               <TopTracks />
               <TopArtists />
               <SkippedTracks />
+              <ReasonStartTracks
+                reason_start="clickrow"
+                title={t('reasonStartTracks.title.clickrow')}
+                subtitle={t('reasonStartTracks.subtitle.clickrow')}
+              />
             </div>
           </div>
         )}

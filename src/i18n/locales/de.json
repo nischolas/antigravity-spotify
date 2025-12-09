@@ -45,7 +45,20 @@
     "headerSkipRate": "Übersprungrate",
     "unknownTrack": "Unbekannter Titel",
     "unknownArtist": "Unbekannter Künstler",
-    "openInSpotify": "In Spotify öffnen"
+    "openInSpotify": "Auf Spotify öffnen"
+  },
+  "reasonStartTracks": {
+    "title": {"clickrow": "Deine Lieblinge"},
+    "subtitle": {"clickrow": "Diese Tracks hast du am häufigsten manuell gestartet"},
+    "labelReason": "Startgrund",
+    "labelMinDuration": "Min. Dauer (s)",
+    "headerTrack": "Titel",
+    "headerArtist": "Künstler",
+    "headerCount": "Anzahl",
+    "unknownTrack": "Unbekannter Titel",
+    "unknownArtist": "Unbekannter Künstler",
+    "openInSpotify": "Auf Spotify öffnen",
+    "noData": "Keine Titel gefunden, die den Kriterien entsprechen"
   },
   "dateRangeFilter": {
     "title": "Datumsbereich-Filter",
