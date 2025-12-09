@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 export const DateRangeFilter: React.FC = () => {
     const { rawData, setDateRange } = useSpotifyStore();
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
 
     const [minMonthIndex, setMinMonthIndex] = useState<number>(0);
     const [maxMonthIndex, setMaxMonthIndex] = useState<number>(0);
@@ -55,7 +55,7 @@ export const DateRangeFilter: React.FC = () => {
     }, [rangeStart, rangeEnd, months, setDateRange]);
 
     const formatMonthYear = (date: Date): string => {
-        return date.toLocaleDateString(undefined, { year: 'numeric', month: 'short' });
+        return date.toLocaleDateString(i18n.language, { year: 'numeric', month: 'short' });
     };
 
     const handleReset = () => {
