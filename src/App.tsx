@@ -14,10 +14,11 @@ function App() {
 
   return (
     <div className="app-container">
-      <header className="app-header">
-        <h1>{t('app.title')}</h1>
-        <p className="subtitle">{t('app.subtitle')}</p>
-      </header>
+      {!aggregatedData.length &&
+        <header className="app-header">
+          <h1>{t('app.title')}</h1>
+          <p className="subtitle">{t('app.subtitle')}</p>
+        </header>}
 
       <main>
         {aggregatedData.length === 0 ? (
@@ -27,6 +28,7 @@ function App() {
         ) : (
           <div className="data-section">
             <div className="actions">
+              <h1>{t('app.title')}</h1>
               <button onClick={reset} className="reset-btn">
                 {t('app.uploadDifferent')}
               </button>
