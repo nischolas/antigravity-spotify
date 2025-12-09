@@ -38,8 +38,9 @@ function App() {
               <SkippedTracks />
               <ReasonStartTracks
                 reason_start="clickrow"
-                title={t('reasonStartTracks.title.clickrow')}
-                subtitle={t('reasonStartTracks.subtitle.clickrow')}
+              />
+              <ReasonStartTracks
+                reason_start="backbtn"
               />
             </div>
           </div>

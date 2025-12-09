@@ -22,13 +22,14 @@ export type ReasonStartType =
 
 interface ReasonStartTracksProps {
     reason_start: ReasonStartType;
-    title: string;
-    subtitle: string;
 }
 
-export const ReasonStartTracks: React.FC<ReasonStartTracksProps> = ({ reason_start, title, subtitle }) => {
+export const ReasonStartTracks: React.FC<ReasonStartTracksProps> = ({ reason_start }) => {
     const { rawData, startDate, endDate } = useSpotifyStore();
     const { t } = useTranslation();
+
+    const title = t(`reasonStartTracks.title.${reason_start}`);
+    const subtitle = t(`reasonStartTracks.subtitle.${reason_start}`);
 
     // Filter raw data based on date range first
     const dateFilteredData = useMemo(() => {
