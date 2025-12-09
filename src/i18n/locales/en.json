@@ -56,6 +56,9 @@
     "reset": "Reset"
   },
   "footer": {
-    "language": "Language"
+    "language": "Language",
+    "legal": "Legal",
+    "privacy": "There is no data saved to your device or sent to a server.",
+    "by": "Made by"
   }
 }

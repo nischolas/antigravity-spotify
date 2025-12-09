@@ -260,8 +260,19 @@ hr {
 
 .footer-content {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 1rem;
+
+  p,
+  a,
+  span {
+    margin: 0;
+    color: $text-primary;
+    font-size: 0.9rem;
+    text-align: center;
+  }
 }
 
 .language-selector {
