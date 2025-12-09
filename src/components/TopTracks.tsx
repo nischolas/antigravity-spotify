@@ -32,6 +32,7 @@ export const TopTracks: React.FC = () => {
             <table>
                 <thead>
                     <tr>
+                        <th>#</th>
                         <th>{t('topTracks.headerTitle')}</th>
                         <th>{t('topTracks.headerArtist')}</th>
                         <th style={{ textAlign: 'right' }}>{t('topTracks.headerTimePlayed')}</th>
@@ -48,6 +49,7 @@ export const TopTracks: React.FC = () => {
                                 style={{ cursor: 'pointer' }}
                                 title={t('topTracks.openInSpotify')}
                             >
+                                <td>{index + 1}</td>
                                 <td>{item.master_metadata_track_name || <em>{t('topTracks.unknownTrack')}</em>}</td>
                                 <td>{item.master_metadata_album_artist_name || <em>{t('topTracks.unknownArtist')}</em>}</td>
                                 <td className="monospace">{formatMs(item.ms_played)}</td>

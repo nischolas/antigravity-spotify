@@ -8,7 +8,20 @@ table {
 
 th,
 td {
-    padding: 1rem 1.5rem;
+    padding: .8rem 1.2rem;
+    vertical-align: middle;
+
+    &:first-child {
+        padding-right: 0;
+        text-align: center;
+        font-size: 0.7rem;
+        color: $text-secondary;
+
+    }
+
+    &:nth-child(2) {
+        padding-left: .5rem;
+    }
 }
 
 th {

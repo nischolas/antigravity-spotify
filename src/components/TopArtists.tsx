@@ -34,6 +34,7 @@ export const TopArtists = () => {
             <table>
                 <thead>
                     <tr>
+                        <th>#</th>
                         <th>{t('topArtists.headerArtist')}</th>
                         <th style={{ textAlign: 'right' }}>{t('topArtists.headerTimePlayed')}</th>
                     </tr>
@@ -41,6 +42,7 @@ export const TopArtists = () => {
                 <tbody>
                     {topArtists.map((artist, index) => (
                         <tr key={index}>
+                            <td>{index + 1}</td>
                             <td>{artist.artist}</td>
                             <td className="monospace">{formatMs(artist.ms_played)}</td>
                         </tr>

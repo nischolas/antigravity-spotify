@@ -67,6 +67,7 @@ export const SkippedTracks = () => {
             <table>
                 <thead>
                     <tr>
+                        <th>#</th>
                         <th>{t('skippedTracks.headerTrack')}</th>
                         <th>{t('skippedTracks.headerArtist')}</th>
                         <th>{t('skippedTracks.headerSkipCount')}</th>
@@ -84,6 +85,7 @@ export const SkippedTracks = () => {
                                 onClick={spotifyUrl ? () => window.open(spotifyUrl, '_blank') : undefined}
                                 style={{ cursor: spotifyUrl ? 'pointer' : 'default' }}
                                 title={spotifyUrl ? t('skippedTracks.openInSpotify') : undefined}>
+                                <td>{index + 1}</td>
                                 <td>{track.trackName}</td>
                                 <td>{track.artistName}</td>
                                 <td>{track.skipCount}</td>
