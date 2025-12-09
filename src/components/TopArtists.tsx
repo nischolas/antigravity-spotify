@@ -35,14 +35,14 @@ export const TopArtists = () => {
                 <thead>
                     <tr>
                         <th>{t('topArtists.headerArtist')}</th>
-                        <th>{t('topArtists.headerTimePlayed')}</th>
+                        <th style={{ textAlign: 'right' }}>{t('topArtists.headerTimePlayed')}</th>
                     </tr>
                 </thead>
                 <tbody>
                     {topArtists.map((artist, index) => (
                         <tr key={index}>
                             <td>{artist.artist}</td>
-                            <td>{formatMs(artist.ms_played)}</td>
+                            <td className="monospace">{formatMs(artist.ms_played)}</td>
                         </tr>
                     ))}
                 </tbody>

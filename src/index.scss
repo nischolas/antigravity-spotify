@@ -116,7 +116,7 @@ h1 {
 // Sections
 .sections {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 3fr 2fr;
   gap: 1rem;
   .table-container:nth-child(3) {
     grid-column: -1 / 1;
@@ -181,6 +181,13 @@ td {
     color: $text-secondary;
     font-style: normal;
   }
+
+}
+
+.monospace {
+  font-family: monospace;
+  font-size: 1rem;
+  text-align: right;
 }
 
 // Actions

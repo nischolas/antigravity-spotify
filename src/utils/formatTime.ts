@@ -8,7 +8,7 @@ export const formatMs = (ms: number): string => {
     const hours = Math.floor(totalMinutes / 60);
     const minutes = totalMinutes % 60;
 
-    return `${hours.toString().padStart(2, '0')}h ${minutes
+    return `${hours.toString().padStart(1, '0')}h ${minutes
         .toString()
         .padStart(2, '0')}m`;
 };
