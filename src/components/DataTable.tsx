@@ -91,7 +91,7 @@ export const DataTable: React.FC = () => {
                             <td>
                                 {item.spotify_track_uri && (
                                     <a
-                                        href={`https://open.spotify.com/intl-de/track/${item.spotify_track_uri.replace('spotify:track:', '')}`}
+                                        href={`https://open.spotify.com/track/${item.spotify_track_uri.replace('spotify:track:', '')}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="spotify-link"
