@@ -35,7 +35,7 @@ export const DataTable: React.FC = () => {
             if (aValue < bValue) return sortDirection === 'asc' ? -1 : 1;
             if (aValue > bValue) return sortDirection === 'asc' ? 1 : -1;
             return 0;
-        });
+        }).slice(0, 5);
     }, [filteredData, sortField, sortDirection]);
 
     const formatMs = (ms: number) => {
