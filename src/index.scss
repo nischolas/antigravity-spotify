@@ -158,13 +158,7 @@ th {
   background-color: #252525;
   color: $text-secondary;
   font-weight: 600;
-  cursor: pointer;
-  user-select: none;
   transition: color 0.2s ease;
-
-  &:hover {
-    color: $text-primary;
-  }
 }
 
 tr {
