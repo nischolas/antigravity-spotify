@@ -1,0 +1,47 @@
+@use '../variables' as *;
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th,
+td {
+    padding: 1rem 1.5rem;
+}
+
+th {
+    background-color: #252525;
+    color: $text-secondary;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+tr {
+    border-bottom: 1px solid $border-color;
+    transition: background-color 0.2s ease;
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    &:hover {
+        background-color: #2a2a2a;
+    }
+}
+
+td {
+    color: $text-primary;
+
+    em {
+        color: $text-secondary;
+        font-style: normal;
+    }
+}
+
+.monospace {
+    font-family: monospace;
+    font-size: 1rem;
+    text-align: right;
+}

@@ -1,0 +1,60 @@
+@use 'variables' as *;
+
+.app-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+    min-height: calc(100dvh - 2rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.app-header {
+    text-align: center;
+    margin-bottom: 1rem;
+    margin-top: 3rem;
+}
+
+.sections {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 1rem;
+
+    .table-container:nth-child(3) {
+        grid-column: -1 / 1;
+    }
+
+    @media (max-width: 1024px) {
+        grid-template-columns: 1fr;
+
+        .table-container {
+            grid-column: auto;
+        }
+    }
+}
+
+.table-container {
+    background-color: $surface-color;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.title {
+    h3 {
+        margin-left: 1.5rem;
+        margin-bottom: 0;
+    }
+
+    p {
+        margin-left: 1.5rem;
+        margin-top: 0;
+    }
+}
+
+.actions {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: flex-end;
+}

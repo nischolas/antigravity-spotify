@@ -1,0 +1,42 @@
+@use '../variables' as *;
+
+.reset-btn {
+    background: transparent;
+    border: 1px solid $border-color;
+    color: $text-secondary;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+        border-color: $text-primary;
+        color: $text-primary;
+    }
+}
+
+.lang-btn {
+    background: transparent;
+    border: 1px solid $border-color;
+    color: $text-secondary;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &:hover {
+        border-color: $primary-color;
+        color: $text-primary;
+    }
+
+    &.active {
+        background-color: $primary-color;
+        border-color: $primary-color;
+        color: #000;
+        font-weight: 600;
+    }
+}

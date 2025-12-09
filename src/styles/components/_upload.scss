@@ -1,0 +1,72 @@
+@use '../variables' as *;
+
+.upload-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    border: 2px dashed $border-color;
+    border-radius: 1rem;
+    background-color: $surface-color;
+    transition: border-color 0.3s ease;
+    max-width: max-content;
+    margin: 0 auto;
+
+    &:hover {
+        border-color: $primary-color;
+    }
+}
+
+.file-upload-input {
+    display: none;
+}
+
+.file-upload-label {
+    background-color: $primary-color;
+    color: #000;
+    padding: 1rem 2rem;
+    margin: 1rem 0;
+    border-radius: 2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    font-size: 1.1rem;
+    display: block;
+    text-align: center;
+
+    &:hover {
+        background-color: $primary-hover;
+    }
+}
+
+.hint {
+    color: $text-secondary;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.error-message {
+    color: #ff5252;
+    margin-top: 1rem;
+}
+
+.tutorial-section {
+    text-align: left;
+    max-width: 600px;
+
+    h3 {
+        margin-bottom: 1rem;
+        color: $text-primary;
+    }
+
+    ol {
+        color: $text-secondary;
+        line-height: 1.8;
+        padding-left: 1.5rem;
+    }
+
+    a {
+        color: $primary-color;
+    }
+}

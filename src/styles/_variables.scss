@@ -1,0 +1,20 @@
+$bg-color: #121212;
+$surface-color: #1e1e1e;
+$primary-color: #1db954;
+$primary-hover: #1ed760;
+$text-primary: #ffffff;
+$text-secondary: #b3b3b3;
+$border-color: #333333;
+
+$font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+:root {
+    --bg-color: #{$bg-color};
+    --surface-color: #{$surface-color};
+    --primary-color: #{$primary-color};
+    --primary-hover: #{$primary-hover};
+    --text-primary: #{$text-primary};
+    --text-secondary: #{$text-secondary};
+    --border-color: #{$border-color};
+    --font-family: #{$font-family};
+}
