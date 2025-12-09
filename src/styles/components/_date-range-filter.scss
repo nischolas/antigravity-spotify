@@ -3,21 +3,16 @@
 .date-range-filter {
     background-color: $surface-color;
     border-radius: 1rem;
-    padding: 1.5rem;
+    padding: 1.2rem;
     margin-bottom: 1rem;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 
-    .title {
-        h3 {
-            margin: 0 0 0.25rem 0;
-            color: $text-primary;
-        }
+    @media (max-width: 1024px) {
+        padding: .8rem;
+    }
 
-        p {
-            margin: 0;
-            color: $text-secondary;
-            font-size: 0.9rem;
-        }
+    .title {
+        padding: 0;
     }
 
     .date-range-filter-top-bar {

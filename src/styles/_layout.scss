@@ -39,17 +39,32 @@
     border-radius: 1rem;
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+
+    @media (max-width: 1024px) {
+        overflow-x: auto;
+    }
+}
+
+@media (max-width: 1024px) {
+    .app-container {
+        padding: 0.5rem;
+    }
 }
 
 .title {
-    h3 {
-        margin-left: 1.5rem;
-        margin-bottom: 0;
+    padding: 1.2rem;
+
+    @media (max-width: 1024px) {
+        padding: .8rem;
+    }
+
+    h3,
+    p {
+        margin: 0;
     }
 
     p {
-        margin-left: 1.5rem;
-        margin-top: 0;
+        font-size: .9rem;
     }
 }
 
