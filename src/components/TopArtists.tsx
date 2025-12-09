@@ -24,6 +24,10 @@ export const TopArtists = () => {
 
     return (
         <div className="table-container">
+            <div className="title">
+                <h3>Top Artists</h3>
+                <p>by accumulated playtime</p>
+            </div>
             <table>
                 <thead>
                     <tr>

@@ -9,8 +9,8 @@ function App() {
   return (
     <div className="app-container">
       <header className="app-header">
-        <h1>Your Most Streamed Spotify Tracks</h1>
-        <p className="subtitle">List your top tracks <b><i>ever</i></b>. Everything stays in your browser, no data is sent to a server.</p>
+        <h1>Your streaming history visualized</h1>
+        <p className="subtitle">Everything stays in your browser, no data is sent to a server.</p>
       </header>
 
       <main>
@@ -25,8 +25,10 @@ function App() {
                 Upload Different File
               </button>
             </div>
-            <DataTable />
-            <TopArtists />
+            <div className="sections">
+              <DataTable />
+              <TopArtists />
+            </div>
           </div>
         )}
       </main>

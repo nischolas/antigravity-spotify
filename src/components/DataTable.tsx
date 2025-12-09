@@ -29,6 +29,10 @@ export const DataTable: React.FC = () => {
 
     return (
         <div className="table-container">
+            <div className="title">
+                <h3>Top Tracks</h3>
+                <p>by accumulated playtime</p>
+            </div>
             <table>
                 <thead>
                     <tr>
