@@ -1,6 +1,7 @@
 import { FileUpload } from './components/FileUpload';
 import { DataTable } from './components/DataTable';
 import { TopArtists } from './components/TopArtists';
+import { SkippedTracks } from './components/SkippedTracks';
 import { useSpotifyStore } from './store/useSpotifyStore';
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
             <div className="sections">
               <DataTable />
               <TopArtists />
+              <SkippedTracks />
             </div>
           </div>
         )}
