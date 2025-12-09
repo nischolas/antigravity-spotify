@@ -77,7 +77,7 @@ export const SkippedTracks = () => {
                 </thead>
                 <tbody>
                     {skippedTracks.map((track, index) => {
-                        const skipRate = ((track.skipCount / track.totalPlays) * 100).toFixed(1);
+                        const skipRate = ((track.skipCount / track.totalPlays) * 100).toFixed(0);
                         const spotifyUrl = getSpotifyUrl(track.uri);
 
                         return (
@@ -90,7 +90,7 @@ export const SkippedTracks = () => {
                                 <td>{track.artistName}</td>
                                 <td>{track.skipCount}</td>
                                 <td>{track.totalPlays}</td>
-                                <td style={{ textAlign: 'right' }}>{skipRate}%</td>
+                                <td style={{ textAlign: 'right' }}>{skipRate}<span className="muted">%</span></td>
 
                             </tr>
                         );

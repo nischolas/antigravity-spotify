@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { useSpotifyStore } from '../store/useSpotifyStore';
-import { formatMs } from '../utils/formatTime';
+import { formatMsPlain } from '../utils/formatTime';
 import { useTranslation } from 'react-i18next';
 
 export const TopTracks: React.FC = () => {
@@ -42,6 +42,8 @@ export const TopTracks: React.FC = () => {
                     {sortedData.map((item, index) => {
                         const url = `https://open.spotify.com/track/${item.spotify_track_uri?.replace('spotify:track:', '')}`;
 
+                        const { hours, minutes } = formatMsPlain(item.ms_played);
+
                         return (
                             <tr
                                 key={index}
@@ -52,7 +54,7 @@ export const TopTracks: React.FC = () => {
                                 <td>{index + 1}</td>
                                 <td>{item.master_metadata_track_name || <em>{t('topTracks.unknownTrack')}</em>}</td>
                                 <td>{item.master_metadata_album_artist_name || <em>{t('topTracks.unknownArtist')}</em>}</td>
-                                <td className="monospace">{formatMs(item.ms_played)}</td>
+                                <td className="monospace">{hours}<span className="muted">h</span> {minutes.toString().padStart(2, "0")}<span className="muted">m</span></td>
                             </tr>
                         );
                     })}

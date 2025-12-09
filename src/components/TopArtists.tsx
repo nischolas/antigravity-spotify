@@ -1,6 +1,6 @@
 import { useSpotifyStore } from '../store/useSpotifyStore';
 import { useMemo } from 'react';
-import { formatMs } from '../utils/formatTime';
+import { formatMsPlain } from '../utils/formatTime';
 import { useTranslation } from 'react-i18next';
 
 export const TopArtists = () => {
@@ -40,13 +40,17 @@ export const TopArtists = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {topArtists.map((artist, index) => (
-                        <tr key={index}>
-                            <td>{index + 1}</td>
-                            <td>{artist.artist}</td>
-                            <td className="monospace">{formatMs(artist.ms_played)}</td>
-                        </tr>
-                    ))}
+                    {topArtists.map((artist, index) => {
+                        const { hours, minutes } = formatMsPlain(artist.ms_played);
+
+                        return (
+                            <tr key={index}>
+                                <td>{index + 1}</td>
+                                <td>{artist.artist}</td>
+                                <td className="monospace">{hours}<span className="muted">h</span> {minutes.toString().padStart(2, "0")}<span className="muted">m</span></td>
+                            </tr>
+                        );
+                    })}
                 </tbody>
             </table>
         </div>

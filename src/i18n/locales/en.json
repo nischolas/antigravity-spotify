@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "Your Streaming History Visualized",
+    "title": "Explore your Spotify streaming history",
     "subtitle": "Everything stays in your browser, no data is sent to a server.",
     "uploadDifferent": "Upload Different File"
   },
@@ -71,7 +71,7 @@
   "footer": {
     "language": "Language",
     "legal": "Legal",
-    "privacy": "There is no data saved to your device or sent to a server.",
+    "privacy": "No data is saved to your device or sent to a server.",
     "by": "Made by"
   }
 }

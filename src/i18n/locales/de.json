@@ -1,13 +1,13 @@
 {
   "app": {
-    "title": "Deine Streaming-Historie visualisiert",
+    "title": "Entdecke deine Spotify Streaming-Historie",
     "subtitle": "Alles bleibt in deinem Browser, keine Daten werden an einen Server gesendet.",
     "uploadDifferent": "Andere Datei hochladen"
   },
   "fileUpload": {
     "processing": "Verarbeite...",
     "uploadButton": "Spotify-Verlauf hochladen (JSON oder ZIP)",
-    "hint": "ZIP-Archiv ( my_spotify_data.zip ) oder JSON-Datei(en) (Streaming_History_Audio_YYYY.json).",
+    "hint": "ZIP-Archiv ( my_spotify_data.zip ) oder JSON-Datei(en) ( Streaming_History_Audio_YYYY.json ).",
     "tutorialTitle": "So erhältst du deine Spotify-Daten",
     "tutorialStep1": "Gehe zu den",
     "tutorialStep1Link": "Spotify Datenschutzeinstellungen",
@@ -71,7 +71,7 @@
   "footer": {
     "language": "Sprache",
     "legal": "Impressum",
-    "privacy": "Es werden keinerlei Daten auf deinem Gerät gespeichert oder an einen Server gesendet.",
+    "privacy": "Keinerlei Daten werden auf deinem Gerät gespeichert oder an einen Server gesendet.",
     "by": "Gebaut von"
   }
 }

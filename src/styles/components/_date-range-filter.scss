@@ -2,6 +2,8 @@
 
 .date-range-filter {
     background-color: $surface-color;
+    position: sticky;
+    top: 0;
     border-radius: 1rem;
     padding: 1.2rem;
     margin-bottom: 1rem;
