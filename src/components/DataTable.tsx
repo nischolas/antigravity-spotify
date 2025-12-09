@@ -21,11 +21,15 @@ export const DataTable: React.FC = () => {
     }, [aggregatedData]);
 
     const formatMs = (ms: number) => {
-        const seconds = Math.floor(ms / 1000);
-        const minutes = Math.floor(seconds / 60);
-        const remainingSeconds = seconds % 60;
-        return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+        const totalMinutes = Math.floor(ms / 1000 / 60);
+        const hours = Math.floor(totalMinutes / 60);
+        const minutes = totalMinutes % 60;
+
+        return `${hours.toString().padStart(2, '0')}h ${minutes
+            .toString()
+            .padStart(2, '0')}m`;
     };
+
 
     return (
         <div className="table-container">

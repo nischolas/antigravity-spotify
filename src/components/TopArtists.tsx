@@ -16,11 +16,22 @@ export const TopArtists = () => {
         return Array.from(grouped.entries())
             .map(([artist, ms]) => ({
                 artist,
-                minutes: Math.round(ms / 60000)
+                ms_played: ms
             }))
-            .sort((a, b) => b.minutes - a.minutes)
+            .sort((a, b) => b.ms_played - a.ms_played)
             .slice(0, 5);
     }, [aggregatedData]);
+
+    const formatMs = (ms: number) => {
+        const totalMinutes = Math.floor(ms / 1000 / 60);
+        const hours = Math.floor(totalMinutes / 60);
+        const minutes = totalMinutes % 60;
+
+        return `${hours.toString().padStart(2, '0')}h ${minutes
+            .toString()
+            .padStart(2, '0')}m`;
+    };
+
 
     return (
         <div className="table-container">
@@ -32,14 +43,14 @@ export const TopArtists = () => {
                 <thead>
                     <tr>
                         <th>Artist</th>
-                        <th>Minutes</th>
+                        <th>Time Played</th>
                     </tr>
                 </thead>
                 <tbody>
                     {topArtists.map((artist, index) => (
                         <tr key={index}>
                             <td>{artist.artist}</td>
-                            <td>{artist.minutes}</td>
+                            <td>{formatMs(artist.ms_played)}</td>
                         </tr>
                     ))}
                 </tbody>
