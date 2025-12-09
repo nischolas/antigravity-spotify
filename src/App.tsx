@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { FileUpload } from './components/FileUpload';
 import { TopTracks } from './components/TopTracks';
 import { TopArtists } from './components/TopArtists';
@@ -11,6 +12,10 @@ import { useTranslation } from 'react-i18next';
 function App() {
   const { aggregatedData, reset } = useSpotifyStore();
   const { t } = useTranslation();
+
+  useEffect(() => {
+    document.title = t('app.title');
+  }, [t]);
 
   return (
     <div className="app-container">
