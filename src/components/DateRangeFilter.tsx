@@ -89,6 +89,7 @@ export const DateRangeFilter: React.FC = () => {
     };
 
     const handleTouchDown = (handle: 'start' | 'end') => (e: React.TouchEvent) => {
+        e.preventDefault(); // Prevent scrolling while dragging
         e.stopPropagation();
         setIsDragging(handle);
     };
@@ -96,6 +97,11 @@ export const DateRangeFilter: React.FC = () => {
     useEffect(() => {
         const handleMove = (e: MouseEvent | TouchEvent) => {
             if (!isDragging || !sliderRef.current || months.length === 0) return;
+
+            // Prevent scrolling on touch devices while dragging
+            if ('touches' in e) {
+                e.preventDefault();
+            }
 
             const rect = sliderRef.current.getBoundingClientRect();
             const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
@@ -117,7 +123,7 @@ export const DateRangeFilter: React.FC = () => {
         if (isDragging) {
             document.addEventListener('mousemove', handleMove);
             document.addEventListener('mouseup', handleEnd);
-            document.addEventListener('touchmove', handleMove);
+            document.addEventListener('touchmove', handleMove, { passive: false });
             document.addEventListener('touchend', handleEnd);
         }
 

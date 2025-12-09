@@ -344,6 +344,7 @@ hr {
     height: 30px;
     cursor: pointer;
     user-select: none;
+    touch-action: none; // Prevent default touch behaviors like scrolling
   }
 
   .range-track {
