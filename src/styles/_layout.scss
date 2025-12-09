@@ -18,20 +18,40 @@
 
 .sections {
     display: grid;
-    grid-template-columns: 3fr 2fr;
+    grid-template-columns: repeat(12, 1fr);
     gap: 1rem;
 
-    .table-container:nth-child(3) {
-        grid-column: -1 / 1;
-    }
+    .table-container {
+        &:nth-child(1) {
+            grid-column: span 7;
+        }
 
-    @media (max-width: 1024px) {
-        grid-template-columns: 1fr;
+        &:nth-child(2) {
+            grid-column: span 5;
+        }
 
-        .table-container {
-            grid-column: auto;
+        &:nth-child(3) {
+            grid-column: span 12;
+        }
+
+        &:nth-child(4) {
+            grid-column: span 6;
+        }
+
+        &:nth-child(5) {
+            grid-column: span 6;
+        }
+
+        @media (max-width: 1024px) {
+
+            grid-column: span 12 !important;
+
         }
     }
+
+
+
+
 }
 
 .table-container {
