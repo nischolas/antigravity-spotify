@@ -9,12 +9,12 @@ $border-color: #333333;
 $font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
 
 :root {
-    --bg-color: #{$bg-color};
-    --surface-color: #{$surface-color};
-    --primary-color: #{$primary-color};
-    --primary-hover: #{$primary-hover};
-    --text-primary: #{$text-primary};
-    --text-secondary: #{$text-secondary};
-    --border-color: #{$border-color};
-    --font-family: #{$font-family};
+  --bg-color: #{$bg-color};
+  --surface-color: #{$surface-color};
+  --primary-color: #{$primary-color};
+  --primary-hover: #{$primary-hover};
+  --text-primary: #{$text-primary};
+  --text-secondary: #{$text-secondary};
+  --border-color: #{$border-color};
+  --font-family: #{$font-family};
 }

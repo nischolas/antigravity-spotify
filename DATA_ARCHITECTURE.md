@@ -53,21 +53,21 @@ Each streaming event contains:
 
 ```typescript
 interface SpotifyHistoryItem {
-  ts: string;                                    // ISO 8601 timestamp
-  platform?: string;                             // e.g., "WebPlayer", "iOS"
-  ms_played: number;                             // Milliseconds played
-  conn_country?: string;                         // Country code
-  ip_addr?: string;                              // IP address
-  master_metadata_track_name: string | null;     // Track name
+  ts: string; // ISO 8601 timestamp
+  platform?: string; // e.g., "WebPlayer", "iOS"
+  ms_played: number; // Milliseconds played
+  conn_country?: string; // Country code
+  ip_addr?: string; // IP address
+  master_metadata_track_name: string | null; // Track name
   master_metadata_album_artist_name: string | null; // Artist name
   master_metadata_album_album_name?: string | null; // Album name
-  spotify_track_uri: string | null;              // Spotify URI
-  reason_start?: string;                         // Why playback started
-  reason_end?: string;                           // Why playback ended
-  shuffle?: boolean;                             // Shuffle mode
-  skipped?: boolean;                             // Was track skipped
-  offline?: boolean;                             // Offline playback
-  incognito_mode?: boolean;                      // Private session
+  spotify_track_uri: string | null; // Spotify URI
+  reason_start?: string; // Why playback started
+  reason_end?: string; // Why playback ended
+  shuffle?: boolean; // Shuffle mode
+  skipped?: boolean; // Was track skipped
+  offline?: boolean; // Offline playback
+  incognito_mode?: boolean; // Private session
   // ... plus episode and audiobook fields
 }
 ```
@@ -79,7 +79,7 @@ To add a new visualization component:
 1. **Create the component** in `src/components/`
 2. **Import the store**:
    ```typescript
-   import { useSpotifyStore } from '../store/useSpotifyStore';
+   import { useSpotifyStore } from "../store/useSpotifyStore";
    ```
 3. **Access the data**:
    ```typescript
@@ -91,62 +91,64 @@ To add a new visualization component:
 ### Example: Time-based View
 
 ```typescript
-import { useSpotifyStore } from '../store/useSpotifyStore';
-import { useMemo } from 'react';
+import { useSpotifyStore } from "../store/useSpotifyStore";
+import { useMemo } from "react";
 
 export const TimelineView = () => {
   const { rawData } = useSpotifyStore();
-  
+
   // Group by day
   const dailyData = useMemo(() => {
     const grouped = new Map<string, number>();
-    
-    rawData.forEach(item => {
-      const day = item.ts.split('T')[0]; // Extract date
+
+    rawData.forEach((item) => {
+      const day = item.ts.split("T")[0]; // Extract date
       const current = grouped.get(day) || 0;
       grouped.set(day, current + item.ms_played);
     });
-    
+
     return Array.from(grouped.entries()).map(([date, ms]) => ({
       date,
-      minutes: ms / 60000
+      minutes: ms / 60000,
     }));
   }, [rawData]);
-  
-  return (
-    <div>
-      {/* Render your chart here */}
-    </div>
-  );
+
+  return <div>{/* Render your chart here */}</div>;
 };
 ```
 
 ## Planned Visualizations
 
 ### 1. Listening Behavior Over Time
+
 - **Line chart**: Minutes per day/week/month
 - **Heatmap**: Hours (X-axis) × Weekdays (Y-axis)
 - **Calendar heatmap**: GitHub-style contribution map
 
 ### 2. Top Artists, Songs, Genres
+
 - **Bar charts**: Most played artists/songs
 - **Treemap**: Genre/artist distribution
 - **Pareto chart**: 80/20 analysis
 
 ### 3. Skip Behavior Analysis
+
 - **Scatter plot**: `ms_played` vs `skipped`
 - **Percentage chart**: Skip rate per artist/album
 - **Session length**: Continuous listening sessions
 
 ### 4. Platform Analysis
+
 - **Donut chart**: iOS vs Desktop vs Web
 - **Stacked bar**: Listening minutes per platform over time
 
 ### 5. Mood/Tempo Analysis (requires Spotify API)
+
 - **Radar charts**: Average track features
 - **Temporal charts**: Mood changes over time
 
 ### 6. Geographic Analysis
+
 - **Map**: Listening locations
 - **Roaming heatmap**: Travel patterns
 
@@ -156,7 +158,7 @@ export const TimelineView = () => {
 ✅ **Easy to extend** - Add new views without refactoring  
 ✅ **Performance** - Memoized computations in views  
 ✅ **Separation of concerns** - Data logic separate from UI  
-✅ **Type safety** - Full TypeScript support  
+✅ **Type safety** - Full TypeScript support
 
 ## Current Implementation
 

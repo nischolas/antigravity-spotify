@@ -1,53 +1,53 @@
 @use 'variables' as *;
 
 .app-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1rem;
-    min-height: calc(100dvh - 2rem);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+  min-height: calc(100dvh - 2rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .app-header {
-    text-align: center;
-    margin-bottom: 1rem;
-    margin-top: 3rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  margin-top: 3rem;
 }
 
 .sections {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
 
-    .table-container {
-        &:nth-child(1) {
-            grid-column: span 7;
-        }
-
-        &:nth-child(2) {
-            grid-column: span 5;
-        }
-
-        &:nth-child(3) {
-            grid-column: span 12;
-        }
-
-        &:nth-child(4) {
-            grid-column: span 6;
-        }
-
-        &:nth-child(5) {
-            grid-column: span 6;
-        }
-
-        @media (max-width: 1024px) {
-
-            grid-column: span 12 !important;
-
-        }
+  .table-container {
+    &:nth-child(1) {
+      grid-column: span 7;
     }
+
+    &:nth-child(2) {
+      grid-column: span 5;
+    }
+
+    &:nth-child(3) {
+      grid-column: span 12;
+    }
+
+    &:nth-child(4) {
+      grid-column: span 6;
+    }
+
+    &:nth-child(5) {
+      grid-column: span 6;
+    }
+
+    @media (max-width: 1024px) {
+
+      grid-column: span 12 !important;
+
+    }
+  }
 
 
 
@@ -55,55 +55,55 @@
 }
 
 .table-container {
-    background-color: $surface-color;
-    border-radius: 1rem;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  background-color: $surface-color;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 
-    @media (max-width: 1024px) {
-        overflow-x: auto;
-    }
+  @media (max-width: 1024px) {
+    overflow-x: auto;
+  }
 }
 
 @media (max-width: 1024px) {
-    .app-container {
-        padding: 0.5rem;
-    }
+  .app-container {
+    padding: 0.5rem;
+  }
 }
 
 .title {
-    padding: 1.2rem;
+  padding: 1.2rem;
 
-    @media (max-width: 1024px) {
-        padding: .8rem;
-    }
+  @media (max-width: 1024px) {
+    padding: .8rem;
+  }
 
-    h3,
-    p {
-        margin: 0;
-    }
+  h3,
+  p {
+    margin: 0;
+  }
 
-    p {
-        font-size: .9rem;
-    }
+  p {
+    font-size: .9rem;
+  }
 }
 
 .actions {
-    margin-top: 4rem;
-    margin-bottom: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  margin-top: 4rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (max-width: 1024px) {
+    margin-top: 0;
+  }
+
+  h1 {
+    font-size: 1.5rem;
 
     @media (max-width: 1024px) {
-        margin-top: 0;
+      font-size: 1rem;
     }
-
-    h1 {
-        font-size: 1.5rem;
-
-        @media (max-width: 1024px) {
-            font-size: 1rem;
-        }
-    }
+  }
 }
