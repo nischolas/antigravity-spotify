@@ -1,7 +1,8 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { useSpotifyStore } from "../store/useSpotifyStore";
 import { useTranslation } from "react-i18next";
 import type { SpotifyHistoryItem } from "../types";
+import { Modal } from "./Modal";
 
 export type ReasonStartType =
   | "trackdone"
@@ -22,11 +23,14 @@ export type ReasonStartType =
 
 interface ReasonStartTracksProps {
   reason_start: ReasonStartType;
+  limit?: number;
+  isModal?: boolean;
 }
 
-export const ReasonStartTracks: React.FC<ReasonStartTracksProps> = ({ reason_start }) => {
+export const ReasonStartTracks: React.FC<ReasonStartTracksProps> = ({ reason_start, limit = 10, isModal = false }) => {
   const { rawData, startDate, endDate } = useSpotifyStore();
   const { t } = useTranslation();
+  const [showMoreModal, setShowMoreModal] = useState(false);
 
   const title = t(`reasonStartTracks.title.${reason_start}`);
   const subtitle = t(`reasonStartTracks.subtitle.${reason_start}`);
@@ -73,54 +77,75 @@ export const ReasonStartTracks: React.FC<ReasonStartTracksProps> = ({ reason_sta
 
     return Array.from(trackCounts.values())
       .sort((a, b) => b.count - a.count)
-      .slice(0, 10);
-  }, [dateFilteredData, reason_start]);
+      .slice(0, limit);
+  }, [dateFilteredData, reason_start, limit]);
 
   return (
-    <div className="table-container">
-      <div className="title">
-        <h3>{title}</h3>
-        <p>{subtitle}</p>
+    <>
+      <div className="table-container">
+        <div
+          className="header-row"
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginRight: "1.2rem",
+          }}
+        >
+          <div className="title">
+            <h3>{title}</h3>
+            <p>{subtitle}</p>
+          </div>
+          {!isModal && (
+            <button className="reset-btn" onClick={() => setShowMoreModal(true)}>
+              {t("common.showMore", "Show More")}
+            </button>
+          )}
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>{t("reasonStartTracks.headerTrack")}</th>
+              <th>{t("reasonStartTracks.headerArtist")}</th>
+              {/* <th style={{ textAlign: "right" }}>{t("reasonStartTracks.headerCount")}</th> */}
+            </tr>
+          </thead>
+          <tbody>
+            {sortedData.map((item, index) => {
+              const url = item.track.spotify_track_uri ? `https://open.spotify.com/track/${item.track.spotify_track_uri.replace("spotify:track:", "")}` : "#";
+
+              return (
+                <tr
+                  key={index}
+                  onClick={() => item.track.spotify_track_uri && window.open(url, "_blank")}
+                  style={{
+                    cursor: item.track.spotify_track_uri ? "pointer" : "default",
+                  }}
+                  title={t("reasonStartTracks.openInSpotify")}
+                >
+                  <td>{index + 1}</td>
+                  <td>{item.track.master_metadata_track_name || <em>{t("reasonStartTracks.unknownTrack")}</em>}</td>
+                  <td>{item.track.master_metadata_album_artist_name || <em>{t("reasonStartTracks.unknownArtist")}</em>}</td>
+                  {/* <td className="monospace">{item.count}</td> */}
+                </tr>
+              );
+            })}
+            {sortedData.length === 0 && (
+              <tr>
+                <td colSpan={4} style={{ textAlign: "center", padding: "2rem" }}>
+                  {t("reasonStartTracks.noData")}
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
       </div>
 
-      <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>{t("reasonStartTracks.headerTrack")}</th>
-            <th>{t("reasonStartTracks.headerArtist")}</th>
-            {/* <th style={{ textAlign: "right" }}>{t("reasonStartTracks.headerCount")}</th> */}
-          </tr>
-        </thead>
-        <tbody>
-          {sortedData.map((item, index) => {
-            const url = item.track.spotify_track_uri ? `https://open.spotify.com/track/${item.track.spotify_track_uri.replace("spotify:track:", "")}` : "#";
-
-            return (
-              <tr
-                key={index}
-                onClick={() => item.track.spotify_track_uri && window.open(url, "_blank")}
-                style={{
-                  cursor: item.track.spotify_track_uri ? "pointer" : "default",
-                }}
-                title={t("reasonStartTracks.openInSpotify")}
-              >
-                <td>{index + 1}</td>
-                <td>{item.track.master_metadata_track_name || <em>{t("reasonStartTracks.unknownTrack")}</em>}</td>
-                <td>{item.track.master_metadata_album_artist_name || <em>{t("reasonStartTracks.unknownArtist")}</em>}</td>
-                {/* <td className="monospace">{item.count}</td> */}
-              </tr>
-            );
-          })}
-          {sortedData.length === 0 && (
-            <tr>
-              <td colSpan={4} style={{ textAlign: "center", padding: "2rem" }}>
-                {t("reasonStartTracks.noData")}
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-    </div>
+      <Modal isOpen={showMoreModal} onClose={() => setShowMoreModal(false)} title={title}>
+        <ReasonStartTracks reason_start={reason_start} limit={100} isModal={true} />
+      </Modal>
+    </>
   );
 };

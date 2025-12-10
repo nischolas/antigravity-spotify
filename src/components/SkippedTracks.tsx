@@ -1,10 +1,17 @@
 import { useSpotifyStore } from "../store/useSpotifyStore";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Modal } from "./Modal";
 
-export const SkippedTracks = () => {
+interface SkippedTracksProps {
+  limit?: number;
+  isModal?: boolean;
+}
+
+export const SkippedTracks: React.FC<SkippedTracksProps> = ({ limit = 10, isModal = false }) => {
   const { rawData } = useSpotifyStore();
   const { t } = useTranslation();
+  const [showMoreModal, setShowMoreModal] = useState(false);
 
   const CUTOFF = 10000;
 
@@ -52,8 +59,8 @@ export const SkippedTracks = () => {
       .filter((item) => item.skipCount > 0)
       .filter((item) => item.trackName !== t("skippedTracks.unknownTrack"))
       .sort((a, b) => b.skipCount - a.skipCount)
-      .slice(0, 10);
-  }, [rawData, t]);
+      .slice(0, limit);
+  }, [rawData, t, limit]);
 
   const getSpotifyUrl = (uri: string | null) => {
     if (!uri) return null;
@@ -62,48 +69,69 @@ export const SkippedTracks = () => {
   };
 
   return (
-    <div className="table-container">
-      <div className="title">
-        <h3>{t("skippedTracks.title")}</h3>
-        <p>{t("skippedTracks.subtitle", { seconds: CUTOFF / 1000 })}</p>
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>{t("skippedTracks.headerTrack")}</th>
-            <th>{t("skippedTracks.headerArtist")}</th>
-            {/* <th>{t("skippedTracks.headerSkipCount")}</th> */}
-            {/* <th>{t("skippedTracks.headerTotalPlays")}</th> */}
-            <th style={{ textAlign: "right" }}>{t("skippedTracks.headerSkipRate")}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {skippedTracks.map((track, index) => {
-            const skipRate = ((track.skipCount / track.totalPlays) * 100).toFixed(0);
-            const spotifyUrl = getSpotifyUrl(track.uri);
+    <>
+      <div className="table-container">
+        <div
+          className="header-row"
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginRight: "1.2rem",
+          }}
+        >
+          <div className="title">
+            <h3>{t("skippedTracks.title")}</h3>
+            <p>{t("skippedTracks.subtitle", { seconds: CUTOFF / 1000 })}</p>
+          </div>
+          {!isModal && (
+            <button className="reset-btn" onClick={() => setShowMoreModal(true)}>
+              {t("common.showMore", "Show More")}
+            </button>
+          )}
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>{t("skippedTracks.headerTrack")}</th>
+              <th>{t("skippedTracks.headerArtist")}</th>
+              {/* <th>{t("skippedTracks.headerSkipCount")}</th> */}
+              {/* <th>{t("skippedTracks.headerTotalPlays")}</th> */}
+              <th style={{ textAlign: "right" }}>{t("skippedTracks.headerSkipRate")}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {skippedTracks.map((track, index) => {
+              const skipRate = ((track.skipCount / track.totalPlays) * 100).toFixed(0);
+              const spotifyUrl = getSpotifyUrl(track.uri);
 
-            return (
-              <tr
-                key={index}
-                onClick={spotifyUrl ? () => window.open(spotifyUrl, "_blank") : undefined}
-                style={{ cursor: spotifyUrl ? "pointer" : "default" }}
-                title={spotifyUrl ? t("skippedTracks.openInSpotify") : undefined}
-              >
-                <td>{index + 1}</td>
-                <td>{track.trackName}</td>
-                <td>{track.artistName}</td>
-                {/* <td>{track.skipCount}</td> */}
-                {/* <td>{track.totalPlays}</td> */}
-                <td style={{ textAlign: "right" }}>
-                  {skipRate}
-                  <span className="muted">%</span>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </div>
+              return (
+                <tr
+                  key={index}
+                  onClick={spotifyUrl ? () => window.open(spotifyUrl, "_blank") : undefined}
+                  style={{ cursor: spotifyUrl ? "pointer" : "default" }}
+                  title={spotifyUrl ? t("skippedTracks.openInSpotify") : undefined}
+                >
+                  <td>{index + 1}</td>
+                  <td>{track.trackName}</td>
+                  <td>{track.artistName}</td>
+                  {/* <td>{track.skipCount}</td> */}
+                  {/* <td>{track.totalPlays}</td> */}
+                  <td style={{ textAlign: "right" }}>
+                    {skipRate}
+                    <span className="muted">%</span>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+
+      <Modal isOpen={showMoreModal} onClose={() => setShowMoreModal(false)} title={t("skippedTracks.title")}>
+        <SkippedTracks limit={100} isModal={true} />
+      </Modal>
+    </>
   );
 };

@@ -76,5 +76,9 @@
     "legal": "Impressum",
     "privacy": "Keinerlei Daten werden auf deinem Gerät gespeichert oder an einen Server gesendet.",
     "by": "Gebaut von"
+  },
+  "common": {
+    "close": "Schließen",
+    "showMore": "Mehr anzeigen"
   }
 }

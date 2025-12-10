@@ -48,7 +48,7 @@
     "openInSpotify": "Open in Spotify"
   },
   "reasonStartTracks": {
-    "title": { "clickrow": "Your Favorites", "backbtn": "One is not enough" },
+    "title": { "clickrow": "Your Favorites", "backbtn": "Once is not enough" },
     "subtitle": {
       "clickrow": "These are the tracks you started manually most often",
       "backbtn": "These are the tracks you started over again"
@@ -76,5 +76,9 @@
     "legal": "Legal",
     "privacy": "No data is saved to your device or sent to a server.",
     "by": "Made by"
+  },
+  "common": {
+    "close": "Close",
+    "showMore": "Show More"
   }
 }
