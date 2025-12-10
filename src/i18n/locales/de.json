@@ -37,7 +37,7 @@
   },
   "skippedTracks": {
     "title": "Meist übersprungene Titel",
-    "subtitle": "Übersprungen vor {{seconds}} Sekunden Wiedergabe",
+    "subtitle": "Bereits nach weniger als {{seconds}} Sekunden Wiedergabe übersprungen",
     "headerTrack": "Titel",
     "headerArtist": "Künstler",
     "headerSkipCount": "Übersprungen",
@@ -48,10 +48,10 @@
     "openInSpotify": "Auf Spotify öffnen"
   },
   "reasonStartTracks": {
-    "title": { "clickrow": "Deine Lieblinge", "backbtn": "Gleich nochmal!" },
+    "title": { "clickrow": "Deine Schätze", "backbtn": "Einmal ist nicht genug" },
     "subtitle": {
       "clickrow": "Diese Tracks hast du am häufigsten manuell gestartet",
-      "backbtn": "Einmal hat nicht gereicht"
+      "backbtn": "Diese Tracks hast du nochmal von vorne angefangen"
     },
     "labelReason": "Startgrund",
     "labelMinDuration": "Min. Dauer (s)",
