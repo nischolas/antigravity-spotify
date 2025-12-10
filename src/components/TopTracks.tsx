@@ -84,7 +84,7 @@ export const TopTracks: React.FC<TopTracksProps> = ({ limit = 10, isModal = fals
         </table>
       </div>
 
-      <Modal isOpen={showMoreModal} onClose={() => setShowMoreModal(false)} title={t("topTracks.title")}>
+      <Modal isOpen={showMoreModal} onClose={() => setShowMoreModal(false)}>
         <TopTracks limit={100} isModal={true} />
       </Modal>
     </>

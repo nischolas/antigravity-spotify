@@ -143,7 +143,7 @@ export const ReasonStartTracks: React.FC<ReasonStartTracksProps> = ({ reason_sta
         </table>
       </div>
 
-      <Modal isOpen={showMoreModal} onClose={() => setShowMoreModal(false)} title={title}>
+      <Modal isOpen={showMoreModal} onClose={() => setShowMoreModal(false)}>
         <ReasonStartTracks reason_start={reason_start} limit={100} isModal={true} />
       </Modal>
     </>

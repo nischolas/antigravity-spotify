@@ -129,7 +129,7 @@ export const SkippedTracks: React.FC<SkippedTracksProps> = ({ limit = 10, isModa
         </table>
       </div>
 
-      <Modal isOpen={showMoreModal} onClose={() => setShowMoreModal(false)} title={t("skippedTracks.title")}>
+      <Modal isOpen={showMoreModal} onClose={() => setShowMoreModal(false)}>
         <SkippedTracks limit={100} isModal={true} />
       </Modal>
     </>

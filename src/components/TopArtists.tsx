@@ -82,7 +82,7 @@ export const TopArtists: React.FC<TopArtistsProps> = ({ limit = 10, isModal = fa
         </table>
       </div>
 
-      <Modal isOpen={showMoreModal} onClose={() => setShowMoreModal(false)} title={t("topArtists.title")}>
+      <Modal isOpen={showMoreModal} onClose={() => setShowMoreModal(false)}>
         <TopArtists limit={100} isModal={true} />
       </Modal>
     </>
