@@ -13,6 +13,8 @@ export const DateRangeFilter: React.FC = () => {
   const [months, setMonths] = useState<Date[]>([]);
   const [isDragging, setIsDragging] = useState<"start" | "end" | null>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
+  const filterRef = useRef<HTMLDivElement>(null);
+  const [isStuck, setIsStuck] = useState<boolean>(false);
 
   // Calculate months from raw data
   useEffect(() => {
@@ -61,6 +63,25 @@ export const DateRangeFilter: React.FC = () => {
       return () => clearTimeout(timer);
     }
   }, [rangeStart, rangeEnd, months, setDateRange]);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const el = filterRef.current;
+      if (!el) return;
+
+      const rect = el.getBoundingClientRect();
+
+      // stick detection: close enough to top
+      const stuck = rect.top <= 1;
+      setIsStuck(stuck);
+      el.classList.toggle("is-stuck", stuck);
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll);
+
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const formatMonthYear = (date: Date): string => {
     return date.toLocaleDateString(i18n.language, {
@@ -170,11 +191,11 @@ export const DateRangeFilter: React.FC = () => {
     ((rangeEnd - minMonthIndex) / (maxMonthIndex - minMonthIndex)) * 100;
 
   return (
-    <div className="date-range-filter">
+    <div className="date-range-filter" ref={filterRef}>
       <div className="date-range-filter-top-bar">
         <div className="title">
           <h3>{t("dateRangeFilter.title")}</h3>
-          <p>{t("dateRangeFilter.subtitle")}</p>
+          {!isStuck && <p>{t("dateRangeFilter.subtitle")}</p>}
         </div>
         <button onClick={handleReset} className="reset-btn">
           {t("dateRangeFilter.reset")}
