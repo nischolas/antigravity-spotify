@@ -94,6 +94,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 1.2rem;
+  gap: 1.2rem;
 
   @media (max-width: 1024px) {
     margin-top: 0;
