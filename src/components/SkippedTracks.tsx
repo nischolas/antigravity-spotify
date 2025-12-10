@@ -23,20 +23,15 @@ export const SkippedTracks = () => {
     >();
 
     rawData.forEach((item) => {
-      const key =
-        item.spotify_track_uri ||
-        `${item.master_metadata_track_name}-${item.master_metadata_album_artist_name}`;
+      const key = item.spotify_track_uri || `${item.master_metadata_track_name}-${item.master_metadata_album_artist_name}`;
       const existing = grouped.get(key);
 
       if (existing) {
         existing.totalPlays++;
       } else {
         grouped.set(key, {
-          trackName:
-            item.master_metadata_track_name || t("skippedTracks.unknownTrack"),
-          artistName:
-            item.master_metadata_album_artist_name ||
-            t("skippedTracks.unknownArtist"),
+          trackName: item.master_metadata_track_name || t("skippedTracks.unknownTrack"),
+          artistName: item.master_metadata_album_artist_name || t("skippedTracks.unknownArtist"),
           skipCount: 0,
           totalPlays: 1,
           uri: item.spotify_track_uri,
@@ -45,9 +40,7 @@ export const SkippedTracks = () => {
     });
 
     skipped.forEach((item) => {
-      const key =
-        item.spotify_track_uri ||
-        `${item.master_metadata_track_name}-${item.master_metadata_album_artist_name}`;
+      const key = item.spotify_track_uri || `${item.master_metadata_track_name}-${item.master_metadata_album_artist_name}`;
       const existing = grouped.get(key);
 
       if (existing) {
@@ -80,39 +73,28 @@ export const SkippedTracks = () => {
             <th>#</th>
             <th>{t("skippedTracks.headerTrack")}</th>
             <th>{t("skippedTracks.headerArtist")}</th>
-            <th>{t("skippedTracks.headerSkipCount")}</th>
-            <th>{t("skippedTracks.headerTotalPlays")}</th>
-            <th style={{ textAlign: "right" }}>
-              {t("skippedTracks.headerSkipRate")}
-            </th>
+            {/* <th>{t("skippedTracks.headerSkipCount")}</th> */}
+            {/* <th>{t("skippedTracks.headerTotalPlays")}</th> */}
+            <th style={{ textAlign: "right" }}>{t("skippedTracks.headerSkipRate")}</th>
           </tr>
         </thead>
         <tbody>
           {skippedTracks.map((track, index) => {
-            const skipRate = (
-              (track.skipCount / track.totalPlays) *
-              100
-            ).toFixed(0);
+            const skipRate = ((track.skipCount / track.totalPlays) * 100).toFixed(0);
             const spotifyUrl = getSpotifyUrl(track.uri);
 
             return (
               <tr
                 key={index}
-                onClick={
-                  spotifyUrl
-                    ? () => window.open(spotifyUrl, "_blank")
-                    : undefined
-                }
+                onClick={spotifyUrl ? () => window.open(spotifyUrl, "_blank") : undefined}
                 style={{ cursor: spotifyUrl ? "pointer" : "default" }}
-                title={
-                  spotifyUrl ? t("skippedTracks.openInSpotify") : undefined
-                }
+                title={spotifyUrl ? t("skippedTracks.openInSpotify") : undefined}
               >
                 <td>{index + 1}</td>
                 <td>{track.trackName}</td>
                 <td>{track.artistName}</td>
-                <td>{track.skipCount}</td>
-                <td>{track.totalPlays}</td>
+                {/* <td>{track.skipCount}</td> */}
+                {/* <td>{track.totalPlays}</td> */}
                 <td style={{ textAlign: "right" }}>
                   {skipRate}
                   <span className="muted">%</span>

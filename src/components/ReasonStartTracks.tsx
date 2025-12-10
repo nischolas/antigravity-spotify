@@ -89,7 +89,7 @@ export const ReasonStartTracks: React.FC<ReasonStartTracksProps> = ({ reason_sta
             <th>#</th>
             <th>{t("reasonStartTracks.headerTrack")}</th>
             <th>{t("reasonStartTracks.headerArtist")}</th>
-            <th style={{ textAlign: "right" }}>{t("reasonStartTracks.headerCount")}</th>
+            {/* <th style={{ textAlign: "right" }}>{t("reasonStartTracks.headerCount")}</th> */}
           </tr>
         </thead>
         <tbody>
@@ -108,7 +108,7 @@ export const ReasonStartTracks: React.FC<ReasonStartTracksProps> = ({ reason_sta
                 <td>{index + 1}</td>
                 <td>{item.track.master_metadata_track_name || <em>{t("reasonStartTracks.unknownTrack")}</em>}</td>
                 <td>{item.track.master_metadata_album_artist_name || <em>{t("reasonStartTracks.unknownArtist")}</em>}</td>
-                <td className="monospace">{item.count}</td>
+                {/* <td className="monospace">{item.count}</td> */}
               </tr>
             );
           })}
