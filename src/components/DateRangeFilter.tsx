@@ -42,19 +42,23 @@ export const DateRangeFilter: React.FC = () => {
   // Apply filter when range changes
   useEffect(() => {
     if (months.length > 0) {
-      const startDate = months[rangeStart];
-      const endMonth = months[rangeEnd];
-      // End date is last day of the selected month
-      const endDate = new Date(
-        endMonth.getFullYear(),
-        endMonth.getMonth() + 1,
-        0,
-        23,
-        59,
-        59
-      );
+      const timer = setTimeout(() => {
+        const startDate = months[rangeStart];
+        const endMonth = months[rangeEnd];
+        // End date is last day of the selected month
+        const endDate = new Date(
+          endMonth.getFullYear(),
+          endMonth.getMonth() + 1,
+          0,
+          23,
+          59,
+          59
+        );
 
-      setDateRange(startDate.toISOString(), endDate.toISOString());
+        setDateRange(startDate.toISOString(), endDate.toISOString());
+      }, 200);
+
+      return () => clearTimeout(timer);
     }
   }, [rangeStart, rangeEnd, months, setDateRange]);
 
