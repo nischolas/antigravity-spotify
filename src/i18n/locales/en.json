@@ -48,9 +48,10 @@
     "openInSpotify": "Open in Spotify"
   },
   "reasonStartTracks": {
-    "title": { "clickrow": "Your Favorites" },
+    "title": { "clickrow": "Your Favorites", "backbtn": "Again!" },
     "subtitle": {
-      "clickrow": "These are the tracks you started manually most often"
+      "clickrow": "These are the tracks you started manually most often",
+      "backbtn": "Once was not enough"
     },
     "labelReason": "Start Reason",
     "labelMinDuration": "Min Duration (s)",

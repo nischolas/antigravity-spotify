@@ -24,9 +24,7 @@ interface ReasonStartTracksProps {
   reason_start: ReasonStartType;
 }
 
-export const ReasonStartTracks: React.FC<ReasonStartTracksProps> = ({
-  reason_start,
-}) => {
+export const ReasonStartTracks: React.FC<ReasonStartTracksProps> = ({ reason_start }) => {
   const { rawData, startDate, endDate } = useSpotifyStore();
   const { t } = useTranslation();
 
@@ -91,42 +89,25 @@ export const ReasonStartTracks: React.FC<ReasonStartTracksProps> = ({
             <th>#</th>
             <th>{t("reasonStartTracks.headerTrack")}</th>
             <th>{t("reasonStartTracks.headerArtist")}</th>
-            <th style={{ textAlign: "right" }}>
-              {t("reasonStartTracks.headerCount")}
-            </th>
+            <th style={{ textAlign: "right" }}>{t("reasonStartTracks.headerCount")}</th>
           </tr>
         </thead>
         <tbody>
           {sortedData.map((item, index) => {
-            const url = item.track.spotify_track_uri
-              ? `https://open.spotify.com/track/${item.track.spotify_track_uri.replace(
-                  "spotify:track:",
-                  ""
-                )}`
-              : "#";
+            const url = item.track.spotify_track_uri ? `https://open.spotify.com/track/${item.track.spotify_track_uri.replace("spotify:track:", "")}` : "#";
 
             return (
               <tr
                 key={index}
-                onClick={() =>
-                  item.track.spotify_track_uri && window.open(url, "_blank")
-                }
+                onClick={() => item.track.spotify_track_uri && window.open(url, "_blank")}
                 style={{
                   cursor: item.track.spotify_track_uri ? "pointer" : "default",
                 }}
                 title={t("reasonStartTracks.openInSpotify")}
               >
                 <td>{index + 1}</td>
-                <td>
-                  {item.track.master_metadata_track_name || (
-                    <em>{t("reasonStartTracks.unknownTrack")}</em>
-                  )}
-                </td>
-                <td>
-                  {item.track.master_metadata_album_artist_name || (
-                    <em>{t("reasonStartTracks.unknownArtist")}</em>
-                  )}
-                </td>
+                <td>{item.track.master_metadata_track_name || <em>{t("reasonStartTracks.unknownTrack")}</em>}</td>
+                <td>{item.track.master_metadata_album_artist_name || <em>{t("reasonStartTracks.unknownArtist")}</em>}</td>
                 <td className="monospace">{item.count}</td>
               </tr>
             );
