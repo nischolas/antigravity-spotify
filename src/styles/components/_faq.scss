@@ -1,7 +1,7 @@
 @use '../variables' as *;
 
 .faq-container {
-  margin-top: 2rem;
+  margin-top: 6rem;
   text-align: left;
 
   h2 {
@@ -25,15 +25,17 @@
 
   .question {
     width: 100%;
-    padding: 1rem;
+    padding: 0.8rem 1rem 1rem;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+    align-items: flex-end;
     background: none;
     border: none;
     cursor: pointer;
-    color: var(--text-primary);
+    color: var(--text-secondary);
     font-weight: 500;
+    font-size: 0.9rem;
     transition: background-color 0.2s;
     text-align: left;
 

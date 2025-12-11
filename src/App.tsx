@@ -20,21 +20,34 @@ function App() {
 
   return (
     <div className="app-container">
-      {!aggregatedData.length && (
-        <header className="app-header">
-          <h1>{t("app.title")}</h1>
-          <p className="subtitle">{t("app.subtitle")}</p>
-        </header>
-      )}
-
       <main>
         {aggregatedData.length === 0 ? (
-          <>
+          <header className="app-header">
+            <div>
+              <h1>{t("app.title")}</h1>
+              <p className="subtitle">{t("app.subtitle")}</p>
+              <br />
+              <div className="tutorial-section">
+                <h3>{t("fileUpload.tutorialTitle")}</h3>
+                <ol>
+                  <li>
+                    {t("fileUpload.tutorialStep1")}{" "}
+                    <a href="https://www.spotify.com/account/privacy" target="_blank" rel="noopener noreferrer">
+                      {t("fileUpload.tutorialStep1Link")}
+                    </a>
+                  </li>
+                  <li>
+                    {t("fileUpload.tutorialStep2")} <strong>{t("fileUpload.tutorialStep2Bold")}</strong>
+                  </li>
+                  <li>{t("fileUpload.tutorialStep3")}</li>
+                  <li>{t("fileUpload.tutorialStep4")}</li>
+                </ol>
+              </div>
+            </div>
             <div className="upload-section">
               <FileUpload />
             </div>
-            <FAQ />
-          </>
+          </header>
         ) : (
           <div className="data-section">
             <div className="actions">
@@ -53,6 +66,7 @@ function App() {
             </div>
           </div>
         )}
+        <FAQ />
       </main>
 
       <Footer />

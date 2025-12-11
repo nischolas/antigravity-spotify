@@ -11,9 +11,16 @@
 }
 
 .app-header {
-  text-align: center;
   margin-bottom: 1rem;
   margin-top: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 6rem;
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+    gap: 1rem;
+  }
 }
 
 .sections {

@@ -13,7 +13,7 @@
     "tutorialStep1Link": "Spotify Datenschutzeinstellungen",
     "tutorialStep2": "Hol dir deinen",
     "tutorialStep2Bold": "Erweiterten Streamingverlauf",
-    "tutorialStep3": "Warte auf die E-Mail von Spotify (bis zu 30 Tage, ist aber normalerweise schneller)",
+    "tutorialStep3": "Warte auf die E-Mail von Spotify",
     "tutorialStep4": "Lade die ZIP-Datei aus der E-Mail herunter",
     "errorNoData": "Keine gültigen Daten gefunden. Hochgeladene Dateien müssen JSON-Dateien sein, die mit \"Streaming_History_Audio_\" beginnen, oder ZIP-Archive, die diese enthalten. {{count}} Datei(en)/Eintrag/Einträge ignoriert.",
     "errorProcessing": "Fehler beim Verarbeiten der Dateien. Bitte versuche es erneut."
@@ -24,6 +24,14 @@
       {
         "question": "Was enthält mein erweiterter Streamingverlauf?",
         "answer": "Deine erweiterte Streaming-Historie enthält detaillierte Informationen zu jedem einzelnen Titel, den du abgespielt hast. Für jeden der zehntausenden Datenpunkte werden Datum und Uhrzeit, der Songtitel, der Künstler und das Album gespeichert. Sie enthält auch genau, wie lange du zugehört hast (in Millisekunden!), welches Gerät du benutzt hast, deinen Standort (Land) und sogar spezifische Details, wie ob du die Zufallswiedergabe anhattest, den Song übersprungen hast oder ob du offline gehört hast. Es wird auch erfasst, warum der Song gestartet (z. B. durch Anklicken) oder beendet wurde."
+      },
+      {
+        "question": "Sind meine Daten sicher?",
+        "answer": "Absolut. Diese App läuft vollständig in deinem Browser. Deine Dateien werden niemals auf einen Server hochgeladen. Du kannst sogar deine Internetverbindung trennen, nachdem die Seite geladen wurde, und es wird weiterhin funktionieren!"
+      },
+      {
+        "question": "Warum brauche ich den \"erweiterten\" Verlauf?",
+        "answer": "Der Standard-Datendownload enthält nur den Hörverlauf des letzten Jahres und es fehlen detaillierte Informationen wie \"übersprungen\", \"Startgrund\" und \"Plattform\". Der \"erweiterte Streamingverlauf\" deckt die gesamte Lebensdauer deines Kontos ab und enthält all diese reichhaltigen Details."
       }
     ]
   },

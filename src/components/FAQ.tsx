@@ -28,8 +28,8 @@ export const FAQ = () => {
         {questions.map((item, index) => (
           <div key={index} className="item">
             <button className={`question ${openIndex === index ? "active" : ""}`} onClick={() => toggleIndex(index)} aria-expanded={openIndex === index}>
-              <span className="question-text">{item.question}</span>
               <span className="icon">{openIndex === index ? "−" : "+"}</span>
+              <span className="question-text">{item.question}</span>
             </button>
             <div className={`answer ${openIndex === index ? "open" : ""}`}>
               <div className="answer-content">{item.answer}</div>

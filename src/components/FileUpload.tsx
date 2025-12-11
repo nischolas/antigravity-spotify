@@ -10,9 +10,7 @@ export const FileUpload: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleFileChange = async (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     if (!files || files.length === 0) return;
 
@@ -47,10 +45,7 @@ export const FileUpload: React.FC = () => {
               if (zipEntry.dir) return;
               const filename = relativePath.split("/").pop() || relativePath;
 
-              if (
-                filename.startsWith("Streaming_History_Audio_") &&
-                filename.endsWith(".json")
-              ) {
+              if (filename.startsWith("Streaming_History_Audio_") && filename.endsWith(".json")) {
                 const p = zipEntry.async("string").then((content) => {
                   processJsonContent(content, filename);
                 });
@@ -68,10 +63,7 @@ export const FileUpload: React.FC = () => {
           }
         });
         readers.push(zipPromise);
-      } else if (
-        file.name.startsWith("Streaming_History_Audio_") &&
-        file.name.endsWith(".json")
-      ) {
+      } else if (file.name.startsWith("Streaming_History_Audio_") && file.name.endsWith(".json")) {
         const readerPromise = new Promise<void>((resolve, reject) => {
           const reader = new FileReader();
           reader.onload = (e) => {
@@ -79,8 +71,7 @@ export const FileUpload: React.FC = () => {
             processJsonContent(text, file.name);
             resolve();
           };
-          reader.onerror = () =>
-            reject(new Error(`Failed to read file ${file.name}`));
+          reader.onerror = () => reject(new Error(`Failed to read file ${file.name}`));
           reader.readAsText(file);
         });
         readers.push(readerPromise);
@@ -112,38 +103,9 @@ export const FileUpload: React.FC = () => {
       <label htmlFor="file-upload" className="file-upload-label">
         {isLoading ? t("fileUpload.processing") : t("fileUpload.uploadButton")}
       </label>
-      <input
-        id="file-upload"
-        type="file"
-        accept=".json,.zip"
-        multiple
-        onChange={handleFileChange}
-        className="file-upload-input"
-      />
+      <input id="file-upload" type="file" accept=".json,.zip" multiple onChange={handleFileChange} className="file-upload-input" />
       {error && <div className="error-message">{error}</div>}
       <p className="hint">{t("fileUpload.hint")}</p>
-      <hr />
-      <div className="tutorial-section">
-        <h3>{t("fileUpload.tutorialTitle")}</h3>
-        <ol>
-          <li>
-            {t("fileUpload.tutorialStep1")}{" "}
-            <a
-              href="https://www.spotify.com/account/privacy"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {t("fileUpload.tutorialStep1Link")}
-            </a>
-          </li>
-          <li>
-            {t("fileUpload.tutorialStep2")}{" "}
-            <strong>{t("fileUpload.tutorialStep2Bold")}</strong>
-          </li>
-          <li>{t("fileUpload.tutorialStep3")}</li>
-          <li>{t("fileUpload.tutorialStep4")}</li>
-        </ol>
-      </div>
     </div>
   );
 };

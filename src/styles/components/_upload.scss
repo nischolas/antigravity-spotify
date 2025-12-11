@@ -5,16 +5,18 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1rem 2rem;
+  padding: 3rem 4rem;
   border: 2px dashed $border-color;
   border-radius: 1rem;
   background-color: $surface-color;
   transition: border-color 0.3s ease;
-  max-width: max-content;
-  margin: 0 auto;
 
   &:hover {
     border-color: $primary-color;
+  }
+
+  @media (max-width: 1024px) {
+    padding: 0.5rem 1rem;
   }
 }
 
@@ -42,6 +44,7 @@
 
 .hint {
   color: $text-secondary;
+  text-align: center;
   margin-top: 1rem;
   font-size: 0.9rem;
 }
