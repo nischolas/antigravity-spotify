@@ -6,17 +6,26 @@
   },
   "fileUpload": {
     "processing": "Verarbeite...",
-    "uploadButton": "Spotify-Verlauf hochladen (JSON oder ZIP)",
+    "uploadButton": "Spotify-Verlauf laden (JSON oder ZIP)",
     "hint": "ZIP-Archiv ( my_spotify_data.zip ) oder JSON-Datei(en) ( Streaming_History_Audio_YYYY.json ).",
     "tutorialTitle": "So erhältst du deine Spotify-Daten",
     "tutorialStep1": "Gehe zu den",
     "tutorialStep1Link": "Spotify Datenschutzeinstellungen",
-    "tutorialStep2": "Hol dir deine",
-    "tutorialStep2Bold": "Erweiterte Streaming-Historie",
+    "tutorialStep2": "Hol dir deinen",
+    "tutorialStep2Bold": "Erweiterten Streamingverlauf",
     "tutorialStep3": "Warte auf die E-Mail von Spotify (bis zu 30 Tage, ist aber normalerweise schneller)",
     "tutorialStep4": "Lade die ZIP-Datei aus der E-Mail herunter",
     "errorNoData": "Keine gültigen Daten gefunden. Hochgeladene Dateien müssen JSON-Dateien sein, die mit \"Streaming_History_Audio_\" beginnen, oder ZIP-Archive, die diese enthalten. {{count}} Datei(en)/Eintrag/Einträge ignoriert.",
     "errorProcessing": "Fehler beim Verarbeiten der Dateien. Bitte versuche es erneut."
+  },
+  "faq": {
+    "title": "Häufig gestellte Fragen",
+    "questions": [
+      {
+        "question": "Was enthält mein erweiterter Streamingverlauf?",
+        "answer": "Deine erweiterte Streaming-Historie enthält detaillierte Informationen zu jedem einzelnen Titel, den du abgespielt hast. Für jeden der zehntausenden Datenpunkte werden Datum und Uhrzeit, der Songtitel, der Künstler und das Album gespeichert. Sie enthält auch genau, wie lange du zugehört hast (in Millisekunden!), welches Gerät du benutzt hast, deinen Standort (Land) und sogar spezifische Details, wie ob du die Zufallswiedergabe anhattest, den Song übersprungen hast oder ob du offline gehört hast. Es wird auch erfasst, warum der Song gestartet (z. B. durch Anklicken) oder beendet wurde."
+      }
+    ]
   },
   "topTracks": {
     "title": "Top-Tracks",

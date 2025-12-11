@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { FileUpload } from "./components/FileUpload";
+import { FAQ } from "./components/FAQ";
 import { TopTracks } from "./components/TopTracks";
 import { TopArtists } from "./components/TopArtists";
 import { SkippedTracks } from "./components/SkippedTracks";
@@ -28,9 +29,12 @@ function App() {
 
       <main>
         {aggregatedData.length === 0 ? (
-          <div className="upload-section">
-            <FileUpload />
-          </div>
+          <>
+            <div className="upload-section">
+              <FileUpload />
+            </div>
+            <FAQ />
+          </>
         ) : (
           <div className="data-section">
             <div className="actions">

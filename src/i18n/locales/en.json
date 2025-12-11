@@ -6,7 +6,7 @@
   },
   "fileUpload": {
     "processing": "Processing...",
-    "uploadButton": "Upload Spotify History (JSON or ZIP)",
+    "uploadButton": "Load Spotify History (JSON or ZIP)",
     "hint": "Select a ZIP archive ( my_spotify_data.zip ) or JSON file(s) ( Streaming_History_Audio_YYYY.json ).",
     "tutorialTitle": "How to Get Your Spotify Data",
     "tutorialStep1": "Go to",
@@ -17,6 +17,15 @@
     "tutorialStep4": "Download the ZIP file from the email",
     "errorNoData": "No valid data found. Uploaded files must be JSON files starting with \"Streaming_History_Audio_\" or ZIP archives containing them. Ignored {{count}} file(s)/entry(s).",
     "errorProcessing": "Error processing files. Please try again."
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "questions": [
+      {
+        "question": "What data does my Extended Streaming History contain?",
+        "answer": "Your Extended Streaming History contains detailed information about every single track you've played. For each of the tens of thousands of data points, it records the date and time, the song name, artist, and album. It also includes exactly how long you listened (in milliseconds!), which device you used, your location (country), and even specific details like whether you shuffled, skipped the song, or if you were listening offline. It also tracks why the song started (like clicking a row) or ended (like hitting next)."
+      }
+    ]
   },
   "topTracks": {
     "title": "Top Tracks",
