@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { FileUpload } from "./components/FileUpload";
 import { FAQ } from "./components/FAQ";
 import { TopTracks } from "./components/TopTracks";
+import { TopTracksByYear } from "./components/TopTracksByYear";
 import { TopArtists } from "./components/TopArtists";
 import { SkippedTracks } from "./components/SkippedTracks";
 import { DateRangeFilter } from "./components/DateRangeFilter";
@@ -59,6 +60,7 @@ function App() {
             <DateRangeFilter />
             <div className="sections">
               <TopTracks />
+              <TopTracksByYear />
               <TopArtists />
               <SkippedTracks />
               <ReasonStartTracks reason_start="clickrow" />

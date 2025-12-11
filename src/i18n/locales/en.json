@@ -45,6 +45,13 @@
     "unknownArtist": "Unknown Artist",
     "openInSpotify": "Open in Spotify"
   },
+  "topTracksByYear": {
+    "title": "Top Track by Year",
+    "subtitle": "Your most played track for each year",
+    "headerYear": "Year",
+    "headerTitle": "Title",
+    "headerArtist": "Artist"
+  },
   "topArtists": {
     "title": "Top Artists",
     "subtitle": "by accumulated playtime",
