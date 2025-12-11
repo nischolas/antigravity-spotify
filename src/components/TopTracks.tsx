@@ -33,15 +33,7 @@ export const TopTracks: React.FC<TopTracksProps> = ({ limit = 10, isModal = fals
   return (
     <>
       <div className="table-container">
-        <div
-          className="header-row"
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginRight: "1.2rem",
-          }}
-        >
+        <div className="header-row">
           <div className="title">
             <h3>{t("topTracks.title")}</h3>
             <p>{t("topTracks.subtitle")}</p>

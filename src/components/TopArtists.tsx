@@ -35,15 +35,7 @@ export const TopArtists: React.FC<TopArtistsProps> = ({ limit = 10, isModal = fa
   return (
     <>
       <div className="table-container">
-        <div
-          className="header-row"
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginRight: "1.2rem",
-          }}
-        >
+        <div className="header-row">
           <div className="title">
             <h3>{t("topArtists.title")}</h3>
             <p>{t("topArtists.subtitle")}</p>

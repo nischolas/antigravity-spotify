@@ -83,15 +83,7 @@ export const ReasonStartTracks: React.FC<ReasonStartTracksProps> = ({ reason_sta
   return (
     <>
       <div className="table-container">
-        <div
-          className="header-row"
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginRight: "1.2rem",
-          }}
-        >
+        <div className="header-row">
           <div className="title">
             <h3>{title}</h3>
             <p>{subtitle}</p>

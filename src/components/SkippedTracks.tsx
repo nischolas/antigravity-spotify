@@ -71,15 +71,7 @@ export const SkippedTracks: React.FC<SkippedTracksProps> = ({ limit = 10, isModa
   return (
     <>
       <div className="table-container">
-        <div
-          className="header-row"
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginRight: "1.2rem",
-          }}
-        >
+        <div className="header-row">
           <div className="title">
             <h3>{t("skippedTracks.title")}</h3>
             <p>{t("skippedTracks.subtitle", { seconds: CUTOFF / 1000 })}</p>

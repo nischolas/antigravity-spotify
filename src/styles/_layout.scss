@@ -77,6 +77,17 @@
   }
 }
 
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 1.2rem;
+
+  @media (max-width: 1024px) {
+    margin-right: 0.8rem;
+  }
+}
+
 @media (max-width: 1024px) {
   .app-container {
     padding: 0.5rem;

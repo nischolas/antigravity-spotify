@@ -13,6 +13,10 @@
   z-index: 1000;
   padding: 1rem;
   backdrop-filter: blur(5px);
+
+  @media (max-width: 768px) {
+    padding: 0;
+  }
 }
 
 .modal-content {
@@ -20,19 +24,23 @@
   border-radius: 1rem;
   width: 100%;
   max-width: 800px;
-  max-height: 90vh;
+  max-height: 90dvh;
   display: flex;
   flex-direction: column;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
   animation: modal-in 0.3s ease-out;
   position: relative;
 
+  @media (max-width: 768px) {
+    max-height: 100dvh;
+    border-radius: 0;
+  }
+
 
 
   .modal-close-btn {
     position: absolute;
-    top: 1.4rem;
-    right: 2rem;
+    right: 0.5rem;
     background: none;
     border: none;
     color: $text-secondary;
@@ -40,7 +48,7 @@
     line-height: 1;
     cursor: pointer;
     transition: color 0.2s;
-    padding: 0;
+    padding: 1rem;
 
     &:hover {
       color: $text-primary;
