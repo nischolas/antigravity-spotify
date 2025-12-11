@@ -50,7 +50,11 @@
     "subtitle": "Dein meistgespielter Titel für jedes Jahr",
     "headerYear": "Jahr",
     "headerTitle": "Titel",
-    "headerArtist": "Künstler"
+    "headerArtist": "Künstler",
+    "headerMonth": "Monat",
+    "showByMonth": "Nach Monat anzeigen",
+    "titleMonth": "Top-Titel des Monats",
+    "subtitleMonth": "Dein meistgespielter Titel für jeden Monat"
   },
   "topArtists": {
     "title": "Top-Künstler",

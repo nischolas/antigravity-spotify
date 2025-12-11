@@ -50,7 +50,11 @@
     "subtitle": "Your most played track for each year",
     "headerYear": "Year",
     "headerTitle": "Title",
-    "headerArtist": "Artist"
+    "headerArtist": "Artist",
+    "headerMonth": "Month",
+    "showByMonth": "Show by Month",
+    "titleMonth": "Top Track by Month",
+    "subtitleMonth": "Your most played track for each month"
   },
   "topArtists": {
     "title": "Top Artists",
