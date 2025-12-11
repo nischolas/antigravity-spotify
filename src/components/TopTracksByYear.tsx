@@ -84,15 +84,6 @@ export const TopTracksByYear: React.FC<TopTracksByYearProps> = ({ groupBy = "yea
     return result.sort((a, b) => b.groupKey.localeCompare(a.groupKey));
   }, [rawData, startDate, endDate, groupBy]);
 
-  const formatGroupLabel = (key: string) => {
-    if (groupBy === "year") return key;
-
-    // For "YYYY-MM", format as "Month Year"
-    const [year, month] = key.split("-").map(Number);
-    const date = new Date(year, month - 1);
-    return date.toLocaleDateString(i18n.language, { month: "short", year: "numeric" });
-  };
-
   if (topTracks.length === 0) {
     return null;
   }
@@ -128,15 +119,43 @@ export const TopTracksByYear: React.FC<TopTracksByYearProps> = ({ groupBy = "yea
             </tr>
           </thead>
           <tbody>
-            {topTracks.map(({ groupKey, track }) => {
+            {topTracks.map(({ groupKey, track }, index) => {
               const url = `https://open.spotify.com/track/${track.spotify_track_uri?.replace("spotify:track:", "")}`;
 
+              // Logic for Year Header in Month View
+              let showYearHeader = false;
+              let currentYear = "";
+
+              if (groupBy === "month") {
+                const [y] = groupKey.split("-");
+                currentYear = y;
+                const prevKey = index > 0 ? topTracks[index - 1].groupKey : null;
+                const prevYear = prevKey ? prevKey.split("-")[0] : null;
+
+                if (currentYear !== prevYear) {
+                  showYearHeader = true;
+                }
+              }
+
               return (
-                <tr key={groupKey} onClick={() => window.open(url, "_blank")} style={{ cursor: "pointer" }} title={t("topTracks.openInSpotify")}>
-                  <td>{formatGroupLabel(groupKey)}</td>
-                  <td>{track.master_metadata_track_name || <em>{t("topTracks.unknownTrack")}</em>}</td>
-                  <td>{track.master_metadata_album_artist_name || <em>{t("topTracks.unknownArtist")}</em>}</td>
-                </tr>
+                <React.Fragment key={groupKey}>
+                  {showYearHeader && (
+                    <tr className="year-header" style={{ backgroundColor: "var(--bg-secondary)", fontWeight: "bold" }}>
+                      <td colSpan={3} style={{ padding: "0.8rem 0.5rem" }}>
+                        {currentYear}
+                      </td>
+                    </tr>
+                  )}
+                  <tr onClick={() => window.open(url, "_blank")} style={{ cursor: "pointer" }} title={t("topTracks.openInSpotify")}>
+                    <td>
+                      {groupBy === "year"
+                        ? groupKey
+                        : new Date(Number(groupKey.split("-")[0]), Number(groupKey.split("-")[1]) - 1).toLocaleDateString(i18n.language, { month: "short" })}
+                    </td>
+                    <td>{track.master_metadata_track_name || <em>{t("topTracks.unknownTrack")}</em>}</td>
+                    <td>{track.master_metadata_album_artist_name || <em>{t("topTracks.unknownArtist")}</em>}</td>
+                  </tr>
+                </React.Fragment>
               );
             })}
           </tbody>
