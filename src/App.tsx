@@ -29,19 +29,19 @@ function App() {
               <p className="subtitle">{t("app.subtitle")}</p>
               <br />
               <div className="tutorial-section">
-                <h3>{t("fileUpload.tutorialTitle")}</h3>
+                <h3>{t("fileImport.tutorialTitle")}</h3>
                 <ol>
                   <li>
-                    {t("fileUpload.tutorialStep1")}{" "}
+                    {t("fileImport.tutorialStep1")}{" "}
                     <a href="https://www.spotify.com/account/privacy" target="_blank" rel="noopener noreferrer">
-                      {t("fileUpload.tutorialStep1Link")}
+                      {t("fileImport.tutorialStep1Link")}
                     </a>
                   </li>
                   <li>
-                    {t("fileUpload.tutorialStep2")} <strong>{t("fileUpload.tutorialStep2Bold")}</strong>
+                    {t("fileImport.tutorialStep2")} <strong>{t("fileImport.tutorialStep2Bold")}</strong>
                   </li>
-                  <li>{t("fileUpload.tutorialStep3")}</li>
-                  <li>{t("fileUpload.tutorialStep4")}</li>
+                  <li>{t("fileImport.tutorialStep3")}</li>
+                  <li>{t("fileImport.tutorialStep4")}</li>
                 </ol>
               </div>
             </div>

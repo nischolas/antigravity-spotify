@@ -4,7 +4,7 @@
     "subtitle": "Alles bleibt in deinem Browser, keine Daten werden an einen Server gesendet.",
     "importDifferent": "Andere Datei importieren"
   },
-  "fileUpload": {
+  "fileImport": {
     "processing": "Verarbeite...",
     "importButton": "Spotify-Verlauf importieren (JSON oder ZIP)",
     "hint": "ZIP-Archiv ( my_spotify_data.zip ) oder JSON-Datei(en) ( Streaming_History_Audio_YYYY.json ).",

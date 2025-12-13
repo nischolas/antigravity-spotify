@@ -84,14 +84,14 @@ export const FileUpload: React.FC = () => {
       await Promise.all(readers);
 
       if (allData.length === 0) {
-        setError(t("fileUpload.errorNoData", { count: ignoredCount }));
+        setError(t("fileImport.errorNoData", { count: ignoredCount }));
         setIsLoading(false);
         return;
       }
 
       loadData(allData);
     } catch (err) {
-      setError(t("fileUpload.errorProcessing"));
+      setError(t("fileImport.errorProcessing"));
       console.error(err);
     } finally {
       setIsLoading(false);
@@ -101,11 +101,11 @@ export const FileUpload: React.FC = () => {
   return (
     <div className={`file-upload-container ${isLoading ? "disabled" : ""}`}>
       <label htmlFor="file-upload" className="file-upload-label">
-        {isLoading ? t("fileUpload.processing") : t("fileUpload.importButton")}
+        {isLoading ? t("fileImport.processing") : t("fileImport.importButton")}
       </label>
       <input disabled={isLoading} id="file-upload" type="file" accept=".json,.zip" multiple onChange={handleFileChange} className="file-upload-input" />
       {error && <div className="error-message">{error}</div>}
-      <p className="hint">{t("fileUpload.hint")}</p>
+      <p className="hint">{t("fileImport.hint")}</p>
     </div>
   );
 };
