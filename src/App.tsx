@@ -54,7 +54,7 @@ function App() {
             <div className="actions">
               <h1>{t("app.title")}</h1>
               <button onClick={reset} className="reset-btn">
-                {t("app.uploadDifferent")}
+                {t("app.importDifferent")}
               </button>
             </div>
             <DateRangeFilter />

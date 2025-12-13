@@ -101,7 +101,7 @@ export const FileUpload: React.FC = () => {
   return (
     <div className={`file-upload-container ${isLoading ? "disabled" : ""}`}>
       <label htmlFor="file-upload" className="file-upload-label">
-        {isLoading ? t("fileUpload.processing") : t("fileUpload.uploadButton")}
+        {isLoading ? t("fileUpload.processing") : t("fileUpload.importButton")}
       </label>
       <input disabled={isLoading} id="file-upload" type="file" accept=".json,.zip" multiple onChange={handleFileChange} className="file-upload-input" />
       {error && <div className="error-message">{error}</div>}

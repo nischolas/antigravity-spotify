@@ -2,11 +2,11 @@
   "app": {
     "title": "Erkunde deine Spotify Streaming-Historie",
     "subtitle": "Alles bleibt in deinem Browser, keine Daten werden an einen Server gesendet.",
-    "uploadDifferent": "Andere Datei hochladen"
+    "importDifferent": "Andere Datei importieren"
   },
   "fileUpload": {
     "processing": "Verarbeite...",
-    "uploadButton": "Spotify-Verlauf laden (JSON oder ZIP)",
+    "importButton": "Spotify-Verlauf importieren (JSON oder ZIP)",
     "hint": "ZIP-Archiv ( my_spotify_data.zip ) oder JSON-Datei(en) ( Streaming_History_Audio_YYYY.json ).",
     "tutorialTitle": "So erhältst du deine Spotify-Daten",
     "tutorialStep1": "Gehe zu den",
@@ -15,7 +15,7 @@
     "tutorialStep2Bold": "Erweiterten Streamingverlauf",
     "tutorialStep3": "Warte auf die E-Mail von Spotify",
     "tutorialStep4": "Lade die ZIP-Datei aus der E-Mail herunter",
-    "errorNoData": "Keine gültigen Daten gefunden. Hochgeladene Dateien müssen JSON-Dateien sein, die mit \"Streaming_History_Audio_\" beginnen, oder ZIP-Archive, die diese enthalten. {{count}} Datei(en)/Eintrag/Einträge ignoriert.",
+    "errorNoData": "Keine gültigen Daten gefunden. Importierte Dateien müssen JSON-Dateien sein, die mit \"Streaming_History_Audio_\" beginnen, oder ZIP-Archive, die diese enthalten. {{count}} Datei(en)/Eintrag/Einträge ignoriert.",
     "errorProcessing": "Fehler beim Verarbeiten der Dateien. Bitte versuche es erneut."
   },
   "faq": {
@@ -28,6 +28,10 @@
       {
         "question": "Sind meine Daten sicher?",
         "answer": "Absolut. Diese App läuft vollständig in deinem Browser. Deine Dateien werden niemals auf einen Server hochgeladen. Du kannst sogar deine Internetverbindung trennen, nachdem die Seite geladen wurde, und es wird weiterhin funktionieren!"
+      },
+      {
+        "question": "Warum sind meine Daten noch da, auch wenn ich die Seite neu lade?",
+        "answer": "Deine Daten werden direkt in deinem Browser gespeichert. Das ist wie ein kleiner, persönlicher Speicherplatz nur für diese Webseite. Deshalb bleiben deine Daten erhalten, auch wenn du die Seite schließt und später wieder öffnest. Löschen kannst du sie über den Button \"Andere Datei importieren\"."
       },
       {
         "question": "Warum brauche ich den \"erweiterten\" Verlauf?",
@@ -102,7 +106,7 @@
   "footer": {
     "language": "Sprache",
     "legal": "Impressum",
-    "privacy": "Keinerlei Daten werden auf deinem Gerät gespeichert oder an einen Server gesendet.",
+    "privacy": "Keinerlei Daten werden auf deinem Gerät gesammelt oder an einen Server gesendet.",
     "by": "Gebaut von"
   },
   "common": {

@@ -2,11 +2,11 @@
   "app": {
     "title": "Explore your Spotify streaming history",
     "subtitle": "Everything stays in your browser, no data is sent to a server.",
-    "uploadDifferent": "Upload Different File"
+    "importDifferent": "Import Different File"
   },
-  "fileUpload": {
+  "fileImport": {
     "processing": "Processing...",
-    "uploadButton": "Load Spotify History (JSON or ZIP)",
+    "importButton": "Import Spotify History (JSON or ZIP)",
     "hint": "Select a ZIP archive ( my_spotify_data.zip ) or JSON file(s) ( Streaming_History_Audio_YYYY.json ).",
     "tutorialTitle": "How to Get Your Spotify Data",
     "tutorialStep1": "Go to your",
@@ -15,7 +15,7 @@
     "tutorialStep2Bold": "Extended Streaming History",
     "tutorialStep3": "Wait for Spotify to email you",
     "tutorialStep4": "Download the ZIP file from the email",
-    "errorNoData": "No valid data found. Uploaded files must be JSON files starting with \"Streaming_History_Audio_\" or ZIP archives containing them. Ignored {{count}} file(s)/entry(s).",
+    "errorNoData": "No valid data found. Imported files must be JSON files starting with \"Streaming_History_Audio_\" or ZIP archives containing them. Ignored {{count}} file(s)/entry(s).",
     "errorProcessing": "Error processing files. Please try again."
   },
   "faq": {
@@ -27,8 +27,13 @@
       },
       {
         "question": "Is my data safe?",
-        "answer": "Absolutely. This app runs entirely in your browser. Your files are never uploaded to any server. You can even disconnect your internet after loading the page and it will still work!"
+        "answer": "Absolutely. This app runs entirely in your browser. Your files are never imported to any server. You can even disconnect your internet after loading the page and it will still work!"
       },
+      {
+        "question": "Why is my data still there even if I reload the page?",
+        "answer": "Your data is stored directly in your browser. This is like a small, personal storage space just for this website. That's why your data remains even if you close the page and open it again later. You can delete it using the \"Import Different File\" button."
+      },
+
       {
         "question": "Why do I need the \"Extended\" history?",
         "answer": "The standard \"Account Data\" download only includes the last year of listening history and lacks detailed information like \"skipped\", \"reason_start\", and \"platform\". The \"Extended Streaming History\" covers your entire account lifetime and includes all these rich details."
@@ -102,7 +107,7 @@
   "footer": {
     "language": "Language",
     "legal": "Legal",
-    "privacy": "No data is saved to your device or sent to a server.",
+    "privacy": "No data is collected on your device or sent to a server.",
     "by": "Made by"
   },
   "common": {

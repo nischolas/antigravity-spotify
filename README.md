@@ -1,6 +1,6 @@
 # Spotify Streaming History Visualized
 
-A privacy-first web application that lets you upload your Spotify Extended Streaming History data, and discover your true listening habits processed locally in your browser.
+A privacy-first web application that lets you import your Spotify Extended Streaming History data, and discover your true listening habits processed locally in your browser.
 
 ## How to Use
 
@@ -11,10 +11,10 @@ A privacy-first web application that lets you upload your Spotify Extended Strea
 3. Wait for Spotify to email you (can take up to 30 days, but it's usually much faster)
 4. Download the ZIP file from the email
 
-### 2. Upload Your Data
+### 2. Import Your Data
 
-- **Option A**: Upload the entire ZIP file directly
-- **Option B**: Extract the ZIP and upload individual `Streaming_History_Audio_*.json` files
+- **Option A**: Import the entire ZIP file directly
+- **Option B**: Extract the ZIP and import individual `Streaming_History_Audio_*.json` files
 
 ### 3. View your aggregated listening data
 
