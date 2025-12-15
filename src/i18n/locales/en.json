@@ -9,6 +9,14 @@
     "uniqueArtists": "Unique Artists",
     "uniqueSongs": "Unique Songs"
   },
+  "oneHitWonders": {
+    "title": "One Hit Wonders",
+    "subtitle": "Artists you only listened to once (well, one unique track)",
+    "headerTitle": "Track",
+    "headerArtist": "Artist",
+    "headerPlayCount": "Plays",
+    "headerTimePlayed": "Time"
+  },
   "fileImport": {
     "processing": "Processing...",
     "importButton": "Import Spotify History (JSON or ZIP)",

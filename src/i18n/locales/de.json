@@ -9,6 +9,14 @@
     "uniqueArtists": "Einzigartige Künstler",
     "uniqueSongs": "Einzigartige Titel"
   },
+  "oneHitWonders": {
+    "title": "One Hit Wonders",
+    "subtitle": "Künstler, von denen du nur einen einzigen Track gehört hast",
+    "headerTitle": "Titel",
+    "headerArtist": "Künstler",
+    "headerPlayCount": "Wiedergaben",
+    "headerTimePlayed": "Zeit"
+  },
   "fileImport": {
     "processing": "Verarbeite...",
     "importButton": "Spotify-Verlauf importieren (JSON oder ZIP)",

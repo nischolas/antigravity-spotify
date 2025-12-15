@@ -11,6 +11,7 @@ import { Footer } from "./components/Footer";
 import { useSpotifyStore } from "./store/useSpotifyStore";
 import { useTranslation } from "react-i18next";
 import { GeneralStats } from "./components/GeneralStats";
+import { OneHitWonders } from "./components/OneHitWonders";
 
 function App() {
   const { aggregatedData, reset } = useSpotifyStore();
@@ -67,6 +68,7 @@ function App() {
               <SkippedTracks />
               <ReasonStartTracks reason_start="clickrow" />
               <ReasonStartTracks reason_start="backbtn" />
+              <OneHitWonders />
             </div>
           </div>
         )}
