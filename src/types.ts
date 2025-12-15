@@ -2,6 +2,7 @@ export interface SpotifyHistoryItem {
   ts: string; // ISO 8601 timestamp
   platform?: string;
   ms_played: number;
+  count?: number;
   conn_country?: string;
   ip_addr?: string;
   master_metadata_track_name: string | null;

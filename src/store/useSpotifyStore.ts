@@ -86,10 +86,12 @@ export const useSpotifyStore = create<SpotifyStore>()(
             if (aggregatedMap.has(uri)) {
               const existing = aggregatedMap.get(uri)!;
               existing.ms_played += item.ms_played;
+              existing.count = (existing.count || 1) + 1;
             } else {
               aggregatedMap.set(uri, {
                 ...item,
                 ms_played: item.ms_played,
+                count: 1,
               });
             }
           }
@@ -120,10 +122,12 @@ export const useSpotifyStore = create<SpotifyStore>()(
           if (aggregatedMap.has(uri)) {
             const existing = aggregatedMap.get(uri)!;
             existing.ms_played += item.ms_played;
+            existing.count = (existing.count || 1) + 1;
           } else {
             aggregatedMap.set(uri, {
               ...item,
               ms_played: item.ms_played,
+              count: 1,
             });
           }
         }

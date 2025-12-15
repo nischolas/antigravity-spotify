@@ -42,13 +42,15 @@
   },
   "topTracks": {
     "title": "Top Tracks",
-    "subtitle": "by accumulated playtime",
+    "subtitle": "by",
     "headerTitle": "Title",
     "headerArtist": "Artist",
     "headerTimePlayed": "Time Played",
     "unknownTrack": "Unknown Track",
     "unknownArtist": "Unknown Artist",
-    "openInSpotify": "Open in Spotify"
+    "openInSpotify": "Open in Spotify",
+    "sortByTime": "accumulated playtime",
+    "sortByCount": "total plays"
   },
   "topTracksByYear": {
     "title": "Top Track by Year",

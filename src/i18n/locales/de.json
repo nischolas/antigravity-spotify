@@ -41,13 +41,15 @@
   },
   "topTracks": {
     "title": "Top-Tracks",
-    "subtitle": "nach kumulierter Wiedergabezeit",
+    "subtitle": "nach",
     "headerTitle": "Titel",
     "headerArtist": "Künstler",
     "headerTimePlayed": "Wiedergabezeit",
     "unknownTrack": "Unbekannter Titel",
     "unknownArtist": "Unbekannter Künstler",
-    "openInSpotify": "In Spotify öffnen"
+    "openInSpotify": "In Spotify öffnen",
+    "sortByTime": "kumulierter Wiedergabezeit",
+    "sortByCount": "Wiedergaben insgesamt"
   },
   "topTracksByYear": {
     "title": "Top-Titel des Jahres",
