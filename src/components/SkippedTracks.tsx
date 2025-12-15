@@ -88,8 +88,6 @@ export const SkippedTracks: React.FC<SkippedTracksProps> = ({ limit = 10, isModa
               <th>#</th>
               <th>{t("skippedTracks.headerTrack")}</th>
               <th>{t("skippedTracks.headerArtist")}</th>
-              {/* <th>{t("skippedTracks.headerSkipCount")}</th> */}
-              {/* <th>{t("skippedTracks.headerTotalPlays")}</th> */}
               <th style={{ textAlign: "right" }}>{t("skippedTracks.headerSkipRate")}</th>
             </tr>
           </thead>
@@ -108,11 +106,11 @@ export const SkippedTracks: React.FC<SkippedTracksProps> = ({ limit = 10, isModa
                   <td>{index + 1}</td>
                   <td>{track.trackName}</td>
                   <td>{track.artistName}</td>
-                  {/* <td>{track.skipCount}</td> */}
-                  {/* <td>{track.totalPlays}</td> */}
                   <td style={{ textAlign: "right" }}>
                     {skipRate}
-                    <span className="muted">%</span>
+                    <span className="muted">
+                      % ({track.skipCount}/{track.totalPlays})
+                    </span>
                   </td>
                 </tr>
               );
