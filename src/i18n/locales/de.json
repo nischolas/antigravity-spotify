@@ -4,6 +4,11 @@
     "subtitle": "Alles bleibt in deinem Browser, keine Daten werden an einen Server gesendet.",
     "importDifferent": "Andere Datei importieren"
   },
+  "generalStats": {
+    "totalTime": "Gesamtdauer",
+    "uniqueArtists": "Einzigartige Künstler",
+    "uniqueSongs": "Einzigartige Titel"
+  },
   "fileImport": {
     "processing": "Verarbeite...",
     "importButton": "Spotify-Verlauf importieren (JSON oder ZIP)",

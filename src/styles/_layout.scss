@@ -30,6 +30,7 @@
   gap: 1rem;
 
   .table-container {
+
     &:nth-child(1) {
       grid-column: span 6;
     }
@@ -39,25 +40,27 @@
     }
 
     &:nth-child(3) {
-      grid-column: span 5;
+      grid-column: span 6;
     }
 
     &:nth-child(4) {
-      grid-column: span 7;
+      grid-column: span 5;
     }
 
     &:nth-child(5) {
-      grid-column: span 6;
+      grid-column: span 7;
     }
 
     &:nth-child(6) {
       grid-column: span 6;
     }
 
+    &:nth-child(7) {
+      grid-column: span 6;
+    }
+
     @media (max-width: 1024px) {
-
       grid-column: span 12 !important;
-
     }
   }
 

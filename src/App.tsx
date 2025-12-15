@@ -10,6 +10,7 @@ import { ReasonStartTracks } from "./components/ReasonStartTracks";
 import { Footer } from "./components/Footer";
 import { useSpotifyStore } from "./store/useSpotifyStore";
 import { useTranslation } from "react-i18next";
+import { GeneralStats } from "./components/GeneralStats";
 
 function App() {
   const { aggregatedData, reset } = useSpotifyStore();
@@ -59,6 +60,7 @@ function App() {
             </div>
             <DateRangeFilter />
             <div className="sections">
+              <GeneralStats />
               <TopTracks />
               <TopTracksByYear />
               <TopArtists />

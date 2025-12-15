@@ -4,6 +4,11 @@
     "subtitle": "Everything stays in your browser, no data is sent to a server.",
     "importDifferent": "Import Different File"
   },
+  "generalStats": {
+    "totalTime": "Total Time Listened",
+    "uniqueArtists": "Unique Artists",
+    "uniqueSongs": "Unique Songs"
+  },
   "fileImport": {
     "processing": "Processing...",
     "importButton": "Import Spotify History (JSON or ZIP)",
