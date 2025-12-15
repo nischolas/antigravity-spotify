@@ -86,9 +86,9 @@ export const SkippedTracks: React.FC<SkippedTracksProps> = ({ limit = 10, isModa
           <thead>
             <tr>
               <th>#</th>
-              <th>{t("skippedTracks.headerTrack")}</th>
-              <th>{t("skippedTracks.headerArtist")}</th>
-              <th style={{ textAlign: "right" }}>{t("skippedTracks.headerSkipRate")}</th>
+              <th>{t("table.headerTitle")}</th>
+              <th>{t("table.headerArtist")}</th>
+              <th style={{ textAlign: "right" }}>{t("table.skipRate")}</th>
             </tr>
           </thead>
           <tbody>
@@ -101,7 +101,7 @@ export const SkippedTracks: React.FC<SkippedTracksProps> = ({ limit = 10, isModa
                   key={index}
                   onClick={spotifyUrl ? () => window.open(spotifyUrl, "_blank") : undefined}
                   style={{ cursor: spotifyUrl ? "pointer" : "default" }}
-                  title={spotifyUrl ? t("skippedTracks.openInSpotify") : undefined}
+                  title={spotifyUrl ? t("common.openInSpotify") : undefined}
                 >
                   <td>{index + 1}</td>
                   <td>{track.trackName}</td>

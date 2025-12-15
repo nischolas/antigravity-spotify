@@ -99,9 +99,9 @@ export const ReasonStartTracks: React.FC<ReasonStartTracksProps> = ({ reason_sta
           <thead>
             <tr>
               <th>#</th>
-              <th>{t("reasonStartTracks.headerTrack")}</th>
-              <th>{t("reasonStartTracks.headerArtist")}</th>
-              {/* <th style={{ textAlign: "right" }}>{t("reasonStartTracks.headerCount")}</th> */}
+              <th>{t("table.headerTitle")}</th>
+              <th>{t("table.headerArtist")}</th>
+              {/* <th style={{ textAlign: "right" }}>{t("table.headerPlayCount")}</th> */}
             </tr>
           </thead>
           <tbody>
@@ -115,7 +115,7 @@ export const ReasonStartTracks: React.FC<ReasonStartTracksProps> = ({ reason_sta
                   style={{
                     cursor: item.track.spotify_track_uri ? "pointer" : "default",
                   }}
-                  title={t("reasonStartTracks.openInSpotify")}
+                  title={t("common.openInSpotify")}
                 >
                   <td>{index + 1}</td>
                   <td>{item.track.master_metadata_track_name || <em>{t("reasonStartTracks.unknownTrack")}</em>}</td>

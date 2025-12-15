@@ -50,8 +50,8 @@ export const TopArtists: React.FC<TopArtistsProps> = ({ limit = 10, isModal = fa
           <thead>
             <tr>
               <th>#</th>
-              <th>{t("topArtists.headerArtist")}</th>
-              <th style={{ textAlign: "right" }}>{t("topArtists.headerTimePlayed")}</th>
+              <th>{t("table.headerArtist")}</th>
+              <th style={{ textAlign: "right" }}>{t("table.headerTimePlayed")}</th>
             </tr>
           </thead>
           <tbody>

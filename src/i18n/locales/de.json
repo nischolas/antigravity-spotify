@@ -9,13 +9,16 @@
     "uniqueArtists": "Einzigartige Künstler",
     "uniqueSongs": "Einzigartige Titel"
   },
-  "oneHitWonders": {
-    "title": "One Hit Wonders",
-    "subtitle": "Künstler, von denen du nur einen einzigen Track gehört hast",
+  "table": {
     "headerTitle": "Titel",
     "headerArtist": "Künstler",
     "headerPlayCount": "Wiedergaben",
-    "headerTimePlayed": "Zeit"
+    "headerTimePlayed": "Wiedergabezeit",
+    "skipRate": "Übersprungrate"
+  },
+  "oneHitWonders": {
+    "title": "One Hit Wonders",
+    "subtitle": "Künstler, von denen du nur einen einzigen Track gehört hast"
   },
   "fileImport": {
     "processing": "Verarbeite...",
@@ -55,12 +58,8 @@
   "topTracks": {
     "title": "Top-Tracks",
     "subtitle": "nach",
-    "headerTitle": "Titel",
-    "headerArtist": "Künstler",
-    "headerTimePlayed": "Wiedergabezeit",
     "unknownTrack": "Unbekannter Titel",
     "unknownArtist": "Unbekannter Künstler",
-    "openInSpotify": "In Spotify öffnen",
     "sortByTime": "kumulierter Wiedergabezeit",
     "sortByCount": "Wiedergaben insgesamt"
   },
@@ -68,8 +67,6 @@
     "title": "Top-Titel des Jahres",
     "subtitle": "Dein meistgespielter Titel für jedes Jahr",
     "headerYear": "Jahr",
-    "headerTitle": "Titel",
-    "headerArtist": "Künstler",
     "headerMonth": "Monat",
     "showByMonth": "Nach Monat anzeigen",
     "titleMonth": "Top-Titel des Monats",
@@ -78,21 +75,14 @@
   "topArtists": {
     "title": "Top-Künstler",
     "subtitle": "nach kumulierter Wiedergabezeit",
-    "headerArtist": "Künstler",
-    "headerTimePlayed": "Wiedergabezeit",
     "unknown": "Unbekannt"
   },
   "skippedTracks": {
     "title": "Meist übersprungene Titel",
     "subtitle": "Bereits nach weniger als {{seconds}} Sekunden Wiedergabe übersprungen",
-    "headerTrack": "Titel",
-    "headerArtist": "Künstler",
-    "headerSkipCount": "Übersprungen",
     "headerTotalPlays": "Gesamt",
-    "headerSkipRate": "Übersprungrate",
     "unknownTrack": "Unbekannter Titel",
-    "unknownArtist": "Unbekannter Künstler",
-    "openInSpotify": "Auf Spotify öffnen"
+    "unknownArtist": "Unbekannter Künstler"
   },
   "reasonStartTracks": {
     "title": { "clickrow": "Deine Schätze", "backbtn": "Einmal ist nicht genug" },
@@ -102,12 +92,9 @@
     },
     "labelReason": "Startgrund",
     "labelMinDuration": "Min. Dauer (s)",
-    "headerTrack": "Titel",
-    "headerArtist": "Künstler",
     "headerCount": "Anzahl",
     "unknownTrack": "Unbekannter Titel",
     "unknownArtist": "Unbekannter Künstler",
-    "openInSpotify": "Auf Spotify öffnen",
     "noData": "Keine Titel gefunden, die den Kriterien entsprechen"
   },
   "dateRangeFilter": {
@@ -126,6 +113,7 @@
   },
   "common": {
     "close": "Schließen",
-    "showMore": "Mehr anzeigen"
+    "showMore": "Mehr anzeigen",
+    "openInSpotify": "Auf Spotify öffnen"
   }
 }

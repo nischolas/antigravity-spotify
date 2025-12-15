@@ -106,8 +106,8 @@ export const TopTracksByYear: React.FC<TopTracksByYearProps> = ({ groupBy = "yea
           <thead>
             <tr>
               <th>{groupBy === "year" ? t("topTracksByYear.headerYear") : t("topTracksByYear.headerMonth")}</th>
-              <th>{t("topTracksByYear.headerTitle")}</th>
-              <th>{t("topTracksByYear.headerArtist")}</th>
+              <th>{t("table.headerTitle")}</th>
+              <th>{t("table.headerArtist")}</th>
             </tr>
           </thead>
           <tbody>
@@ -138,7 +138,7 @@ export const TopTracksByYear: React.FC<TopTracksByYearProps> = ({ groupBy = "yea
                       </td>
                     </tr>
                   )}
-                  <tr onClick={() => window.open(url, "_blank")} style={{ cursor: "pointer" }} title={t("topTracks.openInSpotify")}>
+                  <tr onClick={() => window.open(url, "_blank")} style={{ cursor: "pointer" }} title={t("common.openInSpotify")}>
                     <td>
                       {groupBy === "year"
                         ? groupKey

@@ -9,13 +9,16 @@
     "uniqueArtists": "Unique Artists",
     "uniqueSongs": "Unique Songs"
   },
-  "oneHitWonders": {
-    "title": "One Hit Wonders",
-    "subtitle": "Artists you only listened to once (well, one unique track)",
-    "headerTitle": "Track",
+  "table": {
+    "headerTitle": "Title",
     "headerArtist": "Artist",
     "headerPlayCount": "Plays",
-    "headerTimePlayed": "Time"
+    "headerTimePlayed": "Time",
+    "skipRate": "Skip Rate"
+  },
+  "oneHitWonders": {
+    "title": "One Hit Wonders",
+    "subtitle": "Artists you only listened to once (well, one unique track)"
   },
   "fileImport": {
     "processing": "Processing...",
@@ -56,12 +59,8 @@
   "topTracks": {
     "title": "Top Tracks",
     "subtitle": "by",
-    "headerTitle": "Title",
-    "headerArtist": "Artist",
-    "headerTimePlayed": "Time Played",
     "unknownTrack": "Unknown Track",
     "unknownArtist": "Unknown Artist",
-    "openInSpotify": "Open in Spotify",
     "sortByTime": "accumulated playtime",
     "sortByCount": "total plays"
   },
@@ -69,8 +68,6 @@
     "title": "Top Track by Year",
     "subtitle": "Your most played track for each year",
     "headerYear": "Year",
-    "headerTitle": "Title",
-    "headerArtist": "Artist",
     "headerMonth": "Month",
     "showByMonth": "Show by Month",
     "titleMonth": "Top Track by Month",
@@ -79,21 +76,13 @@
   "topArtists": {
     "title": "Top Artists",
     "subtitle": "by accumulated playtime",
-    "headerArtist": "Artist",
-    "headerTimePlayed": "Time Played",
     "unknown": "Unknown"
   },
   "skippedTracks": {
     "title": "Most Skipped Tracks",
     "subtitle": "Skipped before playing for {{seconds}} seconds",
-    "headerTrack": "Track",
-    "headerArtist": "Artist",
-    "headerSkipCount": "Skip Count",
-    "headerTotalPlays": "Total Plays",
-    "headerSkipRate": "Skip Rate",
     "unknownTrack": "Unknown Track",
-    "unknownArtist": "Unknown Artist",
-    "openInSpotify": "Open in Spotify"
+    "unknownArtist": "Unknown Artist"
   },
   "reasonStartTracks": {
     "title": { "clickrow": "Your Favorites", "backbtn": "Once is not enough" },
@@ -103,12 +92,9 @@
     },
     "labelReason": "Start Reason",
     "labelMinDuration": "Min Duration (s)",
-    "headerTrack": "Track",
-    "headerArtist": "Artist",
     "headerCount": "Count",
     "unknownTrack": "Unknown Track",
     "unknownArtist": "Unknown Artist",
-    "openInSpotify": "Open in Spotify",
     "noData": "No tracks found matching the criteria"
   },
   "dateRangeFilter": {
@@ -127,6 +113,7 @@
   },
   "common": {
     "close": "Close",
-    "showMore": "Show More"
+    "showMore": "Show More",
+    "openInSpotify": "Open in Spotify"
   }
 }

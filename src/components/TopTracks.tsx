@@ -93,9 +93,9 @@ export const TopTracks: React.FC<TopTracksProps> = ({ limit = 10, isModal = fals
           <thead>
             <tr>
               <th>#</th>
-              <th>{t("topTracks.headerTitle")}</th>
-              <th>{t("topTracks.headerArtist")}</th>
-              <th style={{ textAlign: "right" }}>{sortByState === "time" ? t("topTracks.headerTimePlayed") : t("topTracks.headerPlayCount", "Plays")}</th>
+              <th>{t("table.headerTitle")}</th>
+              <th>{t("table.headerArtist")}</th>
+              <th style={{ textAlign: "right" }}>{sortByState === "time" ? t("table.headerTimePlayed") : t("table.headerPlayCount", "Plays")}</th>
             </tr>
           </thead>
           <tbody>
@@ -105,7 +105,7 @@ export const TopTracks: React.FC<TopTracksProps> = ({ limit = 10, isModal = fals
               const { hours, minutes } = formatMsPlain(item.ms_played);
 
               return (
-                <tr key={index} onClick={() => window.open(url, "_blank")} style={{ cursor: "pointer" }} title={t("topTracks.openInSpotify")}>
+                <tr key={index} onClick={() => window.open(url, "_blank")} style={{ cursor: "pointer" }} title={t("common.openInSpotify")}>
                   <td>{index + 1}</td>
                   <td>{item.master_metadata_track_name || <em>{t("topTracks.unknownTrack")}</em>}</td>
                   <td>{item.master_metadata_album_artist_name || <em>{t("topTracks.unknownArtist")}</em>}</td>
