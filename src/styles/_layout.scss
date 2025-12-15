@@ -26,10 +26,10 @@
 .sections {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-
   gap: 1rem;
 
   .table-container {
+    grid-column: span 12;
 
     &:nth-child(1) {
       grid-column: span 6;
