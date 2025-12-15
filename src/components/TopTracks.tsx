@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useSpotifyStore } from "../store/useSpotifyStore";
 import { formatMsPlain } from "../utils/formatTime";
 import { useTranslation } from "react-i18next";
