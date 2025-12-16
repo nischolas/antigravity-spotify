@@ -14,7 +14,7 @@ import { GeneralStats } from "./components/GeneralStats";
 import { OneHitWonders } from "./components/OneHitWonders";
 
 function App() {
-  const { aggregatedData, reset } = useSpotifyStore();
+  const { hasData, reset } = useSpotifyStore();
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -24,7 +24,7 @@ function App() {
   return (
     <div className="app-container">
       <main>
-        {aggregatedData.length === 0 ? (
+        {!hasData ? (
           <header className="app-header">
             <div>
               <h1>{t("app.title")}</h1>

@@ -14,11 +14,11 @@ interface SpotifyStore {
   startDate: string | null;
   endDate: string | null;
 
-  // Loading state
   isLoading: boolean;
 
-  // Error state
   error: string | null;
+
+  hasData: boolean;
 
   // Actions
   setRawData: (data: SpotifyHistoryItem[]) => void;
@@ -39,6 +39,7 @@ const initialState = {
   endDate: null,
   isLoading: false,
   error: null,
+  hasData: false,
 };
 
 // Custom storage adapter for idb-keyval
@@ -59,7 +60,7 @@ export const useSpotifyStore = create<SpotifyStore>()(
     (set) => ({
       ...initialState,
 
-      setRawData: (data) => set({ rawData: data }),
+      setRawData: (data) => set({ rawData: data, hasData: data.length > 0 }),
 
       setAggregatedData: (data) => set({ aggregatedData: data }),
 
@@ -137,6 +138,7 @@ export const useSpotifyStore = create<SpotifyStore>()(
         set({
           aggregatedData: aggregatedResult,
           isLoading: false,
+          hasData: rawItems.length > 0,
           error: aggregatedResult.length === 0 ? "No valid track data found to aggregate (missing spotify_track_uri)." : null,
         });
       },
@@ -149,6 +151,7 @@ export const useSpotifyStore = create<SpotifyStore>()(
         aggregatedData: state.aggregatedData,
         startDate: state.startDate,
         endDate: state.endDate,
+        hasData: state.hasData,
       }),
     }
   )
