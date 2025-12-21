@@ -14,12 +14,13 @@ import { GeneralStats } from "./components/GeneralStats";
 import { OneHitWonders } from "./components/OneHitWonders";
 
 function App() {
-  const { hasData, reset } = useSpotifyStore();
+  const { hasData, reset, initialize } = useSpotifyStore();
   const { t } = useTranslation();
 
   useEffect(() => {
     document.title = t("app.title");
-  }, [t]);
+    initialize();
+  }, [t, initialize]);
 
   return (
     <div className="app-container">

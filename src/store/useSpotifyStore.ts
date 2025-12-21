@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist, createJSONStorage, type StateStorage } from "zustand/middleware";
-import { get, set, del } from "idb-keyval";
+import { get as getKey, set as setKey, del as delKey } from "idb-keyval";
 import type { SpotifyHistoryItem } from "../types";
 
 interface SpotifyStore {
@@ -30,6 +30,7 @@ interface SpotifyStore {
 
   // Combined action to load and process data
   loadData: (rawItems: SpotifyHistoryItem[]) => void;
+  initialize: () => Promise<void>;
 }
 
 const initialState = {
@@ -45,22 +46,28 @@ const initialState = {
 // Custom storage adapter for idb-keyval
 const storage: StateStorage = {
   getItem: async (name: string): Promise<string | null> => {
-    return (await get(name)) || null;
+    return (await getKey(name)) || null;
   },
   setItem: async (name: string, value: string): Promise<void> => {
-    await set(name, value);
+    await setKey(name, value);
   },
   removeItem: async (name: string): Promise<void> => {
-    await del(name);
+    await delKey(name);
   },
 };
 
 export const useSpotifyStore = create<SpotifyStore>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       ...initialState,
 
-      setRawData: (data) => set({ rawData: data, hasData: data.length > 0 }),
+      setRawData: (data) => {
+        // We generally don't want to just set raw data without aggregation,
+        // but if we do, we should also save it.
+        // ideally loadData is used for bulk updates.
+        set({ rawData: data, hasData: data.length > 0 });
+        setKey("spotify-raw-data", data).catch((err) => console.error("Failed to save raw data", err));
+      },
 
       setAggregatedData: (data) => set({ aggregatedData: data }),
 
@@ -108,10 +115,16 @@ export const useSpotifyStore = create<SpotifyStore>()(
 
       setError: (error) => set({ error }),
 
-      reset: () => set(initialState),
+      reset: () => {
+        set(initialState);
+        delKey("spotify-raw-data").catch(console.error);
+      },
 
       loadData: (rawItems) => {
         set({ rawData: rawItems, isLoading: true, error: null });
+
+        // Save raw data to indexedDB manually
+        setKey("spotify-raw-data", rawItems).catch((err) => console.error("Failed to save raw data:", err));
 
         // Aggregate data by track URI
         const aggregatedMap = new Map<string, SpotifyHistoryItem>();
@@ -142,12 +155,31 @@ export const useSpotifyStore = create<SpotifyStore>()(
           error: aggregatedResult.length === 0 ? "No valid track data found to aggregate (missing spotify_track_uri)." : null,
         });
       },
+
+      initialize: async () => {
+        // Check if we have data in the persisted part (aggregatedData) but empty rawData (because we stopped persisting it)
+        // Or just always try to load rawData if it is empty.
+        const currentRaw = get().rawData;
+        if (currentRaw.length === 0) {
+          set({ isLoading: true });
+          try {
+            const storedRaw = await getKey("spotify-raw-data");
+            if (storedRaw && Array.isArray(storedRaw) && storedRaw.length > 0) {
+              set({ rawData: storedRaw, hasData: true });
+            }
+          } catch (err) {
+            console.error("Failed to restore raw data:", err);
+          } finally {
+            set({ isLoading: false });
+          }
+        }
+      },
     }),
     {
       name: "spotify-storage",
       storage: createJSONStorage(() => storage),
       partialize: (state) => ({
-        rawData: state.rawData,
+        // Exclude rawData from the main state persistence to avoid massive JSON serialization overhead
         aggregatedData: state.aggregatedData,
         startDate: state.startDate,
         endDate: state.endDate,
