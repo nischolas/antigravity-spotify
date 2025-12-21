@@ -3,6 +3,7 @@ import JSZip from "jszip";
 import type { SpotifyHistoryItem } from "../types";
 import { useSpotifyStore } from "../store/useSpotifyStore";
 import { useTranslation } from "react-i18next";
+import { isMobile } from "../utils/isMobile";
 
 export const FileUpload: React.FC = () => {
   const { loadData } = useSpotifyStore();
@@ -107,6 +108,7 @@ export const FileUpload: React.FC = () => {
       </label>
       <input disabled={isLoading} id="file-upload" type="file" accept=".json,.zip" multiple onChange={handleFileChange} className="file-upload-input" />
       {error && <div className="error-message">{error}</div>}
+      {isMobile && <p className="warning-message">{t("fileImport.mobileWarning")}</p>}
       <p className="hint">{t("fileImport.hint")}</p>
     </div>
   );
