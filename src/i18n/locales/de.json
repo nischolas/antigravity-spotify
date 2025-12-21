@@ -4,6 +4,12 @@
     "subtitle": "Alles bleibt in deinem Browser, keine Daten werden an einen Server gesendet.",
     "importDifferent": "Andere Datei importieren"
   },
+  "popup": {
+    "recoveryTitle": "Vorherige Daten gefunden",
+    "recoveryMessage": "Es sind noch vorherige Daten in deinem Browser gespeichert. Möchtest du diese laden?",
+    "loadBtn": "Daten laden",
+    "discardBtn": "Löschen & Neu importieren"
+  },
   "generalStats": {
     "totalTime": "Gesamtdauer",
     "uniqueArtists": "Gesamtanzahl Künstler",

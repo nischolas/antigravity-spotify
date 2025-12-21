@@ -12,6 +12,7 @@ import { useSpotifyStore } from "./store/useSpotifyStore";
 import { useTranslation } from "react-i18next";
 import { GeneralStats } from "./components/GeneralStats";
 import { OneHitWonders } from "./components/OneHitWonders";
+import { DataRecoveryPopup } from "./components/DataRecoveryPopup";
 
 function App() {
   const { hasData, reset, initialize } = useSpotifyStore();
@@ -19,11 +20,15 @@ function App() {
 
   useEffect(() => {
     document.title = t("app.title");
+  }, [t]);
+
+  useEffect(() => {
     initialize();
-  }, [t, initialize]);
+  }, [initialize]);
 
   return (
     <div className="app-container">
+      <DataRecoveryPopup />
       <main>
         {!hasData ? (
           <header className="app-header">

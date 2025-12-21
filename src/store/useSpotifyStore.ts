@@ -18,7 +18,9 @@ interface SpotifyStore {
 
   error: string | null;
 
+  // Check if existing data is found but not yet loaded
   hasData: boolean;
+  hasFoundData: boolean;
 
   // Actions
   setRawData: (data: SpotifyHistoryItem[]) => void;
@@ -27,6 +29,10 @@ interface SpotifyStore {
   setLoading: (loading: boolean) => void;
   setError: (error: string | null) => void;
   reset: () => void;
+
+  // Recovery actions
+  restoreSession: () => void;
+  discardSession: () => void;
 
   // Combined action to load and process data
   loadData: (rawItems: SpotifyHistoryItem[]) => void;
@@ -41,6 +47,7 @@ const initialState = {
   isLoading: false,
   error: null,
   hasData: false,
+  hasFoundData: false,
 };
 
 // Custom storage adapter for idb-keyval
@@ -120,6 +127,29 @@ export const useSpotifyStore = create<SpotifyStore>()(
         delKey("spotify-raw-data").catch(console.error);
       },
 
+      restoreSession: async () => {
+        set({ isLoading: true });
+        try {
+          const storedRaw = await getKey("spotify-raw-data");
+          if (storedRaw && Array.isArray(storedRaw) && storedRaw.length > 0) {
+            set({ rawData: storedRaw, hasData: true, hasFoundData: false });
+          } else {
+            // Should not happen if hasFoundData was true, but fallback
+            set({ hasData: true, hasFoundData: false });
+          }
+        } catch (err) {
+          console.error("Failed to restore raw data:", err);
+          set({ error: "Failed to restore data" });
+        } finally {
+          set({ isLoading: false });
+        }
+      },
+
+      discardSession: () => {
+        get().reset();
+        set({ hasFoundData: false });
+      },
+
       loadData: (rawItems) => {
         set({ rawData: rawItems, isLoading: true, error: null });
 
@@ -157,21 +187,29 @@ export const useSpotifyStore = create<SpotifyStore>()(
       },
 
       initialize: async () => {
-        // Check if we have data in the persisted part (aggregatedData) but empty rawData (because we stopped persisting it)
-        // Or just always try to load rawData if it is empty.
-        const currentRaw = get().rawData;
-        if (currentRaw.length === 0) {
-          set({ isLoading: true });
-          try {
-            const storedRaw = await getKey("spotify-raw-data");
-            if (storedRaw && Array.isArray(storedRaw) && storedRaw.length > 0) {
-              set({ rawData: storedRaw, hasData: true });
-            }
-          } catch (err) {
-            console.error("Failed to restore raw data:", err);
-          } finally {
-            set({ isLoading: false });
+        set({ isLoading: true });
+        try {
+          // Check if we have raw data in indexedDB
+          const storedRaw = await getKey("spotify-raw-data");
+          const hasStoredRaw = storedRaw && Array.isArray(storedRaw) && storedRaw.length > 0;
+
+          // Check if we have aggregated data in local state (from persist hydration)
+          // Note: get().aggregatedData acts as a proxy for what is currently in state
+          const hasAggregated = get().aggregatedData.length > 0;
+
+          // If we already have data loaded in the session, do not trigger the popup
+          if (get().hasData) return;
+
+          if (hasStoredRaw || hasAggregated) {
+            // We found data! But we don't load it yet. We just say we found it.
+            // CAREFUL: If we are already initialized (e.g. strict mode double call), check that?
+            // But we want to enforce the popup logic.
+            set({ hasFoundData: true, hasData: false });
           }
+        } catch (err) {
+          console.error("Failed to check for existing data:", err);
+        } finally {
+          set({ isLoading: false });
         }
       },
     }),
@@ -183,7 +221,8 @@ export const useSpotifyStore = create<SpotifyStore>()(
         aggregatedData: state.aggregatedData,
         startDate: state.startDate,
         endDate: state.endDate,
-        hasData: state.hasData,
+        // We DO NOT persist hasData anymore. This forces the user to the start page / popup check.
+        // hasData: state.hasData,
       }),
     }
   )

@@ -4,6 +4,12 @@
     "subtitle": "Everything stays in your browser, no data is sent to a server.",
     "importDifferent": "Import Different File"
   },
+  "popup": {
+    "recoveryTitle": "Existing Data Found",
+    "recoveryMessage": "There is existing data in your browser. Do you want to load it?",
+    "loadBtn": "Load Data",
+    "discardBtn": "Delete & Import New"
+  },
   "generalStats": {
     "totalTime": "Total Time Listened",
     "uniqueArtists": "Unique Artists",
