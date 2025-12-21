@@ -69,9 +69,6 @@ export const useSpotifyStore = create<SpotifyStore>()(
       ...initialState,
 
       setRawData: (data) => {
-        // We generally don't want to just set raw data without aggregation,
-        // but if we do, we should also save it.
-        // ideally loadData is used for bulk updates.
         set({ rawData: data, hasData: data.length > 0 });
         setKey("spotify-raw-data", data).catch((err) => console.error("Failed to save raw data", err));
       },
@@ -133,9 +130,28 @@ export const useSpotifyStore = create<SpotifyStore>()(
           const storedRaw = await getKey("spotify-raw-data");
           if (storedRaw && Array.isArray(storedRaw) && storedRaw.length > 0) {
             set({ rawData: storedRaw, hasData: true, hasFoundData: false });
+
+            const aggregatedMap = new Map<string, SpotifyHistoryItem>();
+            for (const item of storedRaw) {
+              const uri = item.spotify_track_uri;
+              if (!uri) continue;
+
+              if (aggregatedMap.has(uri)) {
+                const existing = aggregatedMap.get(uri)!;
+                existing.ms_played += item.ms_played;
+                existing.count = (existing.count || 1) + 1;
+              } else {
+                aggregatedMap.set(uri, {
+                  ...item,
+                  ms_played: item.ms_played,
+                  count: 1,
+                });
+              }
+            }
+            const aggregatedResult = Array.from(aggregatedMap.values());
+            set({ aggregatedData: aggregatedResult });
           } else {
-            // Should not happen if hasFoundData was true, but fallback
-            set({ hasData: true, hasFoundData: false });
+            set({ hasData: false, hasFoundData: false });
           }
         } catch (err) {
           console.error("Failed to restore raw data:", err);
@@ -189,21 +205,12 @@ export const useSpotifyStore = create<SpotifyStore>()(
       initialize: async () => {
         set({ isLoading: true });
         try {
-          // Check if we have raw data in indexedDB
           const storedRaw = await getKey("spotify-raw-data");
           const hasStoredRaw = storedRaw && Array.isArray(storedRaw) && storedRaw.length > 0;
 
-          // Check if we have aggregated data in local state (from persist hydration)
-          // Note: get().aggregatedData acts as a proxy for what is currently in state
-          const hasAggregated = get().aggregatedData.length > 0;
-
-          // If we already have data loaded in the session, do not trigger the popup
           if (get().hasData) return;
 
-          if (hasStoredRaw || hasAggregated) {
-            // We found data! But we don't load it yet. We just say we found it.
-            // CAREFUL: If we are already initialized (e.g. strict mode double call), check that?
-            // But we want to enforce the popup logic.
+          if (hasStoredRaw) {
             set({ hasFoundData: true, hasData: false });
           }
         } catch (err) {
@@ -217,12 +224,10 @@ export const useSpotifyStore = create<SpotifyStore>()(
       name: "spotify-storage",
       storage: createJSONStorage(() => storage),
       partialize: (state) => ({
-        // Exclude rawData from the main state persistence to avoid massive JSON serialization overhead
+        // rawData and hasData are handling manually via IDB
         aggregatedData: state.aggregatedData,
         startDate: state.startDate,
         endDate: state.endDate,
-        // We DO NOT persist hasData anymore. This forces the user to the start page / popup check.
-        // hasData: state.hasData,
       }),
     }
   )

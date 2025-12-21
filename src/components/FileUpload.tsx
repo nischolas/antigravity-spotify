@@ -23,21 +23,11 @@ export const FileUpload: React.FC = () => {
     const readers: Promise<void>[] = [];
     let ignoredCount = 0;
 
-    const processJsonContent = async (content: string, filename: string) => {
+    const processJsonContent = (content: string, filename: string) => {
       try {
         const json = JSON.parse(content);
         if (Array.isArray(json)) {
-          // Avoid spread operator for large arrays to prevent stack overflow
-          // allData.push(...json); -> BAD for 100k+ items
-
-          // Chunk processing to avoid UI freeze during concatenation if massive
-          const chunkSize = 10000;
-          for (let i = 0; i < json.length; i += chunkSize) {
-            const chunk = json.slice(i, i + chunkSize);
-            allData = allData.concat(chunk);
-            // Yield to main thread every chunk
-            await new Promise((resolve) => setTimeout(resolve, 0));
-          }
+          allData.push(...json);
         }
       } catch (err) {
         console.error(`Error parsing file ${filename}:`, err);
@@ -51,31 +41,23 @@ export const FileUpload: React.FC = () => {
         const zipPromise = new Promise<void>(async (resolve, reject) => {
           try {
             const zip = await JSZip.loadAsync(file);
-            const zipEntryPromises: (() => Promise<void>)[] = [];
+            const zipFilePromises: Promise<void>[] = [];
 
             zip.forEach((relativePath, zipEntry) => {
               if (zipEntry.dir) return;
               const filename = relativePath.split("/").pop() || relativePath;
 
               if (filename.startsWith("Streaming_History_Audio_") && filename.endsWith(".json")) {
-                // We suspend the actual processing to control concurrency if needed,
-                // but for now, let's just push the promise creator
-                zipEntryPromises.push(async () => {
-                  const content = await zipEntry.async("string");
-                  await processJsonContent(content, filename);
+                const p = zipEntry.async("string").then((content) => {
+                  processJsonContent(content, filename);
                 });
+                zipFilePromises.push(p);
               } else {
                 ignoredCount++;
               }
             });
 
-            // Process zip entries sequentially to avoid memory spikes
-            for (const processEntry of zipEntryPromises) {
-              await processEntry();
-              // Yield to main thread
-              await new Promise((r) => setTimeout(r, 0));
-            }
-
+            await Promise.all(zipFilePromises);
             resolve();
           } catch (err) {
             console.error(`Error reading zip file ${file.name}:`, err);
@@ -86,9 +68,9 @@ export const FileUpload: React.FC = () => {
       } else if (file.name.startsWith("Streaming_History_Audio_") && file.name.endsWith(".json")) {
         const readerPromise = new Promise<void>((resolve, reject) => {
           const reader = new FileReader();
-          reader.onload = async (e) => {
+          reader.onload = (e) => {
             const text = e.target?.result as string;
-            await processJsonContent(text, file.name);
+            processJsonContent(text, file.name);
             resolve();
           };
           reader.onerror = () => reject(new Error(`Failed to read file ${file.name}`));
