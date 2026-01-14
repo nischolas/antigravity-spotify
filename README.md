@@ -2,6 +2,8 @@
 
 A privacy-first web application that lets you import your Spotify Extended Streaming History data, and discover your true listening habits processed locally in your browser.
 
+![Project preview](https://raw.githubusercontent.com/nischolas/antigravity-spotify/main/public/og.png)
+
 ## How to Use
 
 ### 1. Get Your Spotify Data
