@@ -110,7 +110,9 @@
     "startDate": "Start Date",
     "endDate": "End Date",
     "apply": "Apply Filter",
-    "reset": "Reset"
+    "reset": "Reset",
+    "last3Years": "3Y",
+    "lastYear": "1Y"
   },
   "footer": {
     "language": "Language",

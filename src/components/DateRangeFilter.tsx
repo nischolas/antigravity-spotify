@@ -88,6 +88,13 @@ export const DateRangeFilter: React.FC = () => {
     setRangeEnd(maxMonthIndex);
   };
 
+  const handleYears = (years: number) => {
+    const monthsToSubtract = years * 12 - 1;
+    const startIdx = Math.max(minMonthIndex, maxMonthIndex - monthsToSubtract);
+    setRangeStart(startIdx);
+    setRangeEnd(maxMonthIndex);
+  };
+
   const handleSliderClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!sliderRef.current || months.length === 0) return;
 
@@ -172,9 +179,17 @@ export const DateRangeFilter: React.FC = () => {
           <h3>{t("dateRangeFilter.title")}</h3>
           {!isStuck && <p>{t("dateRangeFilter.subtitle")}</p>}
         </div>
-        <button onClick={handleReset} className="reset-btn">
-          {t("dateRangeFilter.reset")}
-        </button>
+        <div className="filter-buttons">
+          <button onClick={() => handleYears(3)} className="filter-btn">
+            {t("dateRangeFilter.last3Years")}
+          </button>
+          <button onClick={() => handleYears(1)} className="filter-btn">
+            {t("dateRangeFilter.lastYear")}
+          </button>
+          <button onClick={handleReset} className="reset-btn">
+            {t("dateRangeFilter.reset")}
+          </button>
+        </div>
       </div>
       <div className="range-slider-container">
         <div className="range-slider" ref={sliderRef} onClick={handleSliderClick}>

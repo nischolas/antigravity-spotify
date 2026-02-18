@@ -110,7 +110,9 @@
     "startDate": "Startdatum",
     "endDate": "Enddatum",
     "apply": "Filter anwenden",
-    "reset": "Zurücksetzen"
+    "reset": "Zurücksetzen",
+    "last3Years": "3J",
+    "lastYear": "1J"
   },
   "footer": {
     "language": "Sprache",

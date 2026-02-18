@@ -1,6 +1,7 @@
 @use '../variables' as *;
 
-.reset-btn {
+.reset-btn,
+.filter-btn {
   background: transparent;
   border: 1px solid $border-color;
   color: $text-secondary;
@@ -13,6 +14,11 @@
     border-color: $text-primary;
     color: $text-primary;
   }
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 0.5rem;
 }
 
 .lang-btn {
