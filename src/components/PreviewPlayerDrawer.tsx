@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useTranslation } from "react-i18next";
+import { useSpotifyEmbedPlayer } from "../hooks/useSpotifyEmbedPlayer";
 
 interface PreviewPlayerDrawerProps {
   trackUri: string | null;
@@ -10,6 +11,8 @@ interface PreviewPlayerDrawerProps {
 export const PreviewPlayerDrawer: React.FC<PreviewPlayerDrawerProps> = ({ trackUri, onClose }) => {
   const { t } = useTranslation();
   const [hasConsented, setHasConsented] = useState<boolean>(() => document.cookie.includes("spotify_preview_consent=1"));
+  const containerRef = useRef<HTMLDivElement>(null);
+  useSpotifyEmbedPlayer(containerRef, { uri: hasConsented ? trackUri : null, autoplay: true });
 
   const handleConsent = () => {
     document.cookie = "spotify_preview_consent=1; max-age=31536000; path=/; SameSite=Lax";
@@ -28,7 +31,6 @@ export const PreviewPlayerDrawer: React.FC<PreviewPlayerDrawerProps> = ({ trackU
   if (!trackUri) return null;
 
   const trackId = trackUri.replace("spotify:track:", "");
-  const embedUrl = `https://open.spotify.com/embed/track/${trackId}`;
   const openUrl = `https://open.spotify.com/track/${trackId}`;
 
   return createPortal(
@@ -57,7 +59,7 @@ export const PreviewPlayerDrawer: React.FC<PreviewPlayerDrawerProps> = ({ trackU
       </div>
       <div className="iframe-wrapper">
         {hasConsented ? (
-          <iframe src={embedUrl} width="100%" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" />
+          <div ref={containerRef} />
         ) : (
           <div className="consent-gate">
             <p>{t("miniplayer.consentText")}</p>
