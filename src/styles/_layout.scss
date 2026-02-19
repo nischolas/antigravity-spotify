@@ -4,6 +4,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 1rem;
+  padding-bottom: 0;
   min-height: calc(100dvh - 2rem);
   display: flex;
   flex-direction: column;
@@ -94,6 +95,7 @@
 @media (max-width: 1024px) {
   .app-container {
     padding: 0.5rem;
+    padding-bottom: 0;
   }
 }
 

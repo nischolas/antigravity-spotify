@@ -122,5 +122,8 @@
     "close": "Close",
     "showMore": "Show More",
     "openInSpotify": "Open in Spotify"
+  },
+  "miniplayer": {
+    "title": "Preview"
   }
 }

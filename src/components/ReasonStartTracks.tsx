@@ -3,6 +3,7 @@ import { useSpotifyStore } from "../store/useSpotifyStore";
 import { useTranslation } from "react-i18next";
 import type { SpotifyHistoryItem } from "../types";
 import { Modal } from "./Modal";
+import { usePreviewPlayer } from "../hooks/usePreviewPlayer";
 
 export type ReasonStartType =
   | "trackdone"
@@ -31,6 +32,7 @@ export const ReasonStartTracks: React.FC<ReasonStartTracksProps> = ({ reason_sta
   const { rawData, startDate, endDate } = useSpotifyStore();
   const { t } = useTranslation();
   const [showMoreModal, setShowMoreModal] = useState(false);
+  const { openPlayer } = usePreviewPlayer();
 
   const title = t(`reasonStartTracks.title.${reason_start}`);
   const subtitle = t(`reasonStartTracks.subtitle.${reason_start}`);
@@ -106,16 +108,13 @@ export const ReasonStartTracks: React.FC<ReasonStartTracksProps> = ({ reason_sta
           </thead>
           <tbody>
             {sortedData.map((item, index) => {
-              const url = item.track.spotify_track_uri ? `https://open.spotify.com/track/${item.track.spotify_track_uri.replace("spotify:track:", "")}` : "#";
-
               return (
                 <tr
                   key={index}
-                  onClick={() => item.track.spotify_track_uri && window.open(url, "_blank")}
+                  onClick={() => item.track.spotify_track_uri && openPlayer(item.track.spotify_track_uri)}
                   style={{
                     cursor: item.track.spotify_track_uri ? "pointer" : "default",
                   }}
-                  title={t("common.openInSpotify")}
                 >
                   <td>{index + 1}</td>
                   <td>{item.track.master_metadata_track_name || <em>{t("reasonStartTracks.unknownTrack")}</em>}</td>

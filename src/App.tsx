@@ -13,9 +13,12 @@ import { useTranslation } from "react-i18next";
 import { GeneralStats } from "./components/GeneralStats";
 import { OneHitWonders } from "./components/OneHitWonders";
 import { DataRecoveryPopup } from "./components/DataRecoveryPopup";
+import { PreviewPlayerDrawer } from "./components/PreviewPlayerDrawer";
+import { usePreviewPlayer } from "./hooks/usePreviewPlayer.ts";
 
 function App() {
   const { hasData, reset, initialize } = useSpotifyStore();
+  const { trackUri, closePlayer } = usePreviewPlayer();
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -81,6 +84,7 @@ function App() {
         <FAQ />
       </main>
 
+      <PreviewPlayerDrawer trackUri={trackUri} onClose={closePlayer} />
       <Footer />
     </div>
   );

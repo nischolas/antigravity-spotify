@@ -122,5 +122,8 @@
     "close": "Schließen",
     "showMore": "Mehr anzeigen",
     "openInSpotify": "Auf Spotify öffnen"
+  },
+  "miniplayer": {
+    "title": "Vorschau"
   }
 }
