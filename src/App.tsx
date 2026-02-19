@@ -46,7 +46,7 @@ function App() {
                     </a>
                   </li>
                   <li>
-                    {t("fileImport.tutorialStep2")} <strong>{t("fileImport.tutorialStep2Bold")}</strong>
+                    {t("fileImport.tutorialStep2")} <strong>{t("fileImport.tutorialStep2Bold")}</strong> <br /> {t("fileImport.tutorialStep2End")}
                   </li>
                   <li>{t("fileImport.tutorialStep3")}</li>
                   <li>{t("fileImport.tutorialStep4")}</li>

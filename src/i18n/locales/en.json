@@ -29,14 +29,15 @@
   "fileImport": {
     "processing": "Processing...",
     "importButton": "Import Spotify History (JSON or ZIP)",
-    "hint": "Select a ZIP archive ( my_spotify_data.zip ) or JSON file(s) ( Streaming_History_Audio_YYYY.json ).",
+    "hint": "Select a ZIP archive (my_spotify_data.zip) or JSON file(s) (Streaming_History_Audio_YYYY.json).",
     "tutorialTitle": "How to Get Your Spotify Data",
     "tutorialStep1": "Go to your",
-    "tutorialStep1Link": "Spotify Privacy Settings",
-    "tutorialStep2": "Request your",
+    "tutorialStep1Link": "Account Privacy Settings",
+    "tutorialStep2": "Only select",
     "tutorialStep2Bold": "Extended Streaming History",
-    "tutorialStep3": "Wait for Spotify to email you",
-    "tutorialStep4": "Download the ZIP file from the email",
+    "tutorialStep2End": "under \"Download your data\"",
+    "tutorialStep3": "Request data and wait for Spotify to email you",
+    "tutorialStep4": "Import the ZIP file from the mail here",
     "errorNoData": "No valid data found. Imported files must be JSON files starting with \"Streaming_History_Audio_\" or ZIP archives containing them. Ignored {{count}} file(s)/entry(s).",
     "errorProcessing": "Error processing files. Please try again.",
     "mobileWarning": "Note: Processing large datasets on mobile devices may cause performance issues. If you experience problems, please try again on a desktop computer."
@@ -107,10 +108,7 @@
   "dateRangeFilter": {
     "title": "Date Range Filter",
     "subtitle": "Drag the handles to filter by month and year",
-    "startDate": "Start Date",
-    "endDate": "End Date",
-    "apply": "Apply Filter",
-    "reset": "Reset",
+    "reset": "Max",
     "last3Years": "3Y",
     "lastYear": "1Y"
   },
