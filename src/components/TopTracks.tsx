@@ -3,6 +3,7 @@ import { useSpotifyStore } from "../store/useSpotifyStore";
 import { formatMsPlain } from "../utils/formatTime";
 import { useTranslation } from "react-i18next";
 import { Modal } from "./Modal";
+import { usePreviewPlayer } from "../hooks/usePreviewPlayer";
 
 interface TopTracksProps {
   limit?: number;
@@ -13,6 +14,7 @@ interface TopTracksProps {
 export const TopTracks: React.FC<TopTracksProps> = ({ limit = 10, isModal = false, sortBy = "time" }) => {
   const { aggregatedData } = useSpotifyStore();
   const { t } = useTranslation();
+  const { openPlayer } = usePreviewPlayer();
   const [showMoreModal, setShowMoreModal] = useState(false);
   const [sortByState, setSortBy] = useState<"time" | "count">(sortBy);
 
@@ -100,12 +102,15 @@ export const TopTracks: React.FC<TopTracksProps> = ({ limit = 10, isModal = fals
           </thead>
           <tbody>
             {sortedData.map((item, index) => {
-              const url = `https://open.spotify.com/track/${item.spotify_track_uri?.replace("spotify:track:", "")}`;
-
               const { hours, minutes } = formatMsPlain(item.ms_played);
 
               return (
-                <tr key={index} onClick={() => window.open(url, "_blank")} style={{ cursor: "pointer" }} title={t("common.openInSpotify")}>
+                <tr
+                  key={index}
+                  onClick={() => item.spotify_track_uri && openPlayer(item.spotify_track_uri)}
+                  style={{ cursor: "pointer" }}
+                  title={t("common.openInSpotify")}
+                >
                   <td>{index + 1}</td>
                   <td>{item.master_metadata_track_name || <em>{t("topTracks.unknownTrack")}</em>}</td>
                   <td>{item.master_metadata_album_artist_name || <em>{t("topTracks.unknownArtist")}</em>}</td>

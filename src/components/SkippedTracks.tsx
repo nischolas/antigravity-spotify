@@ -2,6 +2,7 @@ import { useSpotifyStore } from "../store/useSpotifyStore";
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Modal } from "./Modal";
+import { usePreviewPlayer } from "../hooks/usePreviewPlayer";
 
 interface SkippedTracksProps {
   limit?: number;
@@ -11,6 +12,7 @@ interface SkippedTracksProps {
 export const SkippedTracks: React.FC<SkippedTracksProps> = ({ limit = 10, isModal = false }) => {
   const { rawData } = useSpotifyStore();
   const { t } = useTranslation();
+  const { openPlayer } = usePreviewPlayer();
   const [showMoreModal, setShowMoreModal] = useState(false);
 
   const CUTOFF = 10000;
@@ -62,12 +64,6 @@ export const SkippedTracks: React.FC<SkippedTracksProps> = ({ limit = 10, isModa
       .slice(0, limit);
   }, [rawData, t, limit]);
 
-  const getSpotifyUrl = (uri: string | null) => {
-    if (!uri) return null;
-    const trackId = uri.split(":")[2];
-    return `https://open.spotify.com/track/${trackId}`;
-  };
-
   return (
     <>
       <div className="table-container">
@@ -94,15 +90,9 @@ export const SkippedTracks: React.FC<SkippedTracksProps> = ({ limit = 10, isModa
           <tbody>
             {skippedTracks.map((track, index) => {
               const skipRate = ((track.skipCount / track.totalPlays) * 100).toFixed(0);
-              const spotifyUrl = getSpotifyUrl(track.uri);
 
               return (
-                <tr
-                  key={index}
-                  onClick={spotifyUrl ? () => window.open(spotifyUrl, "_blank") : undefined}
-                  style={{ cursor: spotifyUrl ? "pointer" : "default" }}
-                  title={spotifyUrl ? t("common.openInSpotify") : undefined}
-                >
+                <tr key={index} onClick={() => track.uri && openPlayer(track.uri)} style={{ cursor: "pointer" }} title={t("common.openInSpotify")}>
                   <td>{index + 1}</td>
                   <td>{track.trackName}</td>
                   <td>{track.artistName}</td>

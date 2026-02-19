@@ -3,6 +3,7 @@ import { useSpotifyStore } from "../store/useSpotifyStore";
 import { useTranslation } from "react-i18next";
 import type { SpotifyHistoryItem } from "../types";
 import { Modal } from "./Modal";
+import { usePreviewPlayer } from "../hooks/usePreviewPlayer";
 
 interface TopTracksByYearProps {
   groupBy?: "year" | "month";
@@ -12,6 +13,7 @@ interface TopTracksByYearProps {
 export const TopTracksByYear: React.FC<TopTracksByYearProps> = ({ groupBy = "year", isModal = false }) => {
   const { rawData, startDate, endDate } = useSpotifyStore();
   const { t, i18n } = useTranslation();
+  const { openPlayer } = usePreviewPlayer();
   const [showMonthlyModal, setShowMonthlyModal] = useState(false);
 
   const topTracks = useMemo(() => {
@@ -112,8 +114,6 @@ export const TopTracksByYear: React.FC<TopTracksByYearProps> = ({ groupBy = "yea
           </thead>
           <tbody>
             {topTracks.map(({ groupKey, track }, index) => {
-              const url = `https://open.spotify.com/track/${track.spotify_track_uri?.replace("spotify:track:", "")}`;
-
               // Logic for Year Header in Month View
               let showYearHeader = false;
               let currentYear = "";
@@ -138,7 +138,11 @@ export const TopTracksByYear: React.FC<TopTracksByYearProps> = ({ groupBy = "yea
                       </td>
                     </tr>
                   )}
-                  <tr onClick={() => window.open(url, "_blank")} style={{ cursor: "pointer" }} title={t("common.openInSpotify")}>
+                  <tr
+                    onClick={() => track.spotify_track_uri && openPlayer(track.spotify_track_uri)}
+                    style={{ cursor: "pointer" }}
+                    title={t("common.openInSpotify")}
+                  >
                     <td>
                       {groupBy === "year"
                         ? groupKey
