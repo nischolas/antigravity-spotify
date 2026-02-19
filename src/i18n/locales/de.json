@@ -106,8 +106,8 @@
     "noData": "Keine Titel gefunden, die den Kriterien entsprechen"
   },
   "dateRangeFilter": {
-    "title": "Datumsbereich-Filter",
-    "subtitle": "Ziehe den Slider, um nach Monat und Jahr zu filtern",
+    "title": "Datumsfilter",
+    "subtitle": "Ziehe den Slider, um die Zeitspanne festzulegen",
     "reset": "Max",
     "last3Years": "3J",
     "lastYear": "1J"
