@@ -15,26 +15,23 @@
   align-items: center;
   gap: 1rem;
   animation: drawer-slide-in 0.3s ease-out;
-  width: calc(100% - 2.4rem);
+  box-sizing: border-box;
+  width: 100%;
 
   @media (max-width: 1024px) {
     padding: .8rem;
     width: calc(100% - 1.6rem);
   }
 
-
-
   .iframe-wrapper {
-    flex: 1;
     border-radius: 0.5rem;
     overflow: hidden;
     width: 100%;
-  }
 
-  .preview-drawer-iframe {
-    flex: 1;
-    border-radius: 0.5rem;
-    overflow: hidden;
+    iframe {
+      border: none;
+      display: block;
+    }
   }
 
   .title-bar {
@@ -62,6 +59,7 @@
     cursor: pointer;
     display: flex;
     align-items: center;
+    gap: .25rem;
 
     &:hover {
       color: $primary-color;
