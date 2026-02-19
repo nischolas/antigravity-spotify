@@ -74,8 +74,9 @@
 
   .consent-gate {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    gap: 2rem;
 
     p {
       max-width: 60ch;

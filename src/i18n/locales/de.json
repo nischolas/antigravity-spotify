@@ -125,7 +125,7 @@
   },
   "miniplayer": {
     "title": "Vorschau",
-    "consentText": "Mit Klick auf Player laden“ wird der Spotify-Player von open.spotify.com geladen und personenbezogene Daten (z. B. deine IP-Adresse) an Spotify übertragen. Weitere Informationen findest du in unserer Datenschutzerklärung.",
+    "consentText": "Mit Klick auf [Player laden] wird der Spotify-Player geladen und personenbezogene Daten (z. B. deine IP-Adresse) an Spotify übertragen. Weitere Informationen findest du in der Datenschutzerklärung.",
     "consentButton": "Player laden"
   },
   "privacy": {

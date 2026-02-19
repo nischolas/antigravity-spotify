@@ -125,7 +125,7 @@
   },
   "miniplayer": {
     "title": "Preview",
-    "consentText": "By clicking \"Load player\", the Spotify player from open.spotify.com will be loaded and personal data (e.g., your IP address) will be transmitted to Spotify. Further information can be found in our privacy policy.",
+    "consentText": "By clicking on [Load player], the Spotify player will be loaded and personal data (e.g., your IP address) will be transmitted to Spotify. Further information can be found in the privacy policy.",
     "consentButton": "Load player"
   },
   "privacy": {
