@@ -9,13 +9,18 @@
   box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.5);
   z-index: 1001;
   display: flex;
-  padding: 1rem 1.5rem;
+  padding: 1.2rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 1rem;
   animation: drawer-slide-in 0.3s ease-out;
-  width: calc(100% - 3rem);
+  width: calc(100% - 2.4rem);
+
+  @media (max-width: 1024px) {
+    padding: .8rem;
+    width: calc(100% - 1.6rem);
+  }
 
 
 
@@ -36,6 +41,10 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+
+    @media (max-width: 1024px) {
+      margin-bottom: -0.3rem;
+    }
   }
 
   .title-bar-controls {
