@@ -115,7 +115,7 @@
   "footer": {
     "language": "Language",
     "legal": "Legal",
-    "privacy": "No data is collected on your device or sent to a server.",
+    "privacy": "No personal data is collected from your device or sent to a server.",
     "by": "Made by"
   },
   "common": {
@@ -124,6 +124,43 @@
     "openInSpotify": "Open in Spotify"
   },
   "miniplayer": {
-    "title": "Preview"
+    "title": "Preview",
+    "consentText": "By clicking \"Load player\", the Spotify player from open.spotify.com will be loaded and personal data (e.g., your IP address) will be transmitted to Spotify. Further information can be found in our privacy policy.",
+    "consentButton": "Load player"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+
+    "controller": {
+      "title": "1. Controller",
+      "name": "Nicholas Mathieu",
+      "address": "Scheidter Str. 127, 66123 Saarbrücken",
+      "email": "hallo@nicholas-schneider.de"
+    },
+
+    "general": {
+      "title": "2. General Data Processing",
+      "localProcessing": "This web application processes the entered data exclusively locally within the user's browser. No storage or transmission of this data to our own servers takes place.",
+      "hostingData": "When accessing the website, technically necessary connection data (e.g., IP address, date and time of access, browser information) is processed by the hosting provider to ensure the website is delivered.",
+      "legalBasis": "Legal basis: Article 6(1)(f) GDPR (legitimate interest in the technical provision of the website)."
+    },
+
+    "spotify": {
+      "title": "3. Integration of Spotify",
+      "description": "This website may embed a player provided by Spotify.",
+      "loadCondition": "The player is only loaded once the user actively opens it.",
+      "dataTransfer": "When loading the player, a connection to Spotify servers is established. In the process, personal data (e.g., IP address, device and browser information, and potentially cookies) may be transmitted to Spotify.",
+      "responsibility": "Data processing is carried out under Spotify’s own responsibility.",
+      "moreInfo": "Further information can be found in Spotify’s privacy policy:",
+      "privacyLinkLabel": "Spotify Privacy Policy",
+      "legalBasis": "Legal basis: Article 6(1)(a) GDPR (consent given by active interaction).",
+      "thirdCountry": "It cannot be ruled out that data may be transferred to third countries (e.g., the United States)."
+    },
+
+    "rights": {
+      "title": "4. Data Subject Rights",
+      "description": "Users have the right to access, rectification, erasure, restriction of processing, and data portability in accordance with Articles 15–20 GDPR.",
+      "complaint": "Furthermore, users have the right to lodge a complaint with a supervisory authority."
+    }
   }
 }

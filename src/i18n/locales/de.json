@@ -115,7 +115,7 @@
   "footer": {
     "language": "Sprache",
     "legal": "Impressum",
-    "privacy": "Keinerlei Daten werden auf deinem Gerät gesammelt oder an einen Server gesendet.",
+    "privacy": "Keinerlei Daten über dich oder dein Gerät werden gesammelt oder an einen Server gesendet.",
     "by": "Gebaut von"
   },
   "common": {
@@ -124,6 +124,43 @@
     "openInSpotify": "Auf Spotify öffnen"
   },
   "miniplayer": {
-    "title": "Vorschau"
+    "title": "Vorschau",
+    "consentText": "Mit Klick auf Player laden“ wird der Spotify-Player von open.spotify.com geladen und personenbezogene Daten (z. B. deine IP-Adresse) an Spotify übertragen. Weitere Informationen findest du in unserer Datenschutzerklärung.",
+    "consentButton": "Player laden"
+  },
+  "privacy": {
+    "title": "Datenschutzerklärung",
+
+    "controller": {
+      "title": "1. Verantwortlicher",
+      "name": "Nicholas Mathieu",
+      "address": "Scheidter Str. 127, 66123 Saarbrücken",
+      "email": "hallo@nicholas-schneider.de"
+    },
+
+    "general": {
+      "title": "2. Allgemeine Datenverarbeitung",
+      "localProcessing": "Diese Webanwendung verarbeitet die eingegebenen Daten ausschließlich lokal im Browser des Nutzers. Es erfolgt keine Speicherung oder Übermittlung dieser Daten an einen eigenen Server.",
+      "hostingData": "Beim Aufruf der Website werden durch den Hosting-Anbieter technisch notwendige Verbindungsdaten (z. B. IP-Adresse, Datum und Uhrzeit des Zugriffs, Browserinformationen) verarbeitet, um die Website bereitzustellen.",
+      "legalBasis": "Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der technischen Bereitstellung)."
+    },
+
+    "spotify": {
+      "title": "3. Einbindung von Spotify",
+      "description": "Auf dieser Website kann ein Player des Dienstes Spotify eingebunden werden.",
+      "loadCondition": "Der Player wird erst geladen, wenn der Nutzer ihn aktiv öffnet.",
+      "dataTransfer": "Beim Laden des Players wird eine Verbindung zu Servern von Spotify hergestellt. Dabei können personenbezogene Daten (z. B. IP-Adresse, Geräte- und Browserinformationen sowie ggf. Cookies) an Spotify übermittelt werden.",
+      "responsibility": "Die Datenverarbeitung erfolgt in eigener Verantwortung von Spotify.",
+      "moreInfo": "Weitere Informationen finden sich in der Datenschutzerklärung von Spotify:",
+      "privacyLinkLabel": "Spotify Datenschutzerklärung",
+      "legalBasis": "Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO (Einwilligung durch aktive Betätigung).",
+      "thirdCountry": "Es kann nicht ausgeschlossen werden, dass eine Datenübermittlung in Drittländer (z. B. USA) erfolgt."
+    },
+
+    "rights": {
+      "title": "4. Rechte der betroffenen Personen",
+      "description": "Nutzer haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung sowie Datenübertragbarkeit gemäß Art. 15–20 DSGVO.",
+      "complaint": "Zudem besteht ein Beschwerderecht bei einer Datenschutzaufsichtsbehörde."
+    }
   }
 }

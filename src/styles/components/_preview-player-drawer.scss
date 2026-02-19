@@ -71,6 +71,16 @@
       width: 15px;
     }
   }
+
+  .consent-gate {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    p {
+      max-width: 60ch;
+    }
+  }
 }
 
 @keyframes drawer-slide-in {

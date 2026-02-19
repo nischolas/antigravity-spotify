@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { useTranslation } from "react-i18next";
 
@@ -9,6 +9,12 @@ interface PreviewPlayerDrawerProps {
 
 export const PreviewPlayerDrawer: React.FC<PreviewPlayerDrawerProps> = ({ trackUri, onClose }) => {
   const { t } = useTranslation();
+  const [hasConsented, setHasConsented] = useState<boolean>(() => document.cookie.includes("spotify_preview_consent=1"));
+
+  const handleConsent = () => {
+    document.cookie = "spotify_preview_consent=1; max-age=31536000; path=/; SameSite=Lax";
+    setHasConsented(true);
+  };
 
   useEffect(() => {
     if (!trackUri) return;
@@ -51,15 +57,24 @@ export const PreviewPlayerDrawer: React.FC<PreviewPlayerDrawerProps> = ({ trackU
         </div>
       </div>
       <div className="iframe-wrapper">
-        <iframe
-          className="preview-drawer-iframe"
-          src={embedUrl}
-          width="100%"
-          height="152"
-          frameBorder="0"
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          loading="lazy"
-        />
+        {hasConsented ? (
+          <iframe
+            className="preview-drawer-iframe"
+            src={embedUrl}
+            width="100%"
+            height="152"
+            frameBorder="0"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+          />
+        ) : (
+          <div className="consent-gate">
+            <p>{t("miniplayer.consentText")}</p>
+            <button className="lang-btn active" onClick={handleConsent}>
+              {t("miniplayer.consentButton")}
+            </button>
+          </div>
+        )}
       </div>
     </div>,
     document.querySelector(".app-container") || document.body,
