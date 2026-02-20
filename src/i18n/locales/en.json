@@ -11,9 +11,9 @@
     "discardBtn": "Delete & Import New"
   },
   "generalStats": {
-    "totalTime": "Total Time Listened",
-    "uniqueArtists": "Unique Artists",
-    "uniqueSongs": "Unique Songs"
+    "totalTime": "Total Time",
+    "uniqueArtists": "Artists",
+    "uniqueSongs": "Songs"
   },
   "table": {
     "headerTitle": "Title",

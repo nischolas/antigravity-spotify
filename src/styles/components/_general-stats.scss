@@ -6,10 +6,6 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
 
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-  }
-
   .stat-card {
     background-color: $surface-color;
     border-radius: 1rem;
@@ -32,16 +28,21 @@
       text-transform: uppercase;
       letter-spacing: 1px;
       margin-bottom: 0.5rem;
+
+      @media (max-width: 768px) {
+        margin-bottom: 0.2rem;
+        font-size: 0.8rem;
+      }
     }
+
 
     .stat-value {
       font-size: 1.8rem;
       font-weight: 700;
       color: $primary-color;
 
-      &.time-value {
-        font-family: monospace;
-        font-size: 1.6rem;
+      @media (max-width: 768px) {
+        font-size: 1rem;
       }
     }
   }

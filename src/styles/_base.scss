@@ -8,6 +8,10 @@ body {
   color: $text-primary;
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
+
+  @media (max-width: 1024px) {
+    background-color: black;
+  }
 }
 
 h1 {

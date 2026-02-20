@@ -12,8 +12,8 @@
   },
   "generalStats": {
     "totalTime": "Gesamtdauer",
-    "uniqueArtists": "Gesamtanzahl Künstler",
-    "uniqueSongs": "Gesamtanzahl Titel"
+    "uniqueArtists": "Künstler",
+    "uniqueSongs": "Titel"
   },
   "table": {
     "headerTitle": "Titel",

@@ -9,6 +9,16 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @media (max-width: 1024px) {
+    padding: 0.5rem;
+    padding-bottom: 0;
+  }
+
+  @media (max-width: 430px) {
+    padding: 1rem 0;
+    padding-bottom: 0;
+  }
 }
 
 .app-header {
@@ -92,12 +102,7 @@
   }
 }
 
-@media (max-width: 1024px) {
-  .app-container {
-    padding: 0.5rem;
-    padding-bottom: 0;
-  }
-}
+
 
 .title {
   padding: 1.2rem;
@@ -125,8 +130,14 @@
   gap: 1.2rem;
 
   @media (max-width: 1024px) {
-    margin-top: 0;
+    margin-top: 0.8rem;
+
   }
+
+  @media (max-width: 430px) {
+    padding: 0 0.8rem;
+  }
+
 
   h1 {
     font-size: 1.5rem;
