@@ -46,3 +46,18 @@
     font-weight: 600;
   }
 }
+
+.toggle-btn {
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  text-decoration: underline;
+
+  &.active {
+    text-decoration: none;
+    cursor: default;
+  }
+}

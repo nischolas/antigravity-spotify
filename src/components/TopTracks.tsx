@@ -49,45 +49,19 @@ export const TopTracks: React.FC<TopTracksProps> = ({ limit = 10, isModal = fals
             <p>
               {t("topTracks.subtitle")}{" "}
               <span className="sort-toggle">
-                <button
-                  className={`toggle-btn ${sortByState === "time" ? "active" : ""}`}
-                  onClick={() => setSortBy("time")}
-                  style={{
-                    opacity: sortByState === "time" ? 1 : 0.5,
-                    textDecoration: sortByState === "time" ? "underline" : "none",
-                    fontSize: ".9rem",
-                    cursor: "pointer",
-                    background: "none",
-                    border: "none",
-                    color: "inherit",
-                    padding: "0",
-                  }}
-                >
-                  {t("topTracks.sortByTime", "Time")}
+                <button className={`toggle-btn ${sortByState === "time" ? "active" : ""}`} onClick={() => setSortBy("time")}>
+                  {t("topTracks.sortByTime")}
                 </button>
-                <span>&nbsp;|&nbsp;</span>
-                <button
-                  className={`toggle-btn ${sortByState === "count" ? "active" : ""}`}
-                  onClick={() => setSortBy("count")}
-                  style={{
-                    opacity: sortByState === "count" ? 1 : 0.5,
-                    textDecoration: sortByState === "count" ? "underline" : "none",
-                    fontSize: ".9rem",
-                    cursor: "pointer",
-                    background: "none",
-                    border: "none",
-                    color: "inherit",
-                    padding: "0",
-                  }}
-                >
-                  {t("topTracks.sortByCount", "Count")}
+                <span>&nbsp;{t("common.or")}&nbsp;</span>
+                <button className={`toggle-btn ${sortByState === "count" ? "active" : ""}`} onClick={() => setSortBy("count")}>
+                  {t("topTracks.sortByCount")}
                 </button>
               </span>
             </p>
           </div>
           {!isModal && (
             <button className="reset-btn" onClick={() => setShowMoreModal(true)}>
-              {t("common.showMore", "Show More")}
+              {t("common.showMore")}
             </button>
           )}
         </div>
@@ -97,7 +71,7 @@ export const TopTracks: React.FC<TopTracksProps> = ({ limit = 10, isModal = fals
               <th>#</th>
               <th>{t("table.headerTitle")}</th>
               <th>{t("table.headerArtist")}</th>
-              <th style={{ textAlign: "right" }}>{sortByState === "time" ? t("table.headerTimePlayed") : t("table.headerPlayCount", "Plays")}</th>
+              <th style={{ textAlign: "right" }}>{sortByState === "time" ? t("table.headerTimePlayed") : t("table.headerPlayCount")}</th>
             </tr>
           </thead>
           <tbody>

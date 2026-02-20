@@ -69,7 +69,7 @@
     "subtitle": "by",
     "unknownTrack": "Unknown Track",
     "unknownArtist": "Unknown Artist",
-    "sortByTime": "accumulated playtime",
+    "sortByTime": "playtime",
     "sortByCount": "total plays"
   },
   "topTracksByYear": {
@@ -121,7 +121,8 @@
   "common": {
     "close": "Close",
     "showMore": "Show More",
-    "openInSpotify": "Open in Spotify"
+    "openInSpotify": "Open in Spotify",
+    "or": "or"
   },
   "miniplayer": {
     "title": "Preview",

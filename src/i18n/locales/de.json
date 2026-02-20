@@ -68,8 +68,8 @@
     "subtitle": "nach",
     "unknownTrack": "Unbekannter Titel",
     "unknownArtist": "Unbekannter Künstler",
-    "sortByTime": "kumulierter Wiedergabezeit",
-    "sortByCount": "Wiedergaben insgesamt"
+    "sortByTime": "Wiedergabezeit",
+    "sortByCount": "Wiedergaben"
   },
   "topTracksByYear": {
     "title": "Top-Titel des Jahres",
@@ -121,7 +121,8 @@
   "common": {
     "close": "Schließen",
     "showMore": "Mehr anzeigen",
-    "openInSpotify": "Auf Spotify öffnen"
+    "openInSpotify": "Auf Spotify öffnen",
+    "or": "oder"
   },
   "miniplayer": {
     "title": "Vorschau",
