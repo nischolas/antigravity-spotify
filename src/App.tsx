@@ -29,8 +29,12 @@ function App() {
     initialize();
   }, [initialize]);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, [hasData]);
+
   return (
-    <div className="app-container">
+    <div className={`app-container${hasData ? ' has-data' : ''}`}>
       <DataRecoveryPopup />
       <main>
         {!hasData ? (

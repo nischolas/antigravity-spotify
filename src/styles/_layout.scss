@@ -10,6 +10,10 @@
   flex-direction: column;
   justify-content: center;
 
+  &.has-data {
+    justify-content: flex-start;
+  }
+
   @media (max-width: 1024px) {
     padding: 0.5rem;
     padding-bottom: 0;
