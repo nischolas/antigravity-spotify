@@ -154,7 +154,8 @@
       "lastPlay": "Letzte Wiedergabe",
       "peakYear": "Spitzenjahr",
       "totalHours": "Stunden gesamt",
-      "cumulativeHours": "Kumulierte Stunden"
+      "cumulativeHours": "Kumulierte Stunden",
+      "playsPerMonth": "Wiedergaben / Monat"
     }
   },
   "privacy": {

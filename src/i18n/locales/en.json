@@ -154,7 +154,8 @@
       "lastPlay": "Last Play",
       "peakYear": "Peak Year",
       "totalHours": "Total Hours",
-      "cumulativeHours": "Cumulative Hours"
+      "cumulativeHours": "Cumulative Hours",
+      "playsPerMonth": "Plays / Month"
     }
   },
   "privacy": {

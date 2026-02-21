@@ -97,7 +97,7 @@ export function computeContextProfile(entries: SpotifyHistoryItem[]): ContextPro
 }
 
 export interface LifetimeCurve {
-  curve: { date: string; cumulativeHours: number }[];
+  curve: { date: string; cumulativeHours: number; monthlyPlays: number }[];
   milestones: { p25: string | null; p50: string | null; p75: string | null };
   firstPlay: string | null;
   lastPlay: string | null;
@@ -114,9 +114,11 @@ export function computeLifetimeCurve(entries: SpotifyHistoryItem[]): LifetimeCur
 
   // Aggregate by month for a smooth curve
   const monthMs = new Map<string, number>();
+  const monthPlays = new Map<string, number>();
   for (const e of sorted) {
     const month = e.ts.slice(0, 7);
     monthMs.set(month, (monthMs.get(month) || 0) + e.ms_played);
+    monthPlays.set(month, (monthPlays.get(month) || 0) + 1);
   }
 
   let cumMs = 0;
@@ -124,7 +126,7 @@ export function computeLifetimeCurve(entries: SpotifyHistoryItem[]): LifetimeCur
     .sort((a, b) => a[0].localeCompare(b[0]))
     .map(([date, ms]) => {
       cumMs += ms;
-      return { date, cumulativeHours: cumMs / 3_600_000 };
+      return { date, cumulativeHours: cumMs / 3_600_000, monthlyPlays: monthPlays.get(date) ?? 0 };
     });
 
   const totalHours = cumMs / 3_600_000;
