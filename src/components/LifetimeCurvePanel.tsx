@@ -14,7 +14,7 @@ interface Props {
 }
 
 export const LifetimeCurvePanel: React.FC<Props> = ({ data, totalPlays, skipRate }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [open, setOpen] = useState(true);
 
   const { curve, milestones, firstPlay, lastPlay, peakYear, totalHours } = data;
@@ -22,6 +22,7 @@ export const LifetimeCurvePanel: React.FC<Props> = ({ data, totalPlays, skipRate
   if (curve.length === 0) return null;
 
   const fmtHours = (h: number) => (h >= 1 ? `${h.toFixed(1)}h` : `${Math.round(h * 60)}m`);
+  const fmtDate = (d: Date) => d.toLocaleDateString(i18n.language, { year: "numeric", month: "short" });
 
   // Thin out the curve for performance if very long
   const displayCurve = curve.length > 200 ? curve.filter((_, i) => i % Math.ceil(curve.length / 200) === 0 || i === curve.length - 1) : curve;
@@ -51,13 +52,13 @@ export const LifetimeCurvePanel: React.FC<Props> = ({ data, totalPlays, skipRate
             </div>
             {firstPlay && (
               <div className="kpi-card">
-                <div className="kpi-value">{firstPlay}</div>
+                <div className="kpi-value">{fmtDate(firstPlay)}</div>
                 <div className="kpi-label">{t("trackInsights.lifetime.firstPlay")}</div>
               </div>
             )}
             {lastPlay && (
               <div className="kpi-card">
-                <div className="kpi-value">{lastPlay}</div>
+                <div className="kpi-value">{fmtDate(lastPlay)}</div>
                 <div className="kpi-label">{t("trackInsights.lifetime.lastPlay")}</div>
               </div>
             )}

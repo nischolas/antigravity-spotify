@@ -99,8 +99,8 @@ export function computeContextProfile(entries: SpotifyHistoryItem[]): ContextPro
 export interface LifetimeCurve {
   curve: { date: string; cumulativeHours: number; monthlyPlays: number }[];
   milestones: { p25: string | null; p50: string | null; p75: string | null };
-  firstPlay: string | null;
-  lastPlay: string | null;
+  firstPlay: Date | null;
+  lastPlay: Date | null;
   peakYear: string | null;
   totalHours: number;
 }
@@ -149,8 +149,8 @@ export function computeLifetimeCurve(entries: SpotifyHistoryItem[]): LifetimeCur
   return {
     curve,
     milestones: { p25: findMilestone(0.25), p50: findMilestone(0.5), p75: findMilestone(0.75) },
-    firstPlay: sorted[0].ts.slice(0, 10),
-    lastPlay: sorted[sorted.length - 1].ts.slice(0, 10),
+    firstPlay: new Date(sorted[0].ts),
+    lastPlay: new Date(sorted[sorted.length - 1].ts),
     peakYear,
     totalHours,
   };
