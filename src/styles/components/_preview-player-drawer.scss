@@ -69,6 +69,16 @@
       color: $primary-color;
     }
 
+
+  }
+
+  button.preview-drawer-link {
+    svg {
+      width: 25px;
+    }
+  }
+
+  a.preview-drawer-link {
     svg {
       width: 15px;
     }
