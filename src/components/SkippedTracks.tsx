@@ -92,7 +92,12 @@ export const SkippedTracks: React.FC<SkippedTracksProps> = ({ limit = 10, isModa
               const skipRate = ((track.skipCount / track.totalPlays) * 100).toFixed(0);
 
               return (
-                <tr key={index} onClick={() => track.uri && openPlayer(track.uri)} style={{ cursor: "pointer" }} title={t("common.openInSpotify")}>
+                <tr
+                  key={index}
+                  onClick={() => track.uri && openPlayer(track.uri, track.trackName || "", track.artistName || "")}
+                  style={{ cursor: "pointer" }}
+                  title={t("common.openInSpotify")}
+                >
                   <td>{index + 1}</td>
                   <td>{track.trackName}</td>
                   <td>{track.artistName}</td>

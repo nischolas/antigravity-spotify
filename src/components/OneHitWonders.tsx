@@ -79,7 +79,10 @@ export const OneHitWonders: React.FC<OneHitWondersProps> = ({ limit = 10, isModa
               return (
                 <tr
                   key={index}
-                  onClick={() => item.spotify_track_uri && openPlayer(item.spotify_track_uri)}
+                  onClick={() =>
+                    item.spotify_track_uri &&
+                    openPlayer(item.spotify_track_uri, item.master_metadata_track_name || "", item.master_metadata_album_artist_name || "")
+                  }
                   style={{ cursor: "pointer" }}
                   title={t("common.openInSpotify")}
                 >

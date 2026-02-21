@@ -139,7 +139,10 @@ export const TopTracksByYear: React.FC<TopTracksByYearProps> = ({ groupBy = "yea
                     </tr>
                   )}
                   <tr
-                    onClick={() => track.spotify_track_uri && openPlayer(track.spotify_track_uri)}
+                    onClick={() =>
+                      track.spotify_track_uri &&
+                      openPlayer(track.spotify_track_uri, track.master_metadata_track_name || "", track.master_metadata_album_artist_name || "")
+                    }
                     style={{ cursor: "pointer" }}
                     title={t("common.openInSpotify")}
                   >

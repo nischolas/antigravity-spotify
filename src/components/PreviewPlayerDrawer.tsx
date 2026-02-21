@@ -6,10 +6,12 @@ import { TrackInsights } from "./TrackInsights";
 
 interface PreviewPlayerDrawerProps {
   trackUri: string | null;
+  trackName: string | null;
+  artistName: string | null;
   onClose: () => void;
 }
 
-export const PreviewPlayerDrawer: React.FC<PreviewPlayerDrawerProps> = ({ trackUri, onClose }) => {
+export const PreviewPlayerDrawer: React.FC<PreviewPlayerDrawerProps> = ({ trackUri, trackName, artistName, onClose }) => {
   const { t } = useTranslation();
   const [hasConsented, setHasConsented] = useState<boolean>(() => document.cookie.includes("spotify_preview_consent=1"));
   const containerRef = useRef<HTMLDivElement>(null);
@@ -37,7 +39,9 @@ export const PreviewPlayerDrawer: React.FC<PreviewPlayerDrawerProps> = ({ trackU
   return createPortal(
     <div className="preview-drawer">
       <div className="title-bar">
-        {t("miniplayer.title")}
+        <div className="trackname">
+          {trackName} <br /> <span style={{ color: "gray", fontSize: "0.8em" }}> {artistName}</span>
+        </div>
         <div className="title-bar-controls">
           <a className="preview-drawer-link" href={openUrl} target="_blank" rel="noopener noreferrer">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">

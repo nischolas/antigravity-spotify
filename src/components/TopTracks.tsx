@@ -81,7 +81,10 @@ export const TopTracks: React.FC<TopTracksProps> = ({ limit = 10, isModal = fals
               return (
                 <tr
                   key={index}
-                  onClick={() => item.spotify_track_uri && openPlayer(item.spotify_track_uri)}
+                  onClick={() =>
+                    item.spotify_track_uri &&
+                    openPlayer(item.spotify_track_uri, item.master_metadata_track_name || "", item.master_metadata_album_artist_name || "")
+                  }
                   style={{ cursor: "pointer" }}
                   title={t("common.openInSpotify")}
                 >

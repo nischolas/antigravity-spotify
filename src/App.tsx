@@ -18,7 +18,7 @@ import { usePreviewPlayer } from "./hooks/usePreviewPlayer.ts";
 
 function App() {
   const { hasData, reset, initialize } = useSpotifyStore();
-  const { trackUri, closePlayer } = usePreviewPlayer();
+  const { trackUri, trackName, artistName, closePlayer } = usePreviewPlayer();
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -84,7 +84,7 @@ function App() {
         <FAQ />
       </main>
 
-      <PreviewPlayerDrawer trackUri={trackUri} onClose={closePlayer} />
+      <PreviewPlayerDrawer trackUri={trackUri} trackName={trackName} artistName={artistName} onClose={closePlayer} />
       <Footer />
     </div>
   );
