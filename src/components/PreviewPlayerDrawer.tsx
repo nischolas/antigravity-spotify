@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useTranslation } from "react-i18next";
 import { useSpotifyEmbedPlayer } from "../hooks/useSpotifyEmbedPlayer";
+import { TrackInsights } from "./TrackInsights";
 
 interface PreviewPlayerDrawerProps {
   trackUri: string | null;
@@ -57,6 +58,7 @@ export const PreviewPlayerDrawer: React.FC<PreviewPlayerDrawerProps> = ({ trackU
           </button>
         </div>
       </div>
+      <TrackInsights trackUri={trackUri} />
       <div className="iframe-wrapper">
         {hasConsented ? (
           <div ref={containerRef} />

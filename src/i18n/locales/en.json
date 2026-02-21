@@ -129,6 +129,34 @@
     "consentText": "By clicking on [Load player], the Spotify player will be loaded and personal data (e.g., your IP address) will be transmitted to Spotify. Further information can be found in the privacy policy.",
     "consentButton": "Load player"
   },
+  "trackInsights": {
+    "skipBehavior": {
+      "title": "Skip Behavior",
+      "totalPlays": "Total Plays",
+      "skips": "Skips",
+      "skipRate": "Skip Rate",
+      "avgListenedSkipped": "Avg. Listened (skipped)",
+      "avgListenedFull": "Avg. Listened (full)",
+      "skipRateByYear": "Skip Rate by Year",
+      "reasonEnd": "End Reason Breakdown"
+    },
+    "context": {
+      "title": "How You Listen",
+      "shuffleRatio": "Shuffle Ratio",
+      "manualRatio": "Manual Start",
+      "platform": "Platform Breakdown",
+      "reasonStart": "Start Reason Breakdown",
+      "manualVsAuto": "Manual vs. Auto by Year"
+    },
+    "lifetime": {
+      "title": "Listening Curve",
+      "firstPlay": "First Play",
+      "lastPlay": "Last Play",
+      "peakYear": "Peak Year",
+      "totalHours": "Total Hours",
+      "cumulativeHours": "Cumulative Hours"
+    }
+  },
   "privacy": {
     "title": "Privacy Policy",
 

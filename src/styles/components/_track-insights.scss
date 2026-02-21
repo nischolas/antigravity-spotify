@@ -1,0 +1,118 @@
+@use '../variables' as *;
+
+.track-insights {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.insight-panel {
+  background-color: $bg-color;
+  border: 1px solid $border-color;
+  border-radius: 0.6rem;
+  overflow: hidden;
+}
+
+.insight-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.6rem 0.9rem;
+  background: none;
+  border: none;
+  color: $text-secondary;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.15s;
+
+  &:hover {
+    color: $text-primary;
+  }
+
+  .chevron {
+    font-size: 1.1rem;
+    transform: rotate(90deg);
+    transition: transform 0.2s;
+    display: inline-block;
+
+    &.open {
+      transform: rotate(-90deg);
+    }
+  }
+}
+
+.insight-panel-body {
+  padding: 0 0.9rem 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.kpi-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.kpi-card {
+  background-color: $surface-color;
+  border: 1px solid $border-color;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  min-width: 80px;
+  flex: 1 1 80px;
+
+  .kpi-value {
+    font-size: 1rem;
+    font-weight: 700;
+    color: $text-primary;
+    white-space: nowrap;
+  }
+
+  .kpi-label {
+    font-size: 0.65rem;
+    color: $text-secondary;
+    margin-top: 0.15rem;
+    white-space: nowrap;
+  }
+}
+
+.chart-block {
+  .chart-label {
+    font-size: 0.7rem;
+    color: $text-secondary;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.3rem;
+  }
+}
+
+.chart-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+
+  .flex-1 {
+    flex: 1 1 140px;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .kpi-card {
+    flex: 1 1 60px;
+
+    .kpi-value {
+      font-size: 0.85rem;
+    }
+  }
+
+  .chart-row {
+    flex-direction: column;
+  }
+}

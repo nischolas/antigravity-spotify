@@ -129,6 +129,34 @@
     "consentText": "Mit Klick auf [Player laden] wird der Spotify-Player geladen und personenbezogene Daten (z. B. deine IP-Adresse) an Spotify übertragen. Weitere Informationen findest du in der Datenschutzerklärung.",
     "consentButton": "Player laden"
   },
+  "trackInsights": {
+    "skipBehavior": {
+      "title": "Überspringverhalten",
+      "totalPlays": "Wiedergaben gesamt",
+      "skips": "Übersprungen",
+      "skipRate": "Übersprungrate",
+      "avgListenedSkipped": "Ø Gehört (übersprungen)",
+      "avgListenedFull": "Ø Gehört (vollständig)",
+      "skipRateByYear": "Übersprungrate pro Jahr",
+      "reasonEnd": "Beendigungsgrund"
+    },
+    "context": {
+      "title": "Wie du hörst",
+      "shuffleRatio": "Zufallswiedergabe",
+      "manualRatio": "Manuell gestartet",
+      "platform": "Plattform",
+      "reasonStart": "Startgrund",
+      "manualVsAuto": "Manuell vs. Auto pro Jahr"
+    },
+    "lifetime": {
+      "title": "Hörkurve",
+      "firstPlay": "Erste Wiedergabe",
+      "lastPlay": "Letzte Wiedergabe",
+      "peakYear": "Spitzenjahr",
+      "totalHours": "Stunden gesamt",
+      "cumulativeHours": "Kumulierte Stunden"
+    }
+  },
   "privacy": {
     "title": "Datenschutzerklärung",
 

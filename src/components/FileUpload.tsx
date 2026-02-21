@@ -18,8 +18,6 @@ export const FileUpload: React.FC = () => {
     setIsLoading(true);
     setError(null);
 
-    // Use a mutable array but be careful with memory.
-    // Ideally we process and pass to store, but store needs all of it.
     let allData: SpotifyHistoryItem[] = [];
     const readers: Promise<void>[] = [];
     let ignoredCount = 0;
