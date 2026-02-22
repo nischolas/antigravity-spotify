@@ -96,7 +96,7 @@ export const SkippedTracks: React.FC<SkippedTracksProps> = ({ limit = 10, isModa
                   key={index}
                   onClick={() => track.uri && openPlayer(track.uri, track.trackName || "", track.artistName || "")}
                   style={{ cursor: "pointer" }}
-                  title={t("common.openInSpotify")}
+                  title={t("table.statsAndPreview")}
                 >
                   <td>{index + 1}</td>
                   <td>{track.trackName}</td>

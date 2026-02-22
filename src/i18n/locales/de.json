@@ -21,7 +21,8 @@
     "headerArtist": "Künstler",
     "headerPlayCount": "Wiedergaben",
     "headerTimePlayed": "Wiedergabezeit",
-    "skipRate": "Übersprungrate"
+    "skipRate": "Übersprungrate",
+    "statsAndPreview": "Statistiken & Vorschau"
   },
   "oneHitWonders": {
     "title": "One Hit Wonders",

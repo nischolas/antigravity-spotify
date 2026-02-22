@@ -115,6 +115,7 @@ export const ReasonStartTracks: React.FC<ReasonStartTracksProps> = ({ reason_sta
                     item.track.spotify_track_uri &&
                     openPlayer(item.track.spotify_track_uri, item.track.master_metadata_track_name || "", item.track.master_metadata_album_artist_name || "")
                   }
+                  title={t("table.statsAndPreview")}
                   style={{
                     cursor: item.track.spotify_track_uri ? "pointer" : "default",
                   }}
