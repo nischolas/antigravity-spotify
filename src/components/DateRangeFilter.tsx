@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { AreaChart, Area, ResponsiveContainer } from "recharts";
 import { useSpotifyStore } from "../store/useSpotifyStore";
 import { useTranslation } from "react-i18next";
 
@@ -11,9 +12,11 @@ export const DateRangeFilter: React.FC = () => {
   const [rangeStart, setRangeStart] = useState<number>(0);
   const [rangeEnd, setRangeEnd] = useState<number>(0);
   const [months, setMonths] = useState<Date[]>([]);
+  const [monthlyCounts, setMonthlyCounts] = useState<number[]>([]);
   const [isDragging, setIsDragging] = useState<"start" | "end" | null>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
   const filterRef = useRef<HTMLDivElement>(null);
+  const [isStuck, setStuck] = useState<boolean>(false);
 
   // Calculate months from raw data
   useEffect(() => {
@@ -32,7 +35,16 @@ export const DateRangeFilter: React.FC = () => {
         current.setMonth(current.getMonth() + 1);
       }
 
+      const counts = monthsArray.map(
+        (m) =>
+          rawData.filter((item) => {
+            const d = new Date(item.ts);
+            return d.getFullYear() === m.getFullYear() && d.getMonth() === m.getMonth();
+          }).length,
+      );
+
       setMonths(monthsArray);
+      setMonthlyCounts(counts);
       setMinMonthIndex(0);
       setMaxMonthIndex(monthsArray.length - 1);
       setRangeStart(0);
@@ -64,6 +76,7 @@ export const DateRangeFilter: React.FC = () => {
       const rect = el.getBoundingClientRect();
 
       const stuck = rect.top <= 1;
+      setStuck(stuck);
       el.classList.toggle("is-stuck", stuck);
     };
 
@@ -171,21 +184,41 @@ export const DateRangeFilter: React.FC = () => {
 
   return (
     <div className="date-range-filter table-container" ref={filterRef}>
-      <div className="date-range-filter-top-bar">
-        <div className="title">
-          <h3>{t("dateRangeFilter.subtitle")}</h3>
+      {!isStuck && (
+        <div className="date-range-filter-top-bar">
+          <div className="title">
+            <h3>{t("dateRangeFilter.subtitle")}</h3>
+          </div>
+          <div className="filter-buttons">
+            <button onClick={() => handleYears(3)} className="filter-btn">
+              {t("dateRangeFilter.last3Years")}
+            </button>
+            <button onClick={() => handleYears(1)} className="filter-btn">
+              {t("dateRangeFilter.lastYear")}
+            </button>
+            <button onClick={handleReset} className="reset-btn">
+              {t("dateRangeFilter.reset")}
+            </button>
+          </div>
         </div>
-        <div className="filter-buttons">
-          <button onClick={() => handleYears(3)} className="filter-btn">
-            {t("dateRangeFilter.last3Years")}
-          </button>
-          <button onClick={() => handleYears(1)} className="filter-btn">
-            {t("dateRangeFilter.lastYear")}
-          </button>
-          <button onClick={handleReset} className="reset-btn">
-            {t("dateRangeFilter.reset")}
-          </button>
-        </div>
+      )}
+      <div className="plays-sparkline">
+        <ResponsiveContainer width="100%" height={isStuck ? 32 : 96}>
+          <AreaChart data={months.map((_, i) => ({ value: monthlyCounts[i] }))} margin={{ top: 4, right: 0, left: 0, bottom: 0 }}>
+            <Area
+              type="monotone"
+              dataKey="value"
+              stroke="var(--primary-color)"
+              fill="var(--primary-color)"
+              strokeWidth={1.5}
+              dot={false}
+              activeDot={false}
+              isAnimationActive={false}
+              fillOpacity={0.2}
+              strokeOpacity={0.5}
+            />
+          </AreaChart>
+        </ResponsiveContainer>
       </div>
       <div className="range-slider-container">
         <div className="range-slider" ref={sliderRef} onClick={handleSliderClick}>
