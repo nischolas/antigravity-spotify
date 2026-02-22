@@ -32,11 +32,10 @@
       font-size: 0.9rem;
       text-transform: uppercase;
       letter-spacing: 1px;
-      margin-bottom: 0.5rem;
 
       @media (max-width: 1024px) {
         margin-bottom: 0.2rem;
-        font-size: 0.8rem;
+        font-size: 0.6rem;
       }
     }
 
@@ -47,7 +46,7 @@
       color: $primary-color;
 
       @media (max-width: 1024px) {
-        font-size: 1rem;
+        font-size: 1.2rem;
       }
     }
   }
