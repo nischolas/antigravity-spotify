@@ -31,7 +31,12 @@ export const GeneralStats = () => {
     <div className="general-stats">
       <div className="stat-card">
         <span className="stat-label">{t("generalStats.totalTime")}</span>
-        <span className="stat-value time-value">{stats.totalTime}</span>
+        <span className="stat-value time-value">
+          {stats.totalTime.days}
+          <span style={{ fontSize: "0.7em", color: "#0e7a34" }}>d</span> {stats.totalTime.hours}
+          <span style={{ fontSize: "0.7em", color: "#0e7a34" }}>h</span> {stats.totalTime.minutes}
+          <span style={{ fontSize: "0.7em", color: "#0e7a34" }}>m</span>
+        </span>
       </div>
       <div className="stat-card">
         <span className="stat-label">{t("generalStats.rawDataLength")}</span>

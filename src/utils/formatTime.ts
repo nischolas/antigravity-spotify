@@ -19,11 +19,11 @@ export const formatMsPlain = (ms: number) => {
   return { hours, minutes };
 };
 
-export const formatDurationDDHHMM = (ms: number): string => {
+export const formatDurationDDHHMM = (ms: number): { days: number; hours: number; minutes: number } => {
   const totalMinutes = Math.floor(ms / 1000 / 60);
   const days = Math.floor(totalMinutes / (60 * 24));
   const hours = Math.floor((totalMinutes % (60 * 24)) / 60);
   const minutes = totalMinutes % 60;
 
-  return `${days.toString().padStart(2, "0")}d ${hours.toString().padStart(2, "0")}h ${minutes.toString().padStart(2, "0")}m`;
+  return { days, hours, minutes };
 };

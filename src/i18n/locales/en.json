@@ -108,7 +108,7 @@
   },
   "dateRangeFilter": {
     "title": "Date Range Filter",
-    "subtitle": "Drag the handles to filter by month and year",
+    "subtitle": "Set the time range",
     "reset": "Max",
     "last3Years": "3Y",
     "lastYear": "1Y"

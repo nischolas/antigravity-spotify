@@ -87,6 +87,7 @@
 .table-container {
   background-color: $surface-color;
   border-radius: 1rem;
+  corner-shape: squircle;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 

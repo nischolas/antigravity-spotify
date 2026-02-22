@@ -108,7 +108,7 @@
   },
   "dateRangeFilter": {
     "title": "Datumsfilter",
-    "subtitle": "Ziehe den Slider, um die Zeitspanne festzulegen",
+    "subtitle": "Lege die Zeitspanne fest",
     "reset": "Max",
     "last3Years": "3J",
     "lastYear": "1J"

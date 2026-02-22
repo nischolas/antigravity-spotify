@@ -14,7 +14,6 @@ export const DateRangeFilter: React.FC = () => {
   const [isDragging, setIsDragging] = useState<"start" | "end" | null>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
   const filterRef = useRef<HTMLDivElement>(null);
-  const [isStuck, setIsStuck] = useState<boolean>(false);
 
   // Calculate months from raw data
   useEffect(() => {
@@ -64,9 +63,7 @@ export const DateRangeFilter: React.FC = () => {
 
       const rect = el.getBoundingClientRect();
 
-      // stick detection: close enough to top
       const stuck = rect.top <= 1;
-      setIsStuck(stuck);
       el.classList.toggle("is-stuck", stuck);
     };
 
@@ -176,8 +173,7 @@ export const DateRangeFilter: React.FC = () => {
     <div className="date-range-filter" ref={filterRef}>
       <div className="date-range-filter-top-bar">
         <div className="title">
-          <h3>{t("dateRangeFilter.title")}</h3>
-          {!isStuck && <p>{t("dateRangeFilter.subtitle")}</p>}
+          <h3>{t("dateRangeFilter.subtitle")}</h3>
         </div>
         <div className="filter-buttons">
           <button onClick={() => handleYears(3)} className="filter-btn">

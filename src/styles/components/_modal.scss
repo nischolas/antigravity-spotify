@@ -22,6 +22,7 @@
 .modal-content {
   background-color: $surface-color;
   border-radius: 1rem;
+  corner-shape: squircle;
   width: 100%;
   max-width: 800px;
   max-height: 90dvh;
