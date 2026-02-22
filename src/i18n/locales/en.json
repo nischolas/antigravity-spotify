@@ -13,7 +13,8 @@
   "generalStats": {
     "totalTime": "Total Time",
     "uniqueArtists": "Artists",
-    "uniqueSongs": "Songs"
+    "uniqueSongs": "Songs",
+    "rawDataLength": "Plays"
   },
   "table": {
     "headerTitle": "Title",

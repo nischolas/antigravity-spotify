@@ -13,7 +13,8 @@
   "generalStats": {
     "totalTime": "Gesamtdauer",
     "uniqueArtists": "Künstler",
-    "uniqueSongs": "Titel"
+    "uniqueSongs": "Titel",
+    "rawDataLength": "Wiedergaben"
   },
   "table": {
     "headerTitle": "Titel",

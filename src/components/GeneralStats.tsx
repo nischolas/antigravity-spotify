@@ -4,7 +4,7 @@ import { useSpotifyStore } from "../store/useSpotifyStore";
 import { formatDurationDDHHMM } from "../utils/formatTime";
 
 export const GeneralStats = () => {
-  const { aggregatedData } = useSpotifyStore();
+  const { aggregatedData, rawData } = useSpotifyStore();
   const { t } = useTranslation();
 
   const stats = useMemo(() => {
@@ -32,6 +32,10 @@ export const GeneralStats = () => {
       <div className="stat-card">
         <span className="stat-label">{t("generalStats.totalTime")}</span>
         <span className="stat-value time-value">{stats.totalTime}</span>
+      </div>
+      <div className="stat-card">
+        <span className="stat-label">{t("generalStats.rawDataLength")}</span>
+        <span className="stat-value time-value">{rawData.length.toLocaleString()}</span>
       </div>
       <div className="stat-card">
         <span className="stat-label">{t("generalStats.uniqueSongs")}</span>

@@ -3,13 +3,17 @@
 .general-stats {
   grid-column: span 12;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
   .stat-card {
     background-color: $surface-color;
     border-radius: 1rem;
-    padding: 1.5rem;
+    padding: 1.2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,8 +22,8 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     transition: transform 0.2s ease;
 
-    @media (max-width: 768px) {
-      padding: 1rem;
+    @media (max-width: 1024px) {
+      padding: 0.8rem;
     }
 
     .stat-label {
@@ -29,7 +33,7 @@
       letter-spacing: 1px;
       margin-bottom: 0.5rem;
 
-      @media (max-width: 768px) {
+      @media (max-width: 1024px) {
         margin-bottom: 0.2rem;
         font-size: 0.8rem;
       }
@@ -41,7 +45,7 @@
       font-weight: 700;
       color: $primary-color;
 
-      @media (max-width: 768px) {
+      @media (max-width: 1024px) {
         font-size: 1rem;
       }
     }
