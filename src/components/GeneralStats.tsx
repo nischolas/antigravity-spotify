@@ -4,7 +4,7 @@ import { useSpotifyStore } from "../store/useSpotifyStore";
 import { formatDurationDDHHMM } from "../utils/formatTime";
 
 export const GeneralStats = () => {
-  const { aggregatedData, rawData } = useSpotifyStore();
+  const { aggregatedData, rawData, startDate, endDate } = useSpotifyStore();
   const { t } = useTranslation();
 
   const stats = useMemo(() => {
@@ -18,12 +18,20 @@ export const GeneralStats = () => {
       }
     });
 
+    const filteredRawCount = rawData.filter((item) => {
+      const d = new Date(item.ts);
+      if (startDate && d < new Date(startDate)) return false;
+      if (endDate && d > new Date(endDate)) return false;
+      return true;
+    }).length;
+
     return {
       totalTime: formatDurationDDHHMM(totalTime),
       uniqueArtists: uniqueArtists.size,
       uniqueSongs: aggregatedData.length,
+      filteredRawCount,
     };
-  }, [aggregatedData]);
+  }, [aggregatedData, rawData, startDate, endDate]);
 
   if (aggregatedData.length === 0) return null;
 
@@ -40,7 +48,7 @@ export const GeneralStats = () => {
       </div>
       <div className="stat-card">
         <span className="stat-label">{t("generalStats.rawDataLength")}</span>
-        <span className="stat-value time-value">{rawData.length.toLocaleString()}</span>
+        <span className="stat-value time-value">{stats.filteredRawCount.toLocaleString()}</span>
       </div>
       <div className="stat-card">
         <span className="stat-label">{t("generalStats.uniqueSongs")}</span>
