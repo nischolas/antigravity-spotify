@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ComposedChart, Line, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine } from "recharts";
 import type { LifetimeCurve } from "../utils/trackAnalytics";
+import { isMobile } from "../utils/isMobile";
 
 const PRIMARY = "#1db954";
 const TEXT_SECONDARY = "#b3b3b3";
@@ -15,7 +16,7 @@ interface Props {
 
 export const LifetimeCurvePanel: React.FC<Props> = ({ data, totalPlays, skipRate }) => {
   const { t, i18n } = useTranslation();
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(!isMobile);
 
   const { curve, milestones, firstPlay, lastPlay, peakYear, totalHours } = data;
 
