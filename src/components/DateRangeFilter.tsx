@@ -170,7 +170,7 @@ export const DateRangeFilter: React.FC = () => {
   const endPercentage = ((rangeEnd - minMonthIndex) / (maxMonthIndex - minMonthIndex)) * 100;
 
   return (
-    <div className="date-range-filter" ref={filterRef}>
+    <div className="date-range-filter table-container" ref={filterRef}>
       <div className="date-range-filter-top-bar">
         <div className="title">
           <h3>{t("dateRangeFilter.subtitle")}</h3>

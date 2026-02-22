@@ -34,7 +34,7 @@ function App() {
   }, [hasData]);
 
   return (
-    <div className={`app-container${hasData ? ' has-data' : ''}`}>
+    <div className={`app-container${hasData ? " has-data" : ""}`}>
       <DataRecoveryPopup />
       <main>
         {!hasData ? (
@@ -72,9 +72,9 @@ function App() {
                 {t("app.importDifferent")}
               </button>
             </div>
-            <DateRangeFilter />
             <div className="sections">
               <GeneralStats />
+              <DateRangeFilter />
               <TopTracks />
               <TopTracksByYear />
               <TopArtists />
