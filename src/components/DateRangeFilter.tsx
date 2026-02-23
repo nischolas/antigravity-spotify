@@ -74,7 +74,7 @@ export const DateRangeFilter: React.FC = () => {
 
       const rect = el.getBoundingClientRect();
 
-      const stuck = rect.top <= 10;
+      const stuck = rect.top <= 1;
       el.classList.toggle("is-stuck", stuck);
     };
 
