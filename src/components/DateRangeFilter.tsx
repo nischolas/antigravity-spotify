@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 export const DateRangeFilter: React.FC = () => {
   const { rawData, setDateRange } = useSpotifyStore();
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
 
   const [minMonthIndex, setMinMonthIndex] = useState<number>(0);
   const [maxMonthIndex, setMaxMonthIndex] = useState<number>(0);
@@ -16,7 +16,6 @@ export const DateRangeFilter: React.FC = () => {
   const [isDragging, setIsDragging] = useState<"start" | "end" | null>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
   const filterRef = useRef<HTMLDivElement>(null);
-  const [isStuck, setStuck] = useState<boolean>(false);
 
   // Calculate months from raw data
   useEffect(() => {
@@ -75,8 +74,7 @@ export const DateRangeFilter: React.FC = () => {
 
       const rect = el.getBoundingClientRect();
 
-      const stuck = rect.top <= 1;
-      setStuck(stuck);
+      const stuck = rect.top <= 10;
       el.classList.toggle("is-stuck", stuck);
     };
 
@@ -91,18 +89,6 @@ export const DateRangeFilter: React.FC = () => {
       year: "numeric",
       month: "short",
     });
-  };
-
-  const handleReset = () => {
-    setRangeStart(minMonthIndex);
-    setRangeEnd(maxMonthIndex);
-  };
-
-  const handleYears = (years: number) => {
-    const monthsToSubtract = years * 12 - 1;
-    const startIdx = Math.max(minMonthIndex, maxMonthIndex - monthsToSubtract);
-    setRangeStart(startIdx);
-    setRangeEnd(maxMonthIndex);
   };
 
   const handleSliderClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -184,26 +170,8 @@ export const DateRangeFilter: React.FC = () => {
 
   return (
     <div className="date-range-filter table-container" ref={filterRef}>
-      {!isStuck && (
-        <div className="date-range-filter-top-bar">
-          <div className="title">
-            <h3>{t("dateRangeFilter.subtitle")}</h3>
-          </div>
-          <div className="filter-buttons">
-            <button onClick={() => handleYears(3)} className="filter-btn">
-              {t("dateRangeFilter.last3Years")}
-            </button>
-            <button onClick={() => handleYears(1)} className="filter-btn">
-              {t("dateRangeFilter.lastYear")}
-            </button>
-            <button onClick={handleReset} className="reset-btn">
-              {t("dateRangeFilter.reset")}
-            </button>
-          </div>
-        </div>
-      )}
       <div className="plays-sparkline">
-        <ResponsiveContainer width="100%" height={isStuck ? 32 : 96}>
+        <ResponsiveContainer width="100%" height={32}>
           <AreaChart data={months.map((_, i) => ({ value: monthlyCounts[i] }))} margin={{ top: 4, right: 0, left: 0, bottom: 0 }}>
             <Area
               type="monotone"
