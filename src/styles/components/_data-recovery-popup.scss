@@ -55,7 +55,12 @@
   font-size: 1rem;
   transition: transform 0.2s, background-color 0.2s;
 
-  &:hover {
+  &.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  &:hover:not(.disabled) {
     background-color: $primary-hover;
   }
 }
@@ -69,6 +74,11 @@
   cursor: pointer;
   font-size: 0.9rem;
   transition: all 0.2s;
+
+  &.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
 
   &:hover {
     border-color: #fff;

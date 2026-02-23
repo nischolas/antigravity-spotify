@@ -4,7 +4,7 @@ import { useSpotifyStore } from "../store/useSpotifyStore";
 
 export const DataRecoveryPopup: React.FC = () => {
   const { t } = useTranslation();
-  const { hasFoundData, restoreSession, discardSession, hasData } = useSpotifyStore();
+  const { hasFoundData, restoreSession, discardSession, hasData, isLoading } = useSpotifyStore();
 
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
@@ -32,10 +32,10 @@ export const DataRecoveryPopup: React.FC = () => {
         <h2>{t("popup.recoveryTitle")}</h2>
         <p>{t("popup.recoveryMessage")}</p>
         <div className="popup-actions">
-          <button className="primary-btn" onClick={restoreSession}>
-            {t("popup.loadBtn")}
+          <button disabled={isLoading} className={isLoading ? "primary-btn disabled" : "primary-btn"} onClick={restoreSession}>
+            {isLoading ? t("fileImport.processing") : t("popup.loadBtn")}
           </button>
-          <button className="secondary-btn" onClick={discardSession}>
+          <button disabled={isLoading} className={isLoading ? "secondary-btn disabled" : "secondary-btn"} onClick={discardSession}>
             {t("popup.discardBtn")}
           </button>
         </div>
