@@ -1,5 +1,22 @@
+export type ReasonStartType =
+  | "trackdone"
+  | "fwdbtn"
+  | "clickrow"
+  | "appload"
+  | "backbtn"
+  | "playbtn"
+  | "remote"
+  | "popup"
+  | "unknown"
+  | "trackerror"
+  | "persisted"
+  | "reconnect"
+  | "switched-to-audio"
+  | "clickside"
+  | "click-row";
+
 export interface SpotifyHistoryItem {
-  ts: string; // ISO 8601 timestamp
+  ts: string;
   platform?: string;
   ms_played: number;
   count?: number;
@@ -16,7 +33,7 @@ export interface SpotifyHistoryItem {
   audiobook_uri?: string | null;
   audiobook_chapter_uri?: string | null;
   audiobook_chapter_title?: string | null;
-  reason_start?: string;
+  reason_start?: ReasonStartType;
   reason_end?: string;
   shuffle?: boolean;
   skipped?: boolean;

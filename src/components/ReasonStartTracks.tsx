@@ -1,26 +1,9 @@
 import React, { useMemo, useState } from "react";
 import { useSpotifyStore } from "../store/useSpotifyStore";
 import { useTranslation } from "react-i18next";
-import type { SpotifyHistoryItem } from "../types";
+import type { SpotifyHistoryItem, ReasonStartType } from "../types";
 import { Modal } from "./Modal";
 import { usePreviewPlayer } from "../hooks/usePreviewPlayer";
-
-export type ReasonStartType =
-  | "trackdone"
-  | "fwdbtn"
-  | "clickrow"
-  | "appload"
-  | "backbtn"
-  | "playbtn"
-  | "remote"
-  | "popup"
-  | "unknown"
-  | "trackerror"
-  | "persisted"
-  | "reconnect"
-  | "switched-to-audio"
-  | "clickside"
-  | "click-row";
 
 interface ReasonStartTracksProps {
   reason_start: ReasonStartType;
