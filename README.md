@@ -28,9 +28,9 @@ A privacy-first web application that lets you import your Spotify Extended Strea
 
 ## Ideas / Todos
 
-- Single track statistics from preview player drawer
 - Drag full date range slider, not just the handles
 - Add a table / view as playlist in Spotify (probably not possible without a backend due to authentication and the SPA nature of this app)
+- ✓ ~Single track statistics from preview player drawer~ 
 
 ## Development Notes
 
