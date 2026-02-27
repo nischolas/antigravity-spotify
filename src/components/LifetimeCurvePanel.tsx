@@ -73,7 +73,7 @@ export const LifetimeCurvePanel: React.FC<Props> = ({ data, totalPlays, skipRate
 
           <div className="chart-block">
             <ResponsiveContainer width="100%" height={160}>
-              <ComposedChart data={displayCurve} margin={{ top: 8, right: 16, left: -16, bottom: 0 }}>
+              <ComposedChart data={displayCurve} margin={{ top: 8, right: -24, left: -16, bottom: 0 }}>
                 <XAxis
                   dataKey="date"
                   tick={{ fill: TEXT_SECONDARY, fontSize: 10 }}
