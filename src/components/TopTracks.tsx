@@ -20,14 +20,12 @@ export const TopTracks: React.FC<TopTracksProps> = ({ limit = 10, isModal = fals
   const [sortByState, setSortBy] = useState<"time" | "count">(sortBy);
 
   const sortedData = useMemo(() => {
-    const data = artistFilter
-      ? aggregatedData.filter((item) => item.master_metadata_album_artist_name === artistFilter)
-      : aggregatedData;
+    const data = artistFilter ? aggregatedData.filter((item) => item.master_metadata_album_artist_name === artistFilter) : aggregatedData;
     return [...data]
       .sort((a, b) => {
         if (sortByState === "time" || artistFilter) {
-          let aValue: any = a["ms_played"];
-          let bValue: any = b["ms_played"];
+          const aValue: number = a["ms_played"];
+          const bValue: number = b["ms_played"];
 
           if (aValue === undefined || aValue === null) return 1;
           if (bValue === undefined || bValue === null) return -1;
@@ -50,7 +48,7 @@ export const TopTracks: React.FC<TopTracksProps> = ({ limit = 10, isModal = fals
         <div className="header-row">
           <div className="title">
             <h3>{artistFilter ? t("topArtists.tracksBy", { artist: artistFilter }) : t("topTracks.title")}</h3>
-            {!artistFilter && (
+            {!artistFilter ? (
               <p>
                 {t("topTracks.subtitle")}{" "}
                 <span className="sort-toggle">
@@ -63,6 +61,8 @@ export const TopTracks: React.FC<TopTracksProps> = ({ limit = 10, isModal = fals
                   </button>
                 </span>
               </p>
+            ) : (
+              <p>{t("topArtists.subtitle")}</p>
             )}
           </div>
           {!isModal && (

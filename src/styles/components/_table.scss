@@ -1,4 +1,4 @@
-@use '../variables' as *;
+@use "../variables" as *;
 
 table {
   width: 100%;
@@ -8,24 +8,29 @@ table {
 
 th,
 td {
-  padding: .8rem 1.2rem;
+  padding: 0.8rem 1.2rem;
   vertical-align: middle;
+  overflow: hidden;
+  max-width: 10rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   @media (max-width: 1024px) {
-    padding: .5rem .6rem;
+    padding: 0.5rem 0.6rem;
     font-size: 0.85rem;
   }
 
   &:first-child {
-    padding-right: 0;
+    padding-right: 0.5rem;
     text-align: center;
     font-size: 0.7rem;
     color: $text-secondary;
-
+    width: 1%;
+    white-space: nowrap;
   }
 
   &:nth-child(2) {
-    padding-left: .5rem;
+    padding-left: 0.5rem;
   }
 }
 
@@ -39,6 +44,10 @@ th {
 tr {
   border-bottom: 1px solid $border-color;
   transition: background-color 0.2s ease;
+
+  &:nth-child(even) {
+    background-color: rgba($color: #000000, $alpha: 0.1);
+  }
 
   &:last-child {
     border-bottom: none;
@@ -64,6 +73,6 @@ td {
   text-align: right;
 
   @media (max-width: 1024px) {
-    font-size: .85rem;
+    font-size: 0.85rem;
   }
 }
