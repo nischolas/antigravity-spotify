@@ -18,6 +18,7 @@ td {
   @media (max-width: 1024px) {
     padding: 0.5rem 0.6rem;
     font-size: 0.85rem;
+    max-width: 6rem;
   }
 
   &:first-child {
@@ -74,5 +75,25 @@ td {
 
   @media (max-width: 1024px) {
     font-size: 0.85rem;
+  }
+}
+
+input[type="search"] {
+  background-color: $surface-color;
+  border: 1px solid $border-color;
+  color: $text-primary;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  outline: none;
+  font-size: inherit;
+  margin-right: 3rem;
+
+  @media (max-width: 1024px) {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.85rem;
+    font-size: 16px;
+    max-width: 8rem;
+    // transform: scale(0.8);
+    // transform-origin: left center;
   }
 }

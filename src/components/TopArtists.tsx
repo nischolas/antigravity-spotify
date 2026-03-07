@@ -15,8 +15,9 @@ export const TopArtists: React.FC<TopArtistsProps> = ({ limit = 10, isModal = fa
   const { t } = useTranslation();
   const [showMoreModal, setShowMoreModal] = useState(false);
   const [selectedArtist, setSelectedArtist] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const topArtists = useMemo(() => {
+  const allArtists = useMemo(() => {
     const grouped = new Map<string, number>();
 
     aggregatedData.forEach((item) => {
@@ -30,9 +31,13 @@ export const TopArtists: React.FC<TopArtistsProps> = ({ limit = 10, isModal = fa
         artist,
         ms_played: ms,
       }))
-      .sort((a, b) => b.ms_played - a.ms_played)
-      .slice(0, limit);
-  }, [aggregatedData, t, limit]);
+      .sort((a, b) => b.ms_played - a.ms_played);
+  }, [aggregatedData, t]);
+
+  const topArtists = useMemo(() => {
+    const filtered = searchQuery ? allArtists.filter((a) => a.artist.toLowerCase().includes(searchQuery.toLowerCase())) : allArtists;
+    return filtered.slice(0, limit);
+  }, [allArtists, searchQuery, limit]);
 
   return (
     <>
@@ -42,9 +47,11 @@ export const TopArtists: React.FC<TopArtistsProps> = ({ limit = 10, isModal = fa
             <h3>{t("topArtists.title")}</h3>
             <p>{t("topArtists.subtitle")}</p>
           </div>
-          {!isModal && (
+          {isModal ? (
+            <input type="search" placeholder={t("topArtists.search")} value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+          ) : (
             <button className="reset-btn" onClick={() => setShowMoreModal(true)}>
-              {t("common.showMore", "Show More")}
+              {t("topArtists.searchBtn")}
             </button>
           )}
         </div>
@@ -61,12 +68,7 @@ export const TopArtists: React.FC<TopArtistsProps> = ({ limit = 10, isModal = fa
               const { hours, minutes } = formatMsPlain(artist.ms_played);
 
               return (
-                <tr
-                  key={index}
-                  onClick={() => setSelectedArtist(artist.artist)}
-                  style={{ cursor: "pointer" }}
-                  title={t("topTracks.title")}
-                >
+                <tr key={index} onClick={() => setSelectedArtist(artist.artist)} style={{ cursor: "pointer" }} title={t("topTracks.title")}>
                   <td>{index + 1}</td>
                   <td>{artist.artist}</td>
                   <td className="monospace">
