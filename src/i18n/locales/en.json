@@ -1,12 +1,12 @@
 {
   "app": {
     "title": "Explore your Spotify streaming history",
-    "subtitle": "Everything stays in your browser, no data is sent to a server.",
+    "subtitle": "Everything stays on your device, no data is sent to a server.",
     "importDifferent": "Import Different File"
   },
   "popup": {
     "recoveryTitle": "Existing Data Found",
-    "recoveryMessage": "There is existing data in your browser. Do you want to load it?",
+    "recoveryMessage": "There is existing data on your device. Do you want to load it?",
     "loadBtn": "Load Data",
     "discardBtn": "Delete & Import New"
   },
@@ -53,11 +53,11 @@
       },
       {
         "question": "Is my data safe?",
-        "answer": "Absolutely. This app runs entirely in your browser. Your files are never imported to any server. You can even disconnect your internet after loading the page and it will still work!"
+        "answer": "Absolutely. This app runs entirely on your device. Your files are never imported to any server. You can even disconnect your internet after loading the page and it will still work!"
       },
       {
         "question": "Why is my data still there even if I reload the page?",
-        "answer": "Your data is stored directly in your browser. This is like a small, personal storage space just for this website. That's why your data remains even if you close the page and open it again later. You can delete it using the \"Import Different File\" button."
+        "answer": "Your data is stored directly on your device. This is like a small, personal storage space just for this website. That's why your data remains even if you close the page and open it again later. You can delete it using the \"Import Different File\" button."
       },
 
       {
