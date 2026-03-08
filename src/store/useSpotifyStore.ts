@@ -19,8 +19,8 @@ interface SpotifyStore {
   error: string | null;
 
   // Check if existing data is found but not yet loaded
-  hasData: boolean;
-  hasFoundData: boolean;
+  isDataLoaded: boolean;
+  isDataLoadedInIDB: boolean;
 
   // Actions
   setRawData: (data: SpotifyHistoryItem[]) => void;
@@ -46,8 +46,8 @@ const initialState = {
   endDate: null,
   isLoading: false,
   error: null,
-  hasData: false,
-  hasFoundData: false,
+  isDataLoaded: false,
+  isDataLoadedInIDB: false,
 };
 
 // Custom storage adapter for idb-keyval
@@ -69,7 +69,7 @@ export const useSpotifyStore = create<SpotifyStore>()(
       ...initialState,
 
       setRawData: (data) => {
-        set({ rawData: data, hasData: data.length > 0 });
+        set({ rawData: data, isDataLoaded: data.length > 0 });
         setKey("spotify-raw-data", data).catch((err) => console.error("Failed to save raw data", err));
       },
 
@@ -129,7 +129,7 @@ export const useSpotifyStore = create<SpotifyStore>()(
         try {
           const storedRaw = await getKey("spotify-raw-data");
           if (storedRaw && Array.isArray(storedRaw) && storedRaw.length > 0) {
-            set({ rawData: storedRaw, hasData: true, hasFoundData: false });
+            set({ rawData: storedRaw, isDataLoaded: true, isDataLoadedInIDB: false });
 
             const aggregatedMap = new Map<string, SpotifyHistoryItem>();
             for (const item of storedRaw) {
@@ -151,7 +151,7 @@ export const useSpotifyStore = create<SpotifyStore>()(
             const aggregatedResult = Array.from(aggregatedMap.values());
             set({ aggregatedData: aggregatedResult });
           } else {
-            set({ hasData: false, hasFoundData: false });
+            set({ isDataLoaded: false, isDataLoadedInIDB: false });
           }
         } catch (err) {
           console.error("Failed to restore raw data:", err);
@@ -163,7 +163,7 @@ export const useSpotifyStore = create<SpotifyStore>()(
 
       discardSession: () => {
         get().reset();
-        set({ hasFoundData: false });
+        set({ isDataLoadedInIDB: false });
       },
 
       loadData: (rawItems) => {
@@ -197,7 +197,7 @@ export const useSpotifyStore = create<SpotifyStore>()(
         set({
           aggregatedData: aggregatedResult,
           isLoading: false,
-          hasData: rawItems.length > 0,
+          isDataLoaded: rawItems.length > 0,
           error: aggregatedResult.length === 0 ? "No valid track data found to aggregate (missing spotify_track_uri)." : null,
         });
       },
@@ -208,10 +208,10 @@ export const useSpotifyStore = create<SpotifyStore>()(
           const storedRaw = await getKey("spotify-raw-data");
           const hasStoredRaw = storedRaw && Array.isArray(storedRaw) && storedRaw.length > 0;
 
-          if (get().hasData) return;
+          if (get().isDataLoaded) return;
 
           if (hasStoredRaw) {
-            set({ hasFoundData: true, hasData: false });
+            set({ isDataLoadedInIDB: true, isDataLoaded: false });
           }
         } catch (err) {
           console.error("Failed to check for existing data:", err);
@@ -224,11 +224,11 @@ export const useSpotifyStore = create<SpotifyStore>()(
       name: "spotify-storage",
       storage: createJSONStorage(() => storage),
       partialize: (state) => ({
-        // rawData and hasData are handling manually via IDB
+        // rawData and isDataLoaded are handling manually via IDB
         aggregatedData: state.aggregatedData,
         startDate: state.startDate,
         endDate: state.endDate,
       }),
-    }
-  )
+    },
+  ),
 );

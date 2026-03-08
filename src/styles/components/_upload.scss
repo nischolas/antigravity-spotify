@@ -1,4 +1,4 @@
-@use '../variables' as *;
+@use "../variables" as *;
 
 .file-upload-container {
   &.disabled {
@@ -40,7 +40,9 @@
   border-radius: 2rem;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.2s ease, background-color 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
   font-size: 1.1rem;
   display: block;
   text-align: center;
@@ -75,14 +77,23 @@
   max-width: 600px;
 
   h3 {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     color: $text-primary;
   }
 
   ol {
+    margin-top: 0;
     color: $text-secondary;
-    line-height: 1.8;
+    line-height: 1.6;
     padding-left: 1.5rem;
+
+    @media (max-width: 430px) {
+      line-height: 1.5;
+
+      li {
+        text-indent: -0.3em;
+      }
+    }
   }
 
   a {

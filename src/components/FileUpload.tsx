@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { isMobile } from "../utils/isMobile";
 
 export const FileUpload: React.FC = () => {
-  const { loadData } = useSpotifyStore();
+  const { loadData, isDataLoadedInIDB, isDataLoaded, restoreSession, discardSession, isLoading: storeIsLoading } = useSpotifyStore();
   const { t } = useTranslation();
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -18,7 +18,7 @@ export const FileUpload: React.FC = () => {
     setIsLoading(true);
     setError(null);
 
-    let allData: SpotifyHistoryItem[] = [];
+    const allData: SpotifyHistoryItem[] = [];
     const readers: Promise<void>[] = [];
     let ignoredCount = 0;
 
@@ -98,6 +98,23 @@ export const FileUpload: React.FC = () => {
       setIsLoading(false);
     }
   };
+
+  if (isDataLoadedInIDB && !isDataLoaded) {
+    return (
+      <div className="file-upload-container">
+        <h2>{t("popup.recoveryTitle")}</h2>
+        <p>{t("popup.recoveryMessage")}</p>
+        <div className="popup-actions">
+          <button disabled={storeIsLoading} className={storeIsLoading ? "primary-btn disabled" : "primary-btn"} onClick={restoreSession}>
+            {storeIsLoading ? t("fileImport.processing") : t("popup.loadBtn")}
+          </button>
+          <button disabled={storeIsLoading} className={storeIsLoading ? "secondary-btn disabled" : "secondary-btn"} onClick={discardSession}>
+            {t("popup.discardBtn")}
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={`file-upload-container ${isLoading ? "disabled" : ""}`}>

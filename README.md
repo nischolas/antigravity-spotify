@@ -29,10 +29,11 @@ A privacy-first web application that lets you import your Spotify Extended Strea
 ## Ideas / Todos
 
 - Drag full date range slider, not just the handles
-- Click on artist/search artists to show top tracks by artist
-- Service worker for full offline functionality
-- Add a table / view as playlist in Spotify (probably not possible without a backend due to authentication and the SPA nature of this app)
-- ✓ ~Single track statistics from preview player drawer~ 
+- Make artists in all views click- and browsable
+- ✗ ~Add a table as playlist in Spotify~ (will need a backend for auth, won't do)
+- ✓ ~Click on artist / search artists to show top tracks by artist~
+- ✓ ~Service worker for full offline functionality~
+- ✓ ~Single track statistics from preview player drawer~
 
 ## Development Notes
 

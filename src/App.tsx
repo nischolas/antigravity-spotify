@@ -12,12 +12,11 @@ import { useSpotifyStore } from "./store/useSpotifyStore";
 import { useTranslation } from "react-i18next";
 import { GeneralStats } from "./components/GeneralStats";
 import { OneHitWonders } from "./components/OneHitWonders";
-import { DataRecoveryPopup } from "./components/DataRecoveryPopup";
 import { PreviewPlayerDrawer } from "./components/PreviewPlayerDrawer";
 import { usePreviewPlayer } from "./hooks/usePreviewPlayer.ts";
 
 function App() {
-  const { hasData, reset, initialize } = useSpotifyStore();
+  const { isDataLoaded, reset, initialize } = useSpotifyStore();
   const { trackUri, trackName, artistName, closePlayer } = usePreviewPlayer();
   const { t } = useTranslation();
 
@@ -31,18 +30,16 @@ function App() {
 
   useEffect(() => {
     window.scrollTo({ top: 0 });
-  }, [hasData]);
+  }, [isDataLoaded]);
 
   return (
-    <div className={`app-container${hasData ? " has-data" : ""}`}>
-      <DataRecoveryPopup />
+    <div className={`app-container${isDataLoaded ? " has-data" : ""}`}>
       <main>
-        {!hasData ? (
+        {!isDataLoaded ? (
           <header className="app-header">
             <div>
               <h1>{t("app.title")}</h1>
               <p className="subtitle">{t("app.subtitle")}</p>
-              <br />
               <div className="tutorial-section">
                 <h3>{t("fileImport.tutorialTitle")}</h3>
                 <ol>

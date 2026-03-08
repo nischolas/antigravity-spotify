@@ -1,4 +1,4 @@
-@use 'variables' as *;
+@use "variables" as *;
 
 body {
   margin: 0;
@@ -27,6 +27,16 @@ h1 {
   color: $text-secondary;
   font-size: 1.2rem;
   margin-top: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+  .subtitle {
+    font-size: 1rem;
+  }
 }
 
 .muted {

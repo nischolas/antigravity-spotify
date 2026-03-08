@@ -1,12 +1,12 @@
 {
   "app": {
     "title": "Erkunde deinen Spotify Streamingverlauf",
-    "subtitle": "Alles bleibt in deinem Browser, keine Daten werden an einen Server gesendet.",
+    "subtitle": "Alles bleibt auf deinem Gerät, keine Daten werden an einen Server gesendet.",
     "importDifferent": "Andere Datei importieren"
   },
   "popup": {
     "recoveryTitle": "Vorherige Daten gefunden",
-    "recoveryMessage": "Es sind noch vorherige Daten in deinem Browser gespeichert. Möchtest du diese laden?",
+    "recoveryMessage": "Es sind noch vorherige Daten auf deinem Gerät gespeichert. Möchtest du diese laden?",
     "loadBtn": "Daten laden",
     "discardBtn": "Löschen & Neu importieren"
   },
@@ -30,7 +30,7 @@
   },
   "fileImport": {
     "processing": "Verarbeite...",
-    "importButton": "Spotify-Verlauf importieren (JSON oder ZIP)",
+    "importButton": "Spotify-Verlauf importieren",
     "hint": "ZIP-Archiv (my_spotify_data.zip) oder JSON-Datei(en) (Streaming_History_Audio_YYYY.json).",
     "tutorialTitle": "So erhältst du deine Spotify-Daten",
     "tutorialStep1": "Gehe zu deinen",
@@ -53,11 +53,11 @@
       },
       {
         "question": "Sind meine Daten sicher?",
-        "answer": "Absolut. Diese App läuft vollständig in deinem Browser. Deine Dateien werden niemals auf einen Server hochgeladen. Du kannst sogar deine Internetverbindung trennen, nachdem die Seite geladen wurde, und es wird weiterhin funktionieren!"
+        "answer": "Absolut. Diese App läuft vollständig auf deinem Gerät. Deine Dateien werden niemals auf einen Server hochgeladen. Du kannst sogar deine Internetverbindung trennen, nachdem die Seite geladen wurde, und es wird weiterhin funktionieren!"
       },
       {
         "question": "Warum sind meine Daten noch da, auch wenn ich die Seite neu lade?",
-        "answer": "Deine Daten werden direkt in deinem Browser gespeichert. Das ist wie ein kleiner, persönlicher Speicherplatz nur für diese Webseite. Deshalb bleiben deine Daten erhalten, auch wenn du die Seite schließt und später wieder öffnest. Löschen kannst du sie über den Button \"Andere Datei importieren\"."
+        "answer": "Deine Daten werden direkt auf deinem Gerät gespeichert. Das ist wie ein kleiner, persönlicher Speicherplatz nur für diese Webseite. Deshalb bleiben deine Daten erhalten, auch wenn du die Seite schließt und später wieder öffnest. Löschen kannst du sie über den Button \"Andere Datei importieren\"."
       },
       {
         "question": "Warum brauche ich den \"erweiterten\" Verlauf?",

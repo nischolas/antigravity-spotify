@@ -30,7 +30,7 @@
   },
   "fileImport": {
     "processing": "Processing...",
-    "importButton": "Import Spotify History (JSON or ZIP)",
+    "importButton": "Import Spotify History",
     "hint": "Select a ZIP archive (my_spotify_data.zip) or JSON file(s) (Streaming_History_Audio_YYYY.json).",
     "tutorialTitle": "How to Get Your Spotify Data",
     "tutorialStep1": "Go to your",
