@@ -40,14 +40,17 @@
   .modal-close-btn {
     position: absolute;
     right: 0.5rem;
-    background: none;
+    top: 0.7rem;
+    background-color: $surface-color;
+    border-radius: 0.5rem;
     border: none;
     color: $text-secondary;
     font-size: 2rem;
-    line-height: 1.25;
+    line-height: 0.5;
     cursor: pointer;
     transition: color 0.2s;
     padding: 1rem;
+    padding-bottom: 1.3rem;
 
     @media (max-width: 1024px) {
       line-height: 0.95;
