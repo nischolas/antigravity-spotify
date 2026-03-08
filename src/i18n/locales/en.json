@@ -14,7 +14,10 @@
     "totalTime": "Total Time",
     "uniqueArtists": "Artists",
     "uniqueSongs": "Songs",
-    "rawDataLength": "Plays"
+    "rawDataLength": "Plays",
+    "days": "D",
+    "hours": "H",
+    "minutes": "M"
   },
   "table": {
     "headerTitle": "Title",

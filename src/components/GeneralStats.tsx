@@ -40,9 +40,9 @@ export const GeneralStats = () => {
       <div className="stat-card">
         <span className="stat-value time-value">
           {stats.totalTime.days}
-          <span style={{ fontSize: "0.7em", color: "#0e7a34" }}>d</span> {stats.totalTime.hours}
-          <span style={{ fontSize: "0.7em", color: "#0e7a34" }}>h</span> {stats.totalTime.minutes}
-          <span style={{ fontSize: "0.7em", color: "#0e7a34" }}>m</span>
+          <span style={{ fontSize: "0.7em", color: "#0e7a34" }}>{t("generalStats.days")}</span> {stats.totalTime.hours}
+          <span style={{ fontSize: "0.7em", color: "#0e7a34" }}>{t("generalStats.hours")}</span> {stats.totalTime.minutes}
+          <span style={{ fontSize: "0.7em", color: "#0e7a34" }}>{t("generalStats.minutes")}</span>
         </span>
         <span className="stat-label">{t("generalStats.totalTime")}</span>
       </div>

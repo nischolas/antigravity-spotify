@@ -14,7 +14,10 @@
     "totalTime": "Gesamtdauer",
     "uniqueArtists": "Künstler",
     "uniqueSongs": "Titel",
-    "rawDataLength": "Wiedergaben"
+    "rawDataLength": "Wiedergaben",
+    "days": "Tg",
+    "hours": "Std",
+    "minutes": "Min"
   },
   "table": {
     "headerTitle": "Titel",
