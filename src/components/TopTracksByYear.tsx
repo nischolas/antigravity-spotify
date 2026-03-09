@@ -11,7 +11,7 @@ interface TopTracksByYearProps {
 }
 
 export const TopTracksByYear: React.FC<TopTracksByYearProps> = ({ groupBy = "year", isModal = false }) => {
-  const { filteredRawData } = useSpotifyStore();
+  const { rawData } = useSpotifyStore();
   const { t, i18n } = useTranslation();
   const { openPlayer } = usePreviewPlayer();
   const [showMonthlyModal, setShowMonthlyModal] = useState(false);
@@ -22,7 +22,7 @@ export const TopTracksByYear: React.FC<TopTracksByYearProps> = ({ groupBy = "yea
     // 1. Group by Timeframe (date filtering already done in store)
     const groups = new Map<string, SpotifyHistoryItem[]>();
 
-    for (const item of filteredRawData) {
+    for (const item of rawData) {
       if (!item.spotify_track_uri) continue;
       const date = new Date(item.ts);
       let key: string;
@@ -75,7 +75,7 @@ export const TopTracksByYear: React.FC<TopTracksByYearProps> = ({ groupBy = "yea
 
     // 4. Sort by Date Descending
     return result.sort((a, b) => b.groupKey.localeCompare(a.groupKey));
-  }, [filteredRawData, groupBy]);
+  }, [rawData, groupBy]);
 
   useEffect(() => {
     const wrapper = scrollWrapperRef.current;
