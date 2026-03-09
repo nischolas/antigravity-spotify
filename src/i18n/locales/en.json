@@ -8,7 +8,7 @@
     "recoveryTitle": "Existing Data Found",
     "recoveryMessage": "There is existing data on your device. Do you want to load it?",
     "loadBtn": "Load Data",
-    "discardBtn": "Delete & Import New"
+    "discardBtn": "Delete"
   },
   "generalStats": {
     "totalTime": "Total Time",
