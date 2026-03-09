@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useEffect, useRef, useState } from "react";
 import { useSpotifyStore } from "@/store/useSpotifyStore";
 import { useTranslation } from "react-i18next";
 import type { SpotifyHistoryItem } from "@/types";
@@ -15,6 +15,8 @@ export const TopTracksByYear: React.FC<TopTracksByYearProps> = ({ groupBy = "yea
   const { t, i18n } = useTranslation();
   const { openPlayer } = usePreviewPlayer();
   const [showMonthlyModal, setShowMonthlyModal] = useState(false);
+  const scrollWrapperRef = useRef<HTMLDivElement>(null);
+  const [maxHeight, setMaxHeight] = useState<number | undefined>(undefined);
 
   const topTracks = useMemo(() => {
     // 1. Group by Timeframe (date filtering already done in store)
@@ -75,6 +77,15 @@ export const TopTracksByYear: React.FC<TopTracksByYearProps> = ({ groupBy = "yea
     return result.sort((a, b) => b.groupKey.localeCompare(a.groupKey));
   }, [filteredRawData, groupBy]);
 
+  useEffect(() => {
+    const wrapper = scrollWrapperRef.current;
+    if (!wrapper) return;
+    const thead = wrapper.querySelector("thead") as HTMLElement | null;
+    const firstRow = wrapper.querySelector("tbody tr") as HTMLElement | null;
+    if (!thead || !firstRow) return;
+    setMaxHeight(thead.offsetHeight + firstRow.offsetHeight * 10);
+  }, [topTracks]);
+
   if (topTracks.length === 0) {
     return null;
   }
@@ -93,6 +104,7 @@ export const TopTracksByYear: React.FC<TopTracksByYearProps> = ({ groupBy = "yea
             </button>
           )}
         </div>
+        <div className="table-scroll-wrapper" ref={scrollWrapperRef} style={!isModal && maxHeight ? { maxHeight } : undefined}>
         <table>
           <thead>
             <tr>
@@ -148,6 +160,7 @@ export const TopTracksByYear: React.FC<TopTracksByYearProps> = ({ groupBy = "yea
             })}
           </tbody>
         </table>
+        </div>
       </div>
 
       <Modal isOpen={showMonthlyModal} onClose={() => setShowMonthlyModal(false)}>
