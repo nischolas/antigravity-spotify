@@ -121,7 +121,7 @@ export const TopTracksByYear: React.FC<TopTracksByYearProps> = ({ groupBy = "yea
               return (
                 <React.Fragment key={groupKey}>
                   {showYearHeader && (
-                    <tr className="year-header" style={{ backgroundColor: "var(--bg-secondary)", fontWeight: "bold" }}>
+                    <tr className="year-header" style={{ fontWeight: "bold" }}>
                       <td colSpan={3} style={{ padding: "0.8rem 0.5rem" }}>
                         {currentYear}
                       </td>
