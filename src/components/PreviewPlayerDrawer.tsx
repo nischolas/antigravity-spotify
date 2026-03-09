@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useTranslation } from "react-i18next";
-import { useSpotifyEmbedPlayer } from "../hooks/useSpotifyEmbedPlayer";
-import { TrackInsights } from "./TrackInsights";
+import { useSpotifyEmbedPlayer } from "@/hooks/useSpotifyEmbedPlayer";
+import { TrackInsights } from "@/components/TrackInsights";
 
 interface PreviewPlayerDrawerProps {
   trackUri: string | null;

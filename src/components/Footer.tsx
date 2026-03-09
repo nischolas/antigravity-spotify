@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Modal } from "./Modal";
-import { PrivacyText } from "./PrivacyText";
+import { Modal } from "@/components/Modal";
+import { PrivacyText } from "@/components/PrivacyText";
 
 export const Footer: React.FC = () => {
   const { i18n, t } = useTranslation();

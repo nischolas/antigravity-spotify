@@ -1,9 +1,9 @@
-import { useSpotifyStore } from "../store/useSpotifyStore";
+import { useSpotifyStore } from "@/store/useSpotifyStore";
 import { useMemo, useState } from "react";
-import { formatMsPlain } from "../utils/formatTime";
+import { formatMsPlain } from "@/utils/formatTime";
 import { useTranslation } from "react-i18next";
-import { Modal } from "./Modal";
-import { TopTracks } from "./TopTracks";
+import { Modal } from "@/components/Modal";
+import { TopTracks } from "@/components/TopTracks";
 
 interface TopArtistsProps {
   limit?: number;

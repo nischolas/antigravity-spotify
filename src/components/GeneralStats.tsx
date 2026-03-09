@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { useSpotifyStore } from "../store/useSpotifyStore";
-import { formatDurationDDHHMM } from "../utils/formatTime";
+import { useSpotifyStore } from "@/store/useSpotifyStore";
+import { formatDurationDDHHMM } from "@/utils/formatTime";
 
 export const GeneralStats = () => {
   const { aggregatedData, filteredRawData } = useSpotifyStore();

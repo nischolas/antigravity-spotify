@@ -1,8 +1,8 @@
 import { create } from "zustand";
 import { persist, createJSONStorage, type StateStorage } from "zustand/middleware";
 import { get as getKey, set as setKey, del as delKey } from "idb-keyval";
-import type { SpotifyHistoryItem } from "../types";
-import { aggregateTracks } from "../utils/aggregateTracks";
+import type { SpotifyHistoryItem } from "@/types";
+import { aggregateTracks } from "@/utils/aggregateTracks";
 
 interface SpotifyStore {
   // Raw data - all individual streaming events

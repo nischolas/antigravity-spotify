@@ -1,6 +1,6 @@
-import React from 'react';
-import { useTrackAnalytics } from '../hooks/useTrackAnalytics';
-import { LifetimeCurvePanel } from './LifetimeCurvePanel';
+import React from "react";
+import { useTrackAnalytics } from "@/hooks/useTrackAnalytics";
+import { LifetimeCurvePanel } from "@/components/LifetimeCurvePanel";
 
 interface Props {
   trackUri: string | null;
@@ -12,11 +12,7 @@ export const TrackInsights: React.FC<Props> = ({ trackUri }) => {
 
   return (
     <div className="track-insights">
-      <LifetimeCurvePanel
-        data={analytics.lifetime}
-        totalPlays={analytics.skip.totalPlays}
-        skipRate={analytics.skip.skipRate}
-      />
+      <LifetimeCurvePanel data={analytics.lifetime} totalPlays={analytics.skip.totalPlays} skipRate={analytics.skip.skipRate} />
     </div>
   );
 };

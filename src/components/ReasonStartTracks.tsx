@@ -1,9 +1,9 @@
 import React, { useMemo, useState } from "react";
-import { useSpotifyStore } from "../store/useSpotifyStore";
+import { useSpotifyStore } from "@/store/useSpotifyStore";
 import { useTranslation } from "react-i18next";
-import type { SpotifyHistoryItem, ReasonStartType } from "../types";
-import { Modal } from "./Modal";
-import { usePreviewPlayer } from "../hooks/usePreviewPlayer";
+import type { SpotifyHistoryItem, ReasonStartType } from "@/types";
+import { Modal } from "@/components/Modal";
+import { usePreviewPlayer } from "@/hooks/usePreviewPlayer";
 
 interface ReasonStartTracksProps {
   reason_start: ReasonStartType;

@@ -1,4 +1,4 @@
-import type { SpotifyHistoryItem } from "../types";
+import type { SpotifyHistoryItem } from "@/types";
 
 type InMessage = {
   type: "AGGREGATE";

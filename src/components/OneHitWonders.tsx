@@ -1,10 +1,10 @@
 import React, { useMemo, useState } from "react";
-import { useSpotifyStore } from "../store/useSpotifyStore";
-import { usePreviewPlayer } from "../hooks/usePreviewPlayer";
+import { useSpotifyStore } from "@/store/useSpotifyStore";
+import { usePreviewPlayer } from "@/hooks/usePreviewPlayer";
 
 import { useTranslation } from "react-i18next";
-import { Modal } from "./Modal";
-import type { SpotifyHistoryItem } from "../types";
+import { Modal } from "@/components/Modal";
+import type { SpotifyHistoryItem } from "@/types";
 
 interface OneHitWondersProps {
   limit?: number;

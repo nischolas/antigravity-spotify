@@ -1,19 +1,19 @@
 import { useEffect } from "react";
-import { FileUpload } from "./components/FileUpload";
-import { FAQ } from "./components/FAQ";
-import { TopTracks } from "./components/TopTracks";
-import { TopTracksByYear } from "./components/TopTracksByYear";
-import { TopArtists } from "./components/TopArtists";
-import { SkippedTracks } from "./components/SkippedTracks";
-import { DateRangeFilter } from "./components/DateRangeFilter";
-import { ReasonStartTracks } from "./components/ReasonStartTracks";
-import { Footer } from "./components/Footer";
-import { useSpotifyStore } from "./store/useSpotifyStore";
+import { FileUpload } from "@/components/FileUpload";
+import { FAQ } from "@/components/FAQ";
+import { TopTracks } from "@/components/TopTracks";
+import { TopTracksByYear } from "@/components/TopTracksByYear";
+import { TopArtists } from "@/components/TopArtists";
+import { SkippedTracks } from "@/components/SkippedTracks";
+import { DateRangeFilter } from "@/components/DateRangeFilter";
+import { ReasonStartTracks } from "@/components/ReasonStartTracks";
+import { Footer } from "@/components/Footer";
+import { useSpotifyStore } from "@/store/useSpotifyStore";
 import { useTranslation } from "react-i18next";
-import { GeneralStats } from "./components/GeneralStats";
-import { OneHitWonders } from "./components/OneHitWonders";
-import { PreviewPlayerDrawer } from "./components/PreviewPlayerDrawer";
-import { usePreviewPlayer } from "./hooks/usePreviewPlayer.ts";
+import { GeneralStats } from "@/components/GeneralStats";
+import { OneHitWonders } from "@/components/OneHitWonders";
+import { PreviewPlayerDrawer } from "@/components/PreviewPlayerDrawer";
+import { usePreviewPlayer } from "@/hooks/usePreviewPlayer.ts";
 
 function App() {
   const { isDataLoaded, reset, initialize } = useSpotifyStore();

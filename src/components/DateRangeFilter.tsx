@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { AreaChart, Area, ResponsiveContainer } from "recharts";
-import { useSpotifyStore } from "../store/useSpotifyStore";
+import { useSpotifyStore } from "@/store/useSpotifyStore";
 import { useTranslation } from "react-i18next";
 
 export const DateRangeFilter: React.FC = () => {

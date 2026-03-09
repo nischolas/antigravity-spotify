@@ -1,4 +1,4 @@
-import type { SpotifyHistoryItem } from "../types";
+import type { SpotifyHistoryItem } from "@/types";
 
 export function aggregateTracks(items: SpotifyHistoryItem[]): SpotifyHistoryItem[] {
   const map = new Map<string, SpotifyHistoryItem>();

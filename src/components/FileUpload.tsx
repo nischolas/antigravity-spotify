@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import JSZip from "jszip";
-import type { SpotifyHistoryItem } from "../types";
-import { useSpotifyStore } from "../store/useSpotifyStore";
+import type { SpotifyHistoryItem } from "@/types";
+import { useSpotifyStore } from "@/store/useSpotifyStore";
 import { useTranslation } from "react-i18next";
-import { isMobile } from "../utils/isMobile";
+import { isMobile } from "@/utils/isMobile";
 
 export const FileUpload: React.FC = () => {
   const { loadData, isDataLoadedInIDB, isDataLoaded, restoreSession, discardSession, isLoading: storeIsLoading } = useSpotifyStore();

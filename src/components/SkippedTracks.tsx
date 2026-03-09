@@ -1,8 +1,8 @@
-import { useSpotifyStore } from "../store/useSpotifyStore";
+import { useSpotifyStore } from "@/store/useSpotifyStore";
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Modal } from "./Modal";
-import { usePreviewPlayer } from "../hooks/usePreviewPlayer";
+import { Modal } from "@/components/Modal";
+import { usePreviewPlayer } from "@/hooks/usePreviewPlayer";
 
 interface SkippedTracksProps {
   limit?: number;
