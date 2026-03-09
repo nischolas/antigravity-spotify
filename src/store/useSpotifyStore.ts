@@ -35,7 +35,7 @@ interface SpotifyStore {
   discardSession: () => void;
 
   // Combined action to load and process data
-  loadData: (rawItems: SpotifyHistoryItem[]) => void;
+  loadData: (rawItems: SpotifyHistoryItem[]) => Promise<void>;
   initialize: () => Promise<void>;
 }
 
@@ -49,6 +49,21 @@ const initialState = {
   isDataLoaded: false,
   isDataLoadedInIDB: false,
 };
+
+function aggregateInWorker(items: SpotifyHistoryItem[]): Promise<SpotifyHistoryItem[]> {
+  return new Promise((resolve, reject) => {
+    const worker = new Worker(new URL("../workers/dataProcessor.worker.ts", import.meta.url), { type: "module" });
+    worker.onmessage = (e) => {
+      resolve(e.data.aggregated);
+      worker.terminate();
+    };
+    worker.onerror = (err) => {
+      reject(err);
+      worker.terminate();
+    };
+    worker.postMessage({ type: "AGGREGATE", payload: items });
+  });
+}
 
 // Custom storage adapter for idb-keyval
 const storage: StateStorage = {
@@ -130,26 +145,8 @@ export const useSpotifyStore = create<SpotifyStore>()(
           const storedRaw = await getKey("spotify-raw-data");
           if (storedRaw && Array.isArray(storedRaw) && storedRaw.length > 0) {
             set({ rawData: storedRaw, isDataLoaded: true, isDataLoadedInIDB: false });
-
-            const aggregatedMap = new Map<string, SpotifyHistoryItem>();
-            for (const item of storedRaw) {
-              const uri = item.spotify_track_uri;
-              if (!uri) continue;
-
-              if (aggregatedMap.has(uri)) {
-                const existing = aggregatedMap.get(uri)!;
-                existing.ms_played += item.ms_played;
-                existing.count = (existing.count || 1) + 1;
-              } else {
-                aggregatedMap.set(uri, {
-                  ...item,
-                  ms_played: item.ms_played,
-                  count: 1,
-                });
-              }
-            }
-            const aggregatedResult = Array.from(aggregatedMap.values());
-            set({ aggregatedData: aggregatedResult });
+            const aggregated = await aggregateInWorker(storedRaw);
+            set({ aggregatedData: aggregated });
           } else {
             set({ isDataLoaded: false, isDataLoadedInIDB: false });
           }
@@ -166,40 +163,24 @@ export const useSpotifyStore = create<SpotifyStore>()(
         set({ isDataLoadedInIDB: false });
       },
 
-      loadData: (rawItems) => {
+      loadData: async (rawItems) => {
         set({ rawData: rawItems, isLoading: true, error: null });
 
         // Save raw data to indexedDB manually
         setKey("spotify-raw-data", rawItems).catch((err) => console.error("Failed to save raw data:", err));
 
-        // Aggregate data by track URI
-        const aggregatedMap = new Map<string, SpotifyHistoryItem>();
-
-        for (const item of rawItems) {
-          const uri = item.spotify_track_uri;
-          if (!uri) continue;
-
-          if (aggregatedMap.has(uri)) {
-            const existing = aggregatedMap.get(uri)!;
-            existing.ms_played += item.ms_played;
-            existing.count = (existing.count || 1) + 1;
-          } else {
-            aggregatedMap.set(uri, {
-              ...item,
-              ms_played: item.ms_played,
-              count: 1,
-            });
-          }
+        try {
+          const aggregated = await aggregateInWorker(rawItems);
+          set({
+            aggregatedData: aggregated,
+            isLoading: false,
+            isDataLoaded: rawItems.length > 0,
+            error: aggregated.length === 0 ? "No valid track data found to aggregate (missing spotify_track_uri)." : null,
+          });
+        } catch (err) {
+          console.error("Failed to aggregate data:", err);
+          set({ isLoading: false, error: "Failed to process data." });
         }
-
-        const aggregatedResult = Array.from(aggregatedMap.values());
-
-        set({
-          aggregatedData: aggregatedResult,
-          isLoading: false,
-          isDataLoaded: rawItems.length > 0,
-          error: aggregatedResult.length === 0 ? "No valid track data found to aggregate (missing spotify_track_uri)." : null,
-        });
       },
 
       initialize: async () => {
