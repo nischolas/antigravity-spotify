@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { persist, createJSONStorage, type StateStorage } from "zustand/middleware";
 import { get as getKey, set as setKey, del as delKey } from "idb-keyval";
 import type { SpotifyHistoryItem } from "../types";
+import { aggregateTracks } from "../utils/aggregateTracks";
 
 interface SpotifyStore {
   // Raw data - all individual streaming events
@@ -109,24 +110,11 @@ export const useSpotifyStore = create<SpotifyStore>()(
         set((state) => {
           const filteredRaw = filterByDateRange(state.rawData, startDate, endDate);
 
-          const aggregatedMap = new Map<string, SpotifyHistoryItem>();
-          for (const item of filteredRaw) {
-            const uri = item.spotify_track_uri;
-            if (!uri) continue;
-            if (aggregatedMap.has(uri)) {
-              const existing = aggregatedMap.get(uri)!;
-              existing.ms_played += item.ms_played;
-              existing.count = (existing.count || 1) + 1;
-            } else {
-              aggregatedMap.set(uri, { ...item, count: 1 });
-            }
-          }
-
           return {
             startDate,
             endDate,
             filteredRawData: filteredRaw,
-            aggregatedData: Array.from(aggregatedMap.values()),
+            aggregatedData: aggregateTracks(filteredRaw),
           };
         }),
 
