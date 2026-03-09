@@ -17,6 +17,8 @@ export const DateRangeFilter: React.FC = () => {
   const sliderRef = useRef<HTMLDivElement>(null);
   const filterRef = useRef<HTMLDivElement>(null);
 
+  const DEBOUNCE_TIME = 100;
+
   // Calculate months from raw data
   useEffect(() => {
     if (rawData.length > 0) {
@@ -61,7 +63,7 @@ export const DateRangeFilter: React.FC = () => {
         const endDate = new Date(endMonth.getFullYear(), endMonth.getMonth() + 1, 0, 23, 59, 59);
 
         setDateRange(startDate.toISOString(), endDate.toISOString());
-      }, 200);
+      }, DEBOUNCE_TIME);
 
       return () => clearTimeout(timer);
     }
