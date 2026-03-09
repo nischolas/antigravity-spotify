@@ -85,8 +85,8 @@ export const LifetimeCurvePanel: React.FC<Props> = ({ data, totalPlays, skipRate
                 <YAxis yAxisId="hours" tick={{ fill: TEXT_SECONDARY, fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={fmtHours} />
                 <YAxis yAxisId="plays" orientation="right" tick={{ fill: TEXT_SECONDARY, fontSize: 11 }} axisLine={false} tickLine={false} />
                 <Tooltip
-                  formatter={(v: number | undefined, name: string | undefined) => {
-                    if (name === "cumulativeHours") return [fmtHours(v ?? 0), t("trackInsights.lifetime.cumulativeHours")];
+                  formatter={(v, name) => {
+                    if (name === "cumulativeHours") return [fmtHours(typeof v === "number" ? v : 0), t("trackInsights.lifetime.cumulativeHours")];
                     return [v, t("trackInsights.lifetime.playsPerMonth")];
                   }}
                   contentStyle={{ background: "#1e1e1e", border: `1px solid ${BORDER}`, borderRadius: 6, fontSize: 12 }}
