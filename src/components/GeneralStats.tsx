@@ -4,7 +4,7 @@ import { useSpotifyStore } from "../store/useSpotifyStore";
 import { formatDurationDDHHMM } from "../utils/formatTime";
 
 export const GeneralStats = () => {
-  const { aggregatedData, rawData, startDate, endDate } = useSpotifyStore();
+  const { aggregatedData, filteredRawData } = useSpotifyStore();
   const { t } = useTranslation();
 
   const stats = useMemo(() => {
@@ -18,20 +18,13 @@ export const GeneralStats = () => {
       }
     });
 
-    const filteredRawCount = rawData.filter((item) => {
-      const d = new Date(item.ts);
-      if (startDate && d < new Date(startDate)) return false;
-      if (endDate && d > new Date(endDate)) return false;
-      return true;
-    }).length;
-
     return {
       totalTime: formatDurationDDHHMM(totalTime),
       uniqueArtists: uniqueArtists.size,
       uniqueSongs: aggregatedData.length,
-      filteredRawCount,
+      filteredRawCount: filteredRawData.length,
     };
-  }, [aggregatedData, rawData, startDate, endDate]);
+  }, [aggregatedData, filteredRawData]);
 
   if (aggregatedData.length === 0) return null;
 

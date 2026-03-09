@@ -10,6 +10,9 @@ interface SpotifyStore {
   // Aggregated data - tracks grouped by URI with summed playtime
   aggregatedData: SpotifyHistoryItem[];
 
+  // Raw data filtered by current date range (derived, not persisted)
+  filteredRawData: SpotifyHistoryItem[];
+
   // Date range filter
   startDate: string | null;
   endDate: string | null;
@@ -42,6 +45,7 @@ interface SpotifyStore {
 const initialState = {
   rawData: [],
   aggregatedData: [],
+  filteredRawData: [],
   startDate: null,
   endDate: null,
   isLoading: false,
@@ -49,6 +53,18 @@ const initialState = {
   isDataLoaded: false,
   isDataLoadedInIDB: false,
 };
+
+function filterByDateRange(items: SpotifyHistoryItem[], startDate: string | null, endDate: string | null): SpotifyHistoryItem[] {
+  if (!startDate && !endDate) return items;
+  const start = startDate ? new Date(startDate) : null;
+  const end = endDate ? new Date(endDate) : null;
+  return items.filter((item) => {
+    const d = new Date(item.ts);
+    if (start && d < start) return false;
+    if (end && d > end) return false;
+    return true;
+  });
+}
 
 function aggregateInWorker(items: SpotifyHistoryItem[]): Promise<SpotifyHistoryItem[]> {
   return new Promise((resolve, reject) => {
@@ -65,7 +81,6 @@ function aggregateInWorker(items: SpotifyHistoryItem[]): Promise<SpotifyHistoryI
   });
 }
 
-// Custom storage adapter for idb-keyval
 const storage: StateStorage = {
   getItem: async (name: string): Promise<string | null> => {
     return (await getKey(name)) || null;
@@ -92,40 +107,25 @@ export const useSpotifyStore = create<SpotifyStore>()(
 
       setDateRange: (startDate, endDate) =>
         set((state) => {
-          // Re-aggregate data with new date range
-          const filteredRaw = state.rawData.filter((item) => {
-            const itemDate = new Date(item.ts);
-            const start = startDate ? new Date(startDate) : null;
-            const end = endDate ? new Date(endDate) : null;
+          const filteredRaw = filterByDateRange(state.rawData, startDate, endDate);
 
-            if (start && itemDate < start) return false;
-            if (end && itemDate > end) return false;
-            return true;
-          });
-
-          // Aggregate filtered data
           const aggregatedMap = new Map<string, SpotifyHistoryItem>();
-
           for (const item of filteredRaw) {
             const uri = item.spotify_track_uri;
             if (!uri) continue;
-
             if (aggregatedMap.has(uri)) {
               const existing = aggregatedMap.get(uri)!;
               existing.ms_played += item.ms_played;
               existing.count = (existing.count || 1) + 1;
             } else {
-              aggregatedMap.set(uri, {
-                ...item,
-                ms_played: item.ms_played,
-                count: 1,
-              });
+              aggregatedMap.set(uri, { ...item, count: 1 });
             }
           }
 
           return {
             startDate,
             endDate,
+            filteredRawData: filteredRaw,
             aggregatedData: Array.from(aggregatedMap.values()),
           };
         }),
@@ -144,7 +144,9 @@ export const useSpotifyStore = create<SpotifyStore>()(
         try {
           const storedRaw = await getKey("spotify-raw-data");
           if (storedRaw && Array.isArray(storedRaw) && storedRaw.length > 0) {
-            set({ rawData: storedRaw, isDataLoaded: true, isDataLoadedInIDB: false });
+            const { startDate, endDate } = get();
+            const filteredRaw = filterByDateRange(storedRaw, startDate, endDate);
+            set({ rawData: storedRaw, filteredRawData: filteredRaw, isDataLoaded: true, isDataLoadedInIDB: false });
             const aggregated = await aggregateInWorker(storedRaw);
             set({ aggregatedData: aggregated });
           } else {
@@ -164,7 +166,9 @@ export const useSpotifyStore = create<SpotifyStore>()(
       },
 
       loadData: async (rawItems) => {
-        set({ rawData: rawItems, isLoading: true, error: null });
+        const { startDate, endDate } = get();
+        const filteredRaw = filterByDateRange(rawItems, startDate, endDate);
+        set({ rawData: rawItems, filteredRawData: filteredRaw, isLoading: true, error: null });
 
         // Save raw data to indexedDB manually
         setKey("spotify-raw-data", rawItems).catch((err) => console.error("Failed to save raw data:", err));
@@ -205,7 +209,6 @@ export const useSpotifyStore = create<SpotifyStore>()(
       name: "spotify-storage",
       storage: createJSONStorage(() => storage),
       partialize: (state) => ({
-        // rawData and isDataLoaded are handling manually via IDB
         aggregatedData: state.aggregatedData,
         startDate: state.startDate,
         endDate: state.endDate,

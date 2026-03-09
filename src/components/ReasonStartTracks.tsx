@@ -12,26 +12,13 @@ interface ReasonStartTracksProps {
 }
 
 export const ReasonStartTracks: React.FC<ReasonStartTracksProps> = ({ reason_start, limit = 10, isModal = false }) => {
-  const { rawData, startDate, endDate } = useSpotifyStore();
+  const { filteredRawData } = useSpotifyStore();
   const { t } = useTranslation();
   const [showMoreModal, setShowMoreModal] = useState(false);
   const { openPlayer } = usePreviewPlayer();
 
   const title = t(`reasonStartTracks.title.${reason_start}`);
   const subtitle = t(`reasonStartTracks.subtitle.${reason_start}`);
-
-  // Filter raw data based on date range first
-  const dateFilteredData = useMemo(() => {
-    return rawData.filter((item) => {
-      const itemDate = new Date(item.ts);
-      const start = startDate ? new Date(startDate) : null;
-      const end = endDate ? new Date(endDate) : null;
-
-      if (start && itemDate < start) return false;
-      if (end && itemDate > end) return false;
-      return true;
-    });
-  }, [rawData, startDate, endDate]);
 
   const sortedData = useMemo(() => {
     const trackCounts = new Map<
@@ -42,28 +29,23 @@ export const ReasonStartTracks: React.FC<ReasonStartTracksProps> = ({ reason_sta
       }
     >();
 
-    dateFilteredData.forEach((item) => {
-      // Apply reason filter for counting
+    filteredRawData.forEach((item) => {
       if (item.reason_start !== reason_start) return;
 
       const uri = item.spotify_track_uri;
       if (!uri) return;
 
       if (trackCounts.has(uri)) {
-        const existing = trackCounts.get(uri)!;
-        existing.count += 1;
+        trackCounts.get(uri)!.count += 1;
       } else {
-        trackCounts.set(uri, {
-          count: 1,
-          track: item,
-        });
+        trackCounts.set(uri, { count: 1, track: item });
       }
     });
 
     return Array.from(trackCounts.values())
       .sort((a, b) => b.count - a.count)
       .slice(0, limit);
-  }, [dateFilteredData, reason_start, limit]);
+  }, [filteredRawData, reason_start, limit]);
 
   return (
     <>
