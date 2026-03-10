@@ -124,7 +124,8 @@
     "language": "Sprache",
     "legal": "Impressum",
     "privacy": "Keinerlei Daten über dich oder dein Gerät werden gesammelt oder an einen Server gesendet.",
-    "by": "Gebaut von"
+    "by": "Gebaut von",
+    "notAffiliated": "Keine Verbindung zu Spotify."
   },
   "common": {
     "close": "Schließen",

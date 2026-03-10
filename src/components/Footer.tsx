@@ -43,6 +43,8 @@ export const Footer: React.FC = () => {
             <a href="https://github.com/nischolas/antigravity-spotify" target="_blank" rel="noopener noreferrer">
               Source
             </a>
+            <br />
+            <p>{t("footer.notAffiliated")}</p>
           </div>
         </div>
       </footer>
