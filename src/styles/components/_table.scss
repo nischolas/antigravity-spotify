@@ -2,6 +2,7 @@
 
 table {
   width: 100%;
+  table-layout: fixed;
   border-collapse: collapse;
   text-align: left;
 }
@@ -11,9 +12,8 @@ td {
   padding: 0.8rem 1.2rem;
   vertical-align: middle;
   overflow: hidden;
-  max-width: 10rem;
-  text-overflow: ellipsis;
   white-space: nowrap;
+  text-overflow: ellipsis;
 
   @media (max-width: 1024px) {
     padding: 0.5rem 0.6rem;
@@ -23,15 +23,25 @@ td {
 
   &:first-child {
     padding-right: 0.5rem;
-    text-align: center;
     font-size: 0.7rem;
+    text-align: center;
     color: $text-secondary;
-    width: 1%;
+    width: 1.5ch;
     white-space: nowrap;
   }
 
   &:nth-child(2) {
     padding-left: 0.5rem;
+  }
+}
+
+.table-scroll-wrapper {
+  td,
+  th {
+    &:first-child {
+      width: 4ch;
+      text-align: left;
+    }
   }
 }
 

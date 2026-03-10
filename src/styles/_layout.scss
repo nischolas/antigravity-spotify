@@ -15,7 +15,7 @@
   }
 
   @media (max-width: 1024px) {
-    padding: 0.5rem;
+    padding: 0.7rem;
     padding-bottom: 0;
   }
 
@@ -66,7 +66,7 @@
   grid-template-columns: repeat(12, 1fr);
   gap: 1rem;
 
-  @media (max-width: 430px) {
+  @media (max-width: 1024px) {
     gap: 0.7rem;
   }
 
@@ -118,11 +118,8 @@
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 
-  @media (max-width: 430px) {
+  @media (max-width: 768px) {
     border-radius: 0.7rem;
-  }
-
-  @media (max-width: 1024px) {
     overflow-x: auto;
   }
 }
